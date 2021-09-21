@@ -1,13 +1,15 @@
-Instituto Tecnológico de Costa Rica
+# CINETEC-PROJECT-1
+
+# Instituto Tecnológico de Costa Rica
 
 Bases de datos 
 
-Proyecto #1
+### Proyecto #1
 
-Carlos Adrián Araya Ramírez
++ Carlos Adrián Araya Ramírez
 
-Michael Shakime Richards Sparks
++ Michael Shakime Richards Sparks
 
-Jose Alejandro Chavarría
++ Jose Alejandro Chavarría
 
-Sebastian Mora Godinez
++ Sebastian Mora Godinez
