@@ -8,9 +8,6 @@ Bases de datos
 
 Integrantes:
  + Carlos Adrián Araya Ramírez
-
  + Michael Shakime Richards Sparks
-
  + Jose Alejandro Chavarría
-
  + Sebastian Mora Godinez
