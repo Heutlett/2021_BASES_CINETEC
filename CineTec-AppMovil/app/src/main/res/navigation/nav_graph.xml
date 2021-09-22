@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login">
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.cinetec_appmovil.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_branchs"
+            app:destination="@id/branchs" />
+    </fragment>
+    <fragment
+        android:id="@+id/branchs"
+        android:name="com.example.cinetec_appmovil.Branchs"
+        android:label="fragment_branchs"
+        tools:layout="@layout/fragment_branchs" >
+        <action
+            android:id="@+id/action_branchs_to_login"
+            app:destination="@id/login" />
+    </fragment>
+</navigation>
