@@ -10,41 +10,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cinetec_appmovil.databinding.FragmentLoginBinding;
+import com.example.cinetec_appmovil.databinding.FragmentMenuBinding;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Login} factory method to
+ * Use the {@link Menu#} factory method to
  * create an instance of this fragment.
  */
-public class Login extends Fragment {
+public class Menu extends Fragment {
 
-    private FragmentLoginBinding binding;
+    private FragmentMenuBinding binding;
 
 
-
-    public Login() {
+    public Menu() {
         // Required empty public constructor
     }
-
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
+
+        binding = FragmentMenuBinding.inflate(inflater, container, false);
 
         return binding.getRoot();
-
     }
 
     @Override
@@ -52,20 +47,18 @@ public class Login extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        binding.enterButton.setOnClickListener(new View.OnClickListener() {
+        binding.purchaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(Login.this)
-                        .navigate(R.id.action_login_to_menu);
+                NavHostFragment.findNavController(Menu.this)
+                        .navigate(R.id.action_menu_to_branchs);
 
 
             }
         });
 
 
-
-
-
     }
+
 }

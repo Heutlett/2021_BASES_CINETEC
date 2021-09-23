@@ -10,8 +10,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_login_to_branchs"
-            app:destination="@id/branchs" />
+            android:id="@+id/action_login_to_menu"
+            app:destination="@id/menu" />
     </fragment>
     <fragment
         android:id="@+id/branchs"
@@ -19,7 +19,31 @@
         android:label="fragment_branchs"
         tools:layout="@layout/fragment_branchs" >
         <action
-            android:id="@+id/action_branchs_to_login"
+            android:id="@+id/action_branchs_to_movies"
+            app:destination="@id/movies" />
+        <action
+            android:id="@+id/action_branchs_to_menu"
+            app:destination="@id/menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/movies"
+        android:name="com.example.cinetec_appmovil.Movies"
+        android:label="fragment_movies"
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/action_movies_to_branchs"
+            app:destination="@id/branchs" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.example.cinetec_appmovil.Menu"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menu_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_menu_to_branchs"
+            app:destination="@id/branchs" />
     </fragment>
 </navigation>
