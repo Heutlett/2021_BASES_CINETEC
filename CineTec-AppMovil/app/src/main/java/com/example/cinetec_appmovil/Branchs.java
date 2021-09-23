@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.cinetec_appmovil.branchItem.Branch;
 import com.example.cinetec_appmovil.branchItem.BranchAdapter;
@@ -61,12 +63,23 @@ public class Branchs extends Fragment {
         branches.add(new Branch("Cartago", "Oriental", "multiplaza", "45"));
         branches.add(new Branch("Heredia", "San Isidro", "magaly", "45"));
 
-
-
-
         BranchAdapter arrayAdapter = new BranchAdapter(getContext(), branches);
 
         binding.branchView.setAdapter(arrayAdapter);
+
+        binding.branchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
+                NavHostFragment.findNavController(Branchs.this)
+                        .navigate(R.id.action_branchs_to_movies);
+
+
+
+            }
+        });
 
 
 
