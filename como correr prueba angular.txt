@@ -1,0 +1,78 @@
+Desde la carpeta ../../../2021_BASES_CINETEC
+npm uninstall -g @angular/cli
+npm cache clean --force
+instalar Angular Language Service en VSCode como extension
+instalar ESLint en VSCode como extension
+actualizar Node desde https://nodejs.org/en/   (version 14.17.6)
+node -v
+npm install -g @angular/cli
+ng --version
+
+	Si les da este errror: 
+
+	At line:1 char:1
+	+ ~~
+    	+ CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    	+ FullyQualifiedErrorId : UnauthorizedAccess
+
+	usen:
+	set-ExecutionPolicy RemoteSigned -Scope CurrentUser 
+	Get-ExecutionPolicy
+	Get-ExecutionPolicy -list
+	ng --version
+
+Deberian tener: 
+
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+    
+
+Angular CLI: 12.2.7
+Node: 14.17.6
+Package Manager: npm 6.14.15
+OS: win32 x64
+
+Angular:
+...
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.1202.7 (cli-only)
+@angular-devkit/core         12.2.7 (cli-only)
+@angular-devkit/schematics   12.2.7 (cli-only)
+@schematics/angular          12.2.7 (cli-only)
+
+cd blk-design-system-angular-master
+ng serve
+
+
+	si les da este error: 
+
+	An unhandled exception occurred: Cannot find module '@angular-devkit/build-angular/package.json'
+	Require stack: ...
+
+	usen: 
+	npm install --save-dev @angular-devkit/build-angular
+
+	ng serve
+
+	si les da este error: 
+
+	An unhandled exception occurred: Cannot find module 'typescript'
+	Require stack: ...
+
+	usen: 
+	
+	npm install -g typescript
+	npm link typescript
+
+	si todavia no funciona, vuelense el folder de node_modules
+	npm cache clean --force
+	npm install
+	ng serve
+
+Y con eso me funco. metanse a http:localhost:4200/   y ahi deberia estar bien rikolin
