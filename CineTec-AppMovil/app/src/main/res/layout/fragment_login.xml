@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/blue"
+        android:background="@drawable/bg5"
         android:layout_height="match_parent">
 
         <EditText
@@ -19,6 +19,7 @@
             android:layout_marginTop="104dp"
             android:ems="10"
             android:inputType="textPassword"
+            android:background="@color/dark_blue"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextUser" />
@@ -30,6 +31,7 @@
             android:layout_marginStart="88dp"
             android:layout_marginTop="220dp"
             android:ems="10"
+            android:background="@color/dark_blue"
             android:inputType="textPersonName"
             android:textColor="#FBFBFB"
             android:textStyle="bold"
@@ -80,6 +82,7 @@
             android:layout_marginStart="84dp"
             android:layout_marginTop="52dp"
             android:text="CineTec"
+            android:background="@drawable/logo"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="60sp"

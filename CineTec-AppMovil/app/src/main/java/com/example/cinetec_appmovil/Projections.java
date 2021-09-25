@@ -11,25 +11,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import com.example.cinetec_appmovil.branchItem.Branch;
-import com.example.cinetec_appmovil.branchItem.BranchAdapter;
-import com.example.cinetec_appmovil.databinding.FragmentMoviesBinding;
-import com.example.cinetec_appmovil.movieItem.Movie;
+import com.example.cinetec_appmovil.databinding.FragmentProjectionBinding;
 import com.example.cinetec_appmovil.movieItem.MovieAdapter;
+import com.example.cinetec_appmovil.projectionsItem.Projection;
+import com.example.cinetec_appmovil.projectionsItem.ProjectionAdapter;
+
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Movies} factory method to
+ * Use the {@link Projections#} factory method to
  * create an instance of this fragment.
  */
-public class Movies extends Fragment {
+public class Projections extends Fragment {
 
-    private FragmentMoviesBinding binding;
+    private FragmentProjectionBinding binding;
 
 
-    public Movies() {
+    public Projections() {
         // Required empty public constructor
     }
 
@@ -45,34 +45,37 @@ public class Movies extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        binding = FragmentMoviesBinding.inflate(inflater, container, false);
+        binding = FragmentProjectionBinding.inflate(inflater, container, false);
         return binding.getRoot();
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<Movie> movies = new ArrayList<>();
+
+
+        ArrayList<Projection> projections = new ArrayList<>();
 
         for(int i=0; i < 20; i++)
         {
-            movies.add(new Movie("Once Upon a Time in HOllywood", "2 hours 30 minutes", "R+", "Leornado Di Caprio, Brad Pitt", "Quetin Tarantino"));
+
+
+            projections.add(new Projection("Sabado 19", "15:00", ":$200"));
 
         }
 
+        ProjectionAdapter arrayAdapter = new ProjectionAdapter(getContext(), projections);
+        binding.projectionView.setAdapter(arrayAdapter);
 
-        MovieAdapter arrayAdapter = new MovieAdapter(getContext(), movies);
-        binding.branchView.setAdapter(arrayAdapter);
-
-        binding.branchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.projectionView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                NavHostFragment.findNavController(Movies.this)
-                        .navigate(R.id.action_movies_to_projection);
 
-
+                NavHostFragment.findNavController(Projections.this)
+                        .navigate(R.id.action_projection_to_tickets);
 
 
             }
@@ -81,10 +84,7 @@ public class Movies extends Fragment {
 
 
 
-
-
-
-
-
     }
+
+
 }

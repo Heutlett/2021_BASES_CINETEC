@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_movies_to_branchs"
             app:destination="@id/branchs" />
+        <action
+            android:id="@+id/action_movies_to_projection"
+            app:destination="@id/projection" />
     </fragment>
     <fragment
         android:id="@+id/menu"
@@ -45,5 +48,38 @@
         <action
             android:id="@+id/action_menu_to_branchs"
             app:destination="@id/branchs" />
+    </fragment>
+    <fragment
+        android:id="@+id/projection"
+        android:name="com.example.cinetec_appmovil.Projections"
+        android:label="fragment_projection"
+        tools:layout="@layout/fragment_projection" >
+        <action
+            android:id="@+id/action_projection_to_movies"
+            app:destination="@id/movies" />
+        <action
+            android:id="@+id/action_projection_to_tickets"
+            app:destination="@id/tickets" />
+    </fragment>
+    <fragment
+        android:id="@+id/seats"
+        android:name="com.example.cinetec_appmovil.Seats"
+        android:label="fragment_seats"
+        tools:layout="@layout/fragment_seats" >
+        <action
+            android:id="@+id/action_seats_to_tickets"
+            app:destination="@id/tickets" />
+    </fragment>
+    <fragment
+        android:id="@+id/tickets"
+        android:name="com.example.cinetec_appmovil.Tickets"
+        android:label="fragment_tickets"
+        tools:layout="@layout/fragment_tickets" >
+        <action
+            android:id="@+id/action_tickets_to_projection"
+            app:destination="@id/projection" />
+        <action
+            android:id="@+id/action_tickets_to_seats"
+            app:destination="@id/seats" />
     </fragment>
 </navigation>
