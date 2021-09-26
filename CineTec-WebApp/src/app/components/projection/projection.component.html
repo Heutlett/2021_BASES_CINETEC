@@ -1,0 +1,10 @@
+<div class="row">
+    <div>
+        <img src={{Img}} class="img-thumbnail img-responsive" alt="Rounded Image">
+        <p class="text-center text-white">{{Name}}</p>
+    </div>
+    <div>
+        <button *ngFor = "let time of Time ; index as i"  type="button" class="btn btn-outline-primary btn-round">{{time}}</button>
+    </div>
+</div>
+<hr>
