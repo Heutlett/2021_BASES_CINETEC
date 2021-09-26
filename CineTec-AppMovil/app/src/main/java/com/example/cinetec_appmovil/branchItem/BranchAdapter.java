@@ -38,7 +38,7 @@ public class BranchAdapter extends ArrayAdapter<Branch> {
 
             Branch currentBranch = branches.get(position);
 
-            TextView textView1 = currentItemView.findViewById(R.id.branch_name_text);
+            TextView textView1 = currentItemView.findViewById(R.id.name_branch_text);
             textView1.setText(currentBranch.getName());
 
             TextView textView2 = currentItemView.findViewById(R.id.address_text);

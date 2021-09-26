@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.cinetec_appmovil.branchItem.Branch;
 import com.example.cinetec_appmovil.branchItem.BranchAdapter;
@@ -63,6 +64,21 @@ public class Movies extends Fragment {
 
         MovieAdapter arrayAdapter = new MovieAdapter(getContext(), movies);
         binding.branchView.setAdapter(arrayAdapter);
+
+        binding.branchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                NavHostFragment.findNavController(Movies.this)
+                        .navigate(R.id.action_movies_to_projection);
+
+
+
+
+            }
+        });
+
+
 
 
 
