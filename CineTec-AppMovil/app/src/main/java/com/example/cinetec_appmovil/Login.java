@@ -9,7 +9,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.cinetec_appmovil.database.CineTecDatabase;
 import com.example.cinetec_appmovil.databinding.FragmentLoginBinding;
 
 /**
@@ -20,6 +22,7 @@ import com.example.cinetec_appmovil.databinding.FragmentLoginBinding;
 public class Login extends Fragment {
 
     private FragmentLoginBinding binding;
+    int x = 1;
 
 
 
@@ -56,8 +59,25 @@ public class Login extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(Login.this)
-                        .navigate(R.id.action_login_to_menu);
+                String user = binding.editTextTextUser.getText().toString();
+                String password = binding.editTextTextPassword.getText().toString();
+                boolean client_exist = CineTecDatabase.getInstance(getContext()).clientExist(user, password);
+
+                System.out.println(CineTecDatabase.getInstance(getContext()).insertClient(x));
+                x++;
+
+                if (client_exist){
+
+                    NavHostFragment.findNavController(Login.this)
+                            .navigate(R.id.action_login_to_menu);
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Usuario o contraseña invalidos", Toast.LENGTH_SHORT).show();
+
+                }
+
+
 
 
             }

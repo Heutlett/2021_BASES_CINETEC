@@ -69,6 +69,9 @@
         <action
             android:id="@+id/action_seats_to_tickets"
             app:destination="@id/tickets" />
+        <action
+            android:id="@+id/action_seats_to_menu"
+            app:destination="@id/menu" />
     </fragment>
     <fragment
         android:id="@+id/tickets"

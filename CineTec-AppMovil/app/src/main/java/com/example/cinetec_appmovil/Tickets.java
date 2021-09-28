@@ -26,6 +26,7 @@ public class Tickets extends Fragment {
     private int adult_tickets = 0;
     private int old_tickets = 0;
     private int total = 0;
+    private static int total_seats = 0;
 
     private final int KID_PRICE = 2500;
     private final int ADULT_PRICE = 3000;
@@ -69,6 +70,7 @@ public class Tickets extends Fragment {
 
                 kid_tickets++;
                 total += KID_PRICE;
+                total_seats++;
                 updteKidText();
                 updateTotalText();
 
@@ -83,6 +85,7 @@ public class Tickets extends Fragment {
 
                     kid_tickets--;
                     total -= KID_PRICE;
+                    total_seats--;
                     updteKidText();
                     updateTotalText();
                 }
@@ -97,6 +100,7 @@ public class Tickets extends Fragment {
 
                 adult_tickets++;
                 total += ADULT_PRICE;
+                total_seats++;
                 updteAdultText();
                 updateTotalText();
 
@@ -112,6 +116,7 @@ public class Tickets extends Fragment {
 
                     adult_tickets--;
                     total -= ADULT_PRICE;
+                    total_seats--;
                     updteAdultText();
                     updateTotalText();
                 }
@@ -126,6 +131,7 @@ public class Tickets extends Fragment {
 
                 old_tickets++;
                 total += OLD_PRICE;
+                total_seats++;
                 updteOldText();
                 updateTotalText();
 
@@ -139,6 +145,7 @@ public class Tickets extends Fragment {
                 if(old_tickets != 0) {
                     old_tickets--;
                     total -= OLD_PRICE;
+                    total_seats--;
                     updteOldText();
                     updateTotalText();
 
@@ -187,6 +194,10 @@ public class Tickets extends Fragment {
         updteOldText();
         updateTotalText();
 
+    }
+
+    public static int getTotalSeats(){
+        return total_seats;
     }
 
 }
