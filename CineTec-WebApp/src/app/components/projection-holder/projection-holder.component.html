@@ -1,0 +1,9 @@
+<div class="container">
+    <h1 class="text-primary">Sucursal #1{{name}}</h1>
+    <h3 class="text-white">Dia: {{date}} xx/xx/xx</h3>
+
+    <app-projection
+        *ngFor = "let projection of projections$ |async" [projection] = "projection">
+    </app-projection>
+
+</div>

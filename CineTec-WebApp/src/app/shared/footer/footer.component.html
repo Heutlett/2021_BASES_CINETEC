@@ -1,0 +1,18 @@
+<footer style="background-color:#03022C;" *ngIf="!isSignup()" class="footer">
+    <div class="container">
+        <div class="row">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#">CineTec</a></li>
+                    <li><a href="#">Contactenos</a></li>
+                    <li><a href="#">Acerca de nosotros</a></li>
+                </ul>
+            </nav>
+            <div class="credits ml-auto">
+                <span class="copyright">
+                    © {{test | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> by CineTec
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>
