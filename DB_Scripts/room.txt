@@ -1,0 +1,13 @@
+CREATE TABLE ROOM
+(
+	branch_name 		VARCHAR(15) NOT NULL,
+    id 					INT,
+	row_quantity 		INT NOT NULL,
+	column_quantity 	INT NOT NULL,
+    capacity 			INT NOT NULL,	
+	PRIMARY KEY(id)
+);
+
+ALTER TABLE ROOM
+ADD CONSTRAINT ROOM_BRANCH_FK FOREIGN KEY(branch_name)
+REFERENCES BRANCH(cinema_name)
