@@ -1,0 +1,8 @@
+CREATE TABLE BRANCH
+(
+    cinema_name VARCHAR(15) NOT NULL,
+    province VARCHAR(15) NOT NULL,
+    district VARCHAR(15) NOT NULL,
+    room_quantity INT NOT NULL,
+    PRIMARY KEY(cinema_name)
+);
