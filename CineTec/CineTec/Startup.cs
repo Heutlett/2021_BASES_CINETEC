@@ -24,11 +24,13 @@ namespace CineTec
             services.AddControllers();
 
             //var sqlConnectionString = Configuration["PostgreSqlConnectionString"];
-            var connString = "Host=localhost;Username=admin;Password=admin;Database=cinetecdb";
+            var connString = "Host=localhost;Username=postgres;Password=12345678;Database=cinetecdb";
 
             services.AddDbContext<PostgreSqlContext>(options => options.UseNpgsql(connString));
 
-            services.AddScoped<IDataAccessProvider, DataAccessProvider>();
+            services.AddScoped<IClientProvider, ClientProvider>();
+            services.AddScoped<IBranchProvider, BranchProvider>();
+            services.AddScoped<IRoomProvider, RoomProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.  

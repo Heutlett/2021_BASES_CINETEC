@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\NetCoreAPIPostgreSQL",
+    "\\NetCoreAPIPostgreSQL.Data",
+    "\\NetCoreAPIPostgreSQL.Data\\Repositories",
+    "\\NetCoreAPIPostgreSQL.Model"
+  ],
+  "SelectedNode": "\\NetCoreAPIPostgreSQL.Data\\Repositories",
+  "PreviewInSolutionExplorer": false
+}

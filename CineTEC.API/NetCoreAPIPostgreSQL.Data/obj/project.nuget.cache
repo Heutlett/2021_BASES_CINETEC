@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "fbmClxzGCTIJi4i/vbSgOjU9IHP0dIw0I0/cV/n/Ewu8EK74KAY1yTRIOypqeHtfw68cE+GaFYi38sAyFTlBww==",
+  "dgSpecHash": "lTsFIYrM6UgxUKoS4ifXvzp41IwwS0ZkFvkQ6j5mfgC6RfYWqFu318MLqtNtLculGXfTNTK1Do37BLRNnIpkxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jeyki\\OneDrive\\01. SEMESTERS\\2021 - Semestre II\\Bases de Datos\\2021_BASES_CINETEC\\CineTEC.API\\NetCoreAPIPostgreSQL.Data\\NetCoreAPIPostgreSQL.Data.csproj",
+  "projectFilePath": "C:\\Users\\sebas\\OneDrive\\TEC\\2021_BASES_CINETEC\\CineTEC.API\\NetCoreAPIPostgreSQL.Data\\NetCoreAPIPostgreSQL.Data.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jeyki\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
-    "C:\\Users\\jeyki\\.nuget\\packages\\npgsql\\5.0.10\\npgsql.5.0.10.nupkg.sha512",
-    "C:\\Users\\jeyki\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    "C:\\Users\\sebas\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
+    "C:\\Users\\sebas\\.nuget\\packages\\npgsql\\5.0.10\\npgsql.5.0.10.nupkg.sha512",
+    "C:\\Users\\sebas\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
   ],
   "logs": []
 }
