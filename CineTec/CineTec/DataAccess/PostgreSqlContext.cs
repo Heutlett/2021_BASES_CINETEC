@@ -28,11 +28,20 @@ namespace CineTec.DataAccess
         public DbSet<Director> director { get; set; }
         public DbSet<Actor> actor { get; set; }
         public DbSet<Acts> acts { get; set; }
-        
-  
+
+
 
         protected override void OnModelCreating(ModelBuilder builder)
-        {
+        { 
+
+            builder.Entity<Acts>(e => {
+
+                e.HasNoKey(); });
+
+
+
+
+
             base.OnModelCreating(builder);
         }
 
