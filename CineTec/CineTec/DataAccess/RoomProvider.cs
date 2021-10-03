@@ -25,12 +25,12 @@ namespace CineTec.DataAccess
 
         public Room GetRoom(int id)
         {
-            return _context.room.FirstOrDefault(c => c.id == id);
+            return _context.room.First(c => c.id == id);
         }
 
         public void DeleteRoom(int id)
         {
-            var room = _context.room.FirstOrDefault(c => c.id == id);
+            var room = _context.room.First(c => c.id == id);
             _context.room.Remove(room);
             _context.SaveChanges();
         }

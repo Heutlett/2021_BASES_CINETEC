@@ -23,9 +23,12 @@ namespace CineTec.DataAccess
 
         //public DbSet<Bill> Bills { get; set; }
         public DbSet<Projection> projection { get; set; }
-        //public DbSet<Classification> Classifications { get; set; }
-        //public DbSet<Classification> Actors { get; set; }
-  
+
+        public DbSet<Classification> classifications { get; set; }
+        public DbSet<Director> director { get; set; }
+        public DbSet<Actor> actor { get; set; }
+        public DbSet<Acts> acts { get; set; }
+        
   
 
         protected override void OnModelCreating(ModelBuilder builder)

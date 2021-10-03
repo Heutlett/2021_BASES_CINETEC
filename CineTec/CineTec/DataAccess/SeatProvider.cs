@@ -26,7 +26,7 @@ namespace CineTec.DataAccess
         public void UpdateStateSeat(int number, string status)
         {
 
-            _context.
+        
 
         }
 

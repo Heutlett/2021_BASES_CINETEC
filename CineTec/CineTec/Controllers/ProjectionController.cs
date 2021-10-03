@@ -44,7 +44,7 @@ namespace CineTec.Controllers
             return _dataAccessProvider.GetProjection(id);
         }
 
-        [HttpGet("{room={room_id}/movie={movie_id}}")]
+        [HttpGet("room={room_id}/movie={movie_id}")]
         public IEnumerable<Projection> GetByRoomAndMovie(int room_id, int movie_id)
         {
             return _dataAccessProvider.GetProjectionByBranchAndMovie(room_id, movie_id);

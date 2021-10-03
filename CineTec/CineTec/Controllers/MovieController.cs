@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CineTec.Controllers
 {
+
     [Route("[controller]")]
     public class MovieController : ControllerBase
     {
@@ -19,7 +20,7 @@ namespace CineTec.Controllers
         }
 
 
-       
+
         [HttpGet]
         public IEnumerable<Movie> Get()
         {
@@ -27,7 +28,7 @@ namespace CineTec.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Movie movie)
+        public IActionResult Create([FromBody] MovieComplete movie)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +68,8 @@ namespace CineTec.Controllers
             return Ok();
         }
 
-        
+
     }
 
-        
+
 }

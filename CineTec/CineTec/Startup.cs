@@ -31,6 +31,9 @@ namespace CineTec
             services.AddScoped<IClientProvider, ClientProvider>();
             services.AddScoped<IBranchProvider, BranchProvider>();
             services.AddScoped<IRoomProvider, RoomProvider>();
+            services.AddScoped<IMovieProvider, MovieProvider>();
+            services.AddScoped<IEmployeeProvider, EmployeeProvider>();
+            services.AddScoped<IProjectionProvider, ProjectionProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.  

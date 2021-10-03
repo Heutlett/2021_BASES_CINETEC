@@ -14,7 +14,7 @@ namespace CineTec.DataAccess
         Movie GetMovie(int id);
         void DeleteMovie(int id);
         void UpdateMovie(Movie movie);
-        void InsertMovie(Movie movie);
+        void InsertMovie(MovieComplete movie);
 
    
         

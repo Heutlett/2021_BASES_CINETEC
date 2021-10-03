@@ -36,7 +36,7 @@ namespace CineTec.Controllers
         }
 
    
-        [HttpGet("{id}")]
+        [HttpGet("clients/{id}")]
         public Client Details(int id)
         {
             return _dataAccessProvider.GetClient(id);

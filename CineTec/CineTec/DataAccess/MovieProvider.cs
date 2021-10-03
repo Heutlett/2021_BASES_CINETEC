@@ -41,9 +41,32 @@ namespace CineTec.DataAccess
             _context.SaveChanges();
         }
 
-        public void InsertMovie(Movie movie)
+        public void InsertMovie(MovieComplete movie)
         {
-            _context.movie.Add(movie);
+
+            var newMovie = new Movie();
+            newMovie.classification_id = movie.classification_id;
+            newMovie.original_name = movie.original_name;
+            newMovie.image = movie.image;
+            newMovie.name = movie.name;
+            newMovie.length = movie.length;
+
+           _context.movie.Add(newMovie);
+
+            var currentMovie = _context.movie.OrderByDescending(x => x.id).Take(1);
+
+
+      
+
+
+
+
+
+            
+
+
+
+
             _context.SaveChanges();
         }
 

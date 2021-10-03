@@ -62,7 +62,6 @@ C:\Users\sebas\OneDrive\TEC\2021_BASES_CINETEC\CineTec\CineTec\bin\Debug\netcore
 C:\Users\sebas\OneDrive\TEC\2021_BASES_CINETEC\CineTec\CineTec\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\sebas\OneDrive\TEC\2021_BASES_CINETEC\CineTec\CineTec\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\Users\sebas\OneDrive\TEC\2021_BASES_CINETEC\CineTec\CineTec\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\Users\sebas\OneDrive\TEC\2021_BASES_CINETEC\CineTec\CineTec\obj\Debug\netcoreapp3.1\CineTec.csprojAssemblyReference.cache
 C:\Users\sebas\OneDrive\TEC\2021_BASES_CINETEC\CineTec\CineTec\obj\Debug\netcoreapp3.1\CineTec.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\sebas\OneDrive\TEC\2021_BASES_CINETEC\CineTec\CineTec\obj\Debug\netcoreapp3.1\CineTec.AssemblyInfoInputs.cache
 C:\Users\sebas\OneDrive\TEC\2021_BASES_CINETEC\CineTec\CineTec\obj\Debug\netcoreapp3.1\CineTec.AssemblyInfo.cs
