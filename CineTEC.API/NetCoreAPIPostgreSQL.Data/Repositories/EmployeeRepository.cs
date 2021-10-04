@@ -34,7 +34,7 @@ namespace NetCoreAPIPostgreSQL.Data.Repositories
 
             var sql = @"  DELETE
                           FROM public.""Employee"" 
-                            WHERE id = @id  ";
+                            WHERE Id = @Id  ";
 
             var result =  await db.ExecuteAsync(sql, new { Id = id});
 
@@ -59,7 +59,7 @@ namespace NetCoreAPIPostgreSQL.Data.Repositories
 
             var sql = @"  SELECT id, username, password, birth_date
                           FROM public.""Employee"" 
-                            WHERE id = @id  ";
+                            WHERE Id = @Id  ";
 
             return await db.QueryFirstOrDefaultAsync<Employee>(sql, new {Id = id});
 
@@ -88,10 +88,10 @@ namespace NetCoreAPIPostgreSQL.Data.Repositories
                               birth_date =  @Birth_date 
                             WHERE id = @Id ";
 
-            var result = await db.ExecuteAsync(sql, new { emp.Username, emp.Password, emp.Birth_date });
+            var result = await db.ExecuteAsync(sql, new { emp.Username, emp.Password, emp.Birth_date, emp.Id });
             // Devuelve verdadero si al menos mas de una fila ha sido cambiada.
             return result > 0;
         }
 
-    }
+    }  
 }
