@@ -8,6 +8,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListingComponent } from './pages/listing/listing.component';
+import { TicketsComponent } from './pages/tickets/tickets.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,6 +17,8 @@ const routes: Routes =[
     { path: 'listing',          component: ListingComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'signup',           component: SignupComponent },
+
+    { path: 'tickets',          component: TicketsComponent },
 ];
 
 @NgModule({

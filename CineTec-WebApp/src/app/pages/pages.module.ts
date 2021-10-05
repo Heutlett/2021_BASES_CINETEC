@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ListingComponent } from './listing/listing.component';
 import { ComponentsModule } from 'app/components/components.module';
+import { TicketsComponent } from './tickets/tickets.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ComponentsModule } from 'app/components/components.module';
         ProfileComponent,
         HomeComponent,
         ListingComponent,
+        TicketsComponent,
         
     ]
 })

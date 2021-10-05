@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Projection } from 'interfaces/Projection';
+import { Branch } from '../../interfaces/Branch';
+import { GlobalService } from './global.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,9 +15,10 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ApiService {
+    
   private apiURL = 'http://localhost:5000/';   // Esta ruta corresponde al url del proxy http://localhost:5000
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private globalService : GlobalService) { }
 
 
   //        ______________________
@@ -29,7 +32,14 @@ export class ApiService {
   //!!!!  HAY QUE ADAPTARLO AL API !!!!
    get_projections():Observable<Projection[]>{
 
-    return this.http.get<Projection[]>("http://localhost:5000/Projection");
+    //return this.http.get<Projection[]>( this.apiURL + "Projection" + this.globalService.current_branch);
+    return this.http.get<Projection[]>( this.apiURL + "Projection");
+
+  }
+
+  get_branches(): Observable<Branch[]> {
+
+    return this.http.get<Branch[]>(this.apiURL + "Branch");
 
   }
 }

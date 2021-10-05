@@ -1,0 +1,19 @@
+.img-responsive{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.wrapper{
+    padding-top: 200px;
+}
+
+.container{
+
+    border: 3px solid rgb(122, 122, 122);
+    width: 50%;
+    height: 100%;
+    position: relative;
+    left: 0%;
+
+}

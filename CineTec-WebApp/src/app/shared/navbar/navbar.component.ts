@@ -1,5 +1,10 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Branch } from 'interfaces/Branch';
+import { Observable } from 'rxjs';
+import { ApiService } from 'app/services/api.service';
+import { GlobalService } from 'app/services/global.service';
+
 
 @Component({
     selector: 'app-navbar',
@@ -9,9 +14,9 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
-    //branches$: Observable<Branch[]>;
+    branches$: Observable<Branch[]>;
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(public location: Location, private element : ElementRef , private apiService : ApiService , private globalService : GlobalService) {
         this.sidebarVisible = false;
 
     }
@@ -20,9 +25,18 @@ export class NavbarComponent implements OnInit {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
 
-        //this.branches$ = this.apiService.get_projections();
+        this.branches$ = this.apiService.get_branches();
 
     }
+
+
+    branchSelected(branch:string){
+
+        this.globalService.current_branch = branch;
+        
+    }
+
+
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];

@@ -1,60 +1,68 @@
 {
     "Projection": [
       {
-        "Id": 1,
-        "Name": "Spirited Away",
-        "Time": ["11:30","13:00","18:00"],
-        "Price": 1000
-      },
-      {
-        "Id": 2,
-        "Name": "Spider-Verse",
-        "Time": ["11:00","13:30","22:00"],
-        "Price": 2000
-      },
-      {
-        "Id": 3,
-        "Name": "Parasite",
-        "Time": ["12:30","17:15","19:00"],
-        "Price": 1000
-      }
-    ],
-    "roles": [
-      {
         "id": 1,
-        "nombre": "Analista",
-        "descripcion": "Analiza la vara"
+        "name": "Spirited Away",
+        "time": ["11:30","13:00","18:00"],
+        "price": 1000
       },
       {
         "id": 2,
-        "nombre": "Administrador",
-        "descripcion": "Administra la vara"
-      }
-    ],
-    "cuenta": [
-      {
-        "numero_Cuenta": "1234",
-        "descripcion": "VISA",
-        "moneda": "Colones",
-        "tipo": "Ahorros",
-        "cliente_Propietario": "604530340"
+        "name": "Spider-Verse",
+        "time": ["11:00","13:30","22:00"],
+        "Price": 2000
       },
       {
-        "numero_Cuenta": "09876",
-        "descripcion": "MC",
-        "moneda": "Euros",
-        "tipo": "Ahorros",
-        "cliente_Propietario": "604530340"
+        "id": 3,
+        "name": "Parasite",
+        "time": ["12:30","17:15","19:00"],
+        "price": 1000
       }
     ],
-    "tarjeta": [
+    "Projection2": [
       {
-        "numero_de_tarjeta": "11-11-11",
-        "fecha_de_expiracion": "11/02/2021",
-        "codigo_de_Seguridad": "135",
-        "tipo": "Debito",
-        "monto_de_credito": 40000,
-        "numero_Cuenta": "1234"
+        "id": 1,
+        "name": "Parasite",
+        "time": ["13:00","18:00"],
+        "price": 1000
+      },
+      {
+        "id": 2,
+        "name": "Spirited Away",
+        "time": ["11:00","22:00"],
+        "Price": 2000
+      },
+      {
+        "id": 3,
+        "name": "Spider-Verse",
+        "time": ["17:15","19:00"],
+        "price": 1000
+      }
+    ],
+    "Branch": [
+      {
+        "cinema_name": "CineTec del Este",
+        "province": "San José",
+        "district": "Curridabat",
+        "room_quantity": 10
+      },
+      {
+        "cinema_name": "CineTec Escazú",
+        "province": "San José",
+        "district": "Escazú",
+        "room_quantity": 20
+      },
+      {
+        "cinema_name": "CineTec Magalí",
+        "province": "San José",
+        "district": "San José",
+        "room_quantity": 5
+      },
+      {
+        "cinema_name": "CineTec Tuculillo",
+        "province": "Guanacaste",
+        "district": "Nicoya",
+        "room_quantity": 3
       }
     ]
 }
