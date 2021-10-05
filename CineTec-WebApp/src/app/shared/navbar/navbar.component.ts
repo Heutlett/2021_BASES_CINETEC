@@ -9,14 +9,19 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    //branches$: Observable<Branch[]>;
 
     constructor(public location: Location, private element : ElementRef) {
         this.sidebarVisible = false;
+
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+
+        //this.branches$ = this.apiService.get_projections();
+
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;

@@ -17,9 +17,7 @@
                         <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Sucursales</a>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
                             <!-- Un for los tiene que crear segun la base --> 
-                            <a class="dropdown-item">Action - 1</a>
-                            <a class="dropdown-item">Another Action</a>
-                            <a class="dropdown-item">Something else is here</a>
+                            <a *ngFor = "let branch of braches$ |async"  class="dropdown-item">Hola</a>
                         </div>
                     </div>
                 </li>

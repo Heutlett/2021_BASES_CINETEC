@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsComponent } from './components/components.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListingComponent } from './pages/listing/listing.component';
 
@@ -17,7 +16,6 @@ const routes: Routes =[
     { path: 'listing',          component: ListingComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'signup',           component: SignupComponent },
-    { path: 'nucleoicons',      component: NucleoiconsComponent }
 ];
 
 @NgModule({
