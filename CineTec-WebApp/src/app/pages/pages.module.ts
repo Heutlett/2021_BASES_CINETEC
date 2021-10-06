@@ -10,7 +10,12 @@ import { ListingComponent } from './listing/listing.component';
 import { ComponentsModule } from 'app/components/components.module';
 import { TicketsComponent } from './tickets/tickets.component';
 import { SeatsComponent } from './seats/seats.component';
-
+import { BranchesAdminComponent } from './branches-admin/branches-admin.component';
+import { ClientsComponent } from './clients/clients.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { MoviesComponent } from './movies/movies.component';
+import { ProjectionsComponent } from './projections/projections.component';
+import { RoomsComponent } from './rooms/rooms.component';
 
 @NgModule({
     imports: [
@@ -26,6 +31,12 @@ import { SeatsComponent } from './seats/seats.component';
         ListingComponent,
         TicketsComponent,
         SeatsComponent,
+        BranchesAdminComponent,
+        ClientsComponent,
+        EmployeeComponent,
+        MoviesComponent,
+        ProjectionsComponent,
+        RoomsComponent
         
     ]
 })
