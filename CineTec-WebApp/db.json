@@ -4,19 +4,22 @@
         "id": 1,
         "name": "Spirited Away",
         "time": ["11:30","13:00","18:00"],
-        "price": 1000
+        "price": 1000,
+        "room_id":0
       },
       {
         "id": 2,
         "name": "Spider-Verse",
         "time": ["11:00","13:30","22:00"],
-        "Price": 2000
+        "price": 2000,
+        "room_id":1
       },
       {
         "id": 3,
         "name": "Parasite",
         "time": ["12:30","17:15","19:00"],
-        "price": 1000
+        "price": 1000,
+        "room_id":2
       }
     ],
     "Projection2": [
@@ -64,5 +67,169 @@
         "district": "Nicoya",
         "room_quantity": 3
       }
+    ],
+
+    "Seat": [
+      {
+        "room_id": "1",
+        "number": "0",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "1",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "2",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "3",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "4",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "5",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "6",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "6",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "7",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "8",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "9",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "10",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "11",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "12",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "13",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "14",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "15",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "16",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "17",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "18",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "19",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "20",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "21",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "22",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "22",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "23",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "24",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "25",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "26",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "27",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "28",
+        "status": "a"
+      },
+      {
+        "room_id": "1",
+        "number": "29",
+        "status": "a"
+      }
+      
     ]
 }

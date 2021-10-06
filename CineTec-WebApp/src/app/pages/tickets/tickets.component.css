@@ -1,19 +1,61 @@
 .img-responsive{
+    padding-top: 50px;
     position: relative;
     left: 50%;
     transform: translate(-50%);
+    padding-bottom: 0px;
 }
 
 .wrapper{
-    padding-top: 200px;
+    padding-top: 300px;
 }
 
 .container{
 
-    border: 3px solid rgb(122, 122, 122);
+    border: 2px solid rgb(122, 122, 122);
     width: 50%;
     height: 100%;
     position: relative;
     left: 0%;
+
+}
+
+.text-center{
+    padding: 20px;
+}
+
+.row{
+    text-align: center;
+}
+
+.btn-select{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.btn-1{
+    position: relative;
+    left: 23%;
+    transform: translate(-23%);
+
+}
+
+
+.btn-2{
+    position: relative;
+    left: 27%;
+    transform: translate(-27%);
+
+}
+
+.text-amount{
+    position: relative;
+    top: 80%;
+    left: 38%;
+    transform: translate(-38%,-80%);
+    padding-top: 20px;
 
 }

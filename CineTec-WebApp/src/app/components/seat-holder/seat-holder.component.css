@@ -1,0 +1,27 @@
+.container{
+
+    border: 2px solid rgb(2, 120, 167);
+    width: 50%;
+    height: 100%;
+    position: relative;
+    left: 0%;
+
+}
+
+.screen{
+
+    border: 1px solid rgb(205, 208, 209);
+    margin-bottom: 30px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.btn { 
+
+    margin: 100px;
+    position: relative;
+    left: 28%;
+    transform: translate(-28%);
+    font-size: 16px;
+
+}

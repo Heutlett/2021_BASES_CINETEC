@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ListingComponent } from './listing/listing.component';
 import { ComponentsModule } from 'app/components/components.module';
 import { TicketsComponent } from './tickets/tickets.component';
+import { SeatsComponent } from './seats/seats.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { TicketsComponent } from './tickets/tickets.component';
         HomeComponent,
         ListingComponent,
         TicketsComponent,
+        SeatsComponent,
         
     ]
 })

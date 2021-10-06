@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Projection } from 'interfaces/Projection';
 import { Branch } from '../../interfaces/Branch';
 import { GlobalService } from './global.service';
+import { Seat } from 'interfaces/Seat';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -42,4 +43,11 @@ export class ApiService {
     return this.http.get<Branch[]>(this.apiURL + "Branch");
 
   }
+
+  get_seats(): Observable<Seat[]> {
+
+    return this.http.get<Seat[]>(this.apiURL + "Seat");
+
+  }
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GlobalService } from 'app/services/global.service';
 
 @Component({
@@ -9,14 +10,46 @@ import { GlobalService } from 'app/services/global.service';
 export class TicketsComponent implements OnInit {
 
   Img :string;
+  Name: string;
+  Precio : number;
+  Cantidad = 1;
+  Subtotal : number;
 
-  constructor(private globalService : GlobalService) { }
+  constructor(private globalService : GlobalService, private router: Router) { }
 
   ngOnInit(): void {
 
     this.Img = "assets/img/"  + this.globalService.current_movie + ".jpg";
-    console.log(this.Img);
+    this.Name = this.globalService.current_movie;
+    this.Precio = this.globalService.current_price;
+    this.Subtotal = this.Precio * this.Cantidad;
+
+  
+  }
+  
+  add(){
+
+    this.Cantidad ++;
+
+    this.Subtotal = this.Precio * this.Cantidad;
 
   }
+
+  delete(){
+
+    this.Cantidad --;
+
+    this.Subtotal = this.Precio * this.Cantidad;
+
+  }
+
+  seats(){
+
+    this.globalService.current_tickets = this.Cantidad;
+    this.globalService.current_subtotal = this.Subtotal;
+    this.router.navigateByUrl('/seats');
+
+  }
+
 
 }

@@ -1,5 +1,19 @@
 <div class="wrapper" style=" background-image: linear-gradient(#03022C, black);">
+
+    <div class="row">
+
+    </div>
     <div class="container">
+
         <img src={{Img}} class="img-responsive" alt="Rounded Image">
+        <h4 class="text-center text-white">{{Name}}</h4>
+        <h4 class="text-center text-white">Precio por entrada: {{Precio}} colones</h4>
+        <div class="row">
+            <button type="button" (click)=delete() class="btn btn-primary btn-just-icon btn-1"><i class="nc-icon nc-simple-delete"></i></button>
+            <h4 class="text-amount text-white">Cantidad de entradas: {{Cantidad}} </h4>
+            <button type="button" (click)=add() class="btn btn-primary btn-just-icon btn-2"><i class="nc-icon nc-simple-add"></i></button>
+        </div>
+        <h4 class="text-center text-white">Subtotal: {{Subtotal}} colones</h4>
+        <button type="button" (click)=seats() class="btn btn-primary btn-select">Seleccionar asientos</button>
     </div>
 </div>

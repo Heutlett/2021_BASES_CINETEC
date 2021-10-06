@@ -11,6 +11,8 @@ import { ComponentsComponent } from './components.component';
 
 import { ProjectionHolderComponent } from './projection-holder/projection-holder.component';
 import { ProjectionComponent } from './projection/projection.component';
+import { SeatComponent } from './seat/seat.component';
+import { SeatHolderComponent } from './seat-holder/seat-holder.component';
 
 @NgModule({
     imports: [
@@ -24,9 +26,11 @@ import { ProjectionComponent } from './projection/projection.component';
     declarations: [
         ComponentsComponent,
         ProjectionHolderComponent,
-        ProjectionComponent
+        ProjectionComponent,
+        SeatComponent,
+        SeatHolderComponent
     ],
     entryComponents: [],
-    exports:[ ComponentsComponent,ProjectionComponent,ProjectionHolderComponent ]
+    exports:[ ComponentsComponent,ProjectionComponent,ProjectionHolderComponent,SeatComponent,SeatHolderComponent ]
 })
 export class ComponentsModule { }

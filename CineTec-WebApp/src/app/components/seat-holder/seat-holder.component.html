@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="screen">
+        <h5 class="text-white">Pantalla</h5>
+    </div>
+    <app-seat 
+        *ngFor = "let seat of seats$ |async" [text] = "1" [color] = "grey" > 
+    </app-seat>
+</div>
+<div>
+    <button type="button" (click)=seats() class="btn btn-outline-default btn-select">Cancelar</button>
+    <button type="button" (click)=seats() class="btn btn-primary btn-select">Comprar!</button>
+</div>

@@ -9,6 +9,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListingComponent } from './pages/listing/listing.component';
 import { TicketsComponent } from './pages/tickets/tickets.component';
+import { SeatsComponent } from './pages/seats/seats.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +20,8 @@ const routes: Routes =[
     { path: 'signup',           component: SignupComponent },
 
     { path: 'tickets',          component: TicketsComponent },
+    { path: 'seats',            component: SeatsComponent },
+
 ];
 
 @NgModule({

@@ -3,4 +3,5 @@ export interface Projection{
     name:string;
     time:string[];
     price:number;
+    room_id:number; 
 }
