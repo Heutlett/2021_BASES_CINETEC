@@ -10,6 +10,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { ListingComponent } from './pages/listing/listing.component';
 import { TicketsComponent } from './pages/tickets/tickets.component';
 import { SeatsComponent } from './pages/seats/seats.component';
+import { BranchesAdminComponent } from './pages/branches-admin/branches-admin.component';
+import { ClientsComponent } from './pages/clients/clients.component';
+import { ProjectionComponent } from './components/projection/projection.component';
+import { RoomsComponent } from './pages/rooms/rooms.component';
+import { EmployeeComponent } from './pages/employee/employee.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,9 +23,15 @@ const routes: Routes =[
     { path: 'listing',          component: ListingComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'signup',           component: SignupComponent },
-
     { path: 'tickets',          component: TicketsComponent },
     { path: 'seats',            component: SeatsComponent },
+    { path: 'branches',         component: BranchesAdminComponent },
+    { path: 'clients',         component: ClientsComponent },
+    { path: 'projections',         component: ProjectionComponent },
+    { path: 'rooms',         component: RoomsComponent },
+    { path: 'employees',         component: EmployeeComponent },
+    
+
 
 ];
 

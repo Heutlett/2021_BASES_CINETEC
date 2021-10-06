@@ -1,0 +1,49 @@
+<form class="login" *ngIf="showAddItem" (ngSubmit)="onSubmit()">
+
+    <div *ngIf='url == "/branches"' class="form-control">
+        <label for="branch_name"></label>
+        <input
+            type="text"
+            name="branch_name"
+            [(ngModel)]="branch_name"
+            id="branch_name"
+            placeholder="Nombre de la sucursal"
+        >
+    </div>
+    <div *ngIf='url == "/branches"' class="form-control">
+        <label for="province"></label>
+        <input
+            type="text"
+            name="pronvince"
+            [(ngModel)]="pronvince"
+            id="pronvince"
+            placeholder="Provincia"
+        >
+    </div>
+   
+    <div *ngIf='url == "/branches"' class="form-control">
+        <label for="district"></label>
+        <input
+            type="text"
+            name="district"
+            [(ngModel)]="district"
+            id="district"
+            placeholder="Districto"
+        >
+    </div>
+
+    <div *ngIf='url == "/branches"' class="form-control">
+        <label for="room_quantity"></label>
+        <input
+            type="text"
+            name="room_quantity"
+            [(ngModel)]="room_quantity"
+            id="room_quantity"
+            placeholder="Cantidad de salas"
+        >
+    </div>
+
+    <br>
+
+    <input type="submit" value="Enviar a la base de datos" class="btn btn-block">
+</form>

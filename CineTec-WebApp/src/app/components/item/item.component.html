@@ -1,0 +1,60 @@
+<div class="item">
+
+
+    
+    <app-button
+        color="orange"
+        text="Editar" 
+        (btnClick) = "onEdit(item)"
+        >
+    </app-button>
+
+
+
+    <!-- Branch-->
+    <label *ngIf="in_branches">Sucursal: {{item.cinema_name}}</label>
+    <br>
+    <label *ngIf="in_branches">Provincia: {{item.province}}</label>
+    <br>
+    <label *ngIf="in_branches">Districto: {{item.district}}</label>
+    <br>
+    <label *ngIf="in_branches">Cantidad de salas: {{item.room_quantity}}</label>
+
+
+
+    <!--Client and Employeee-->
+    <h3 *ngIf="in_clients || in_employees">Primer nombre : {{item.first_name}}</h3>
+    <h3 *ngIf="in_clients || in_employees">Segundo nombre : {{item.middle_name}}</h3>
+    <h3 *ngIf="in_clients || in_employees">Primer apellido : {{item.first_surname}}</h3>
+    <h3 *ngIf="in_clients || in_employees">Segundo apellido : {{item.second_surnmae}}</h3>
+    <h3 *ngIf="in_clients || in_employees">Fecha de nacimiento : {{item.birthdate}}</h3>
+    <h3 *ngIf="in_clients || in_employees">Telefono : {{item.phone_number}}</h3>
+    <h3 *ngIf="in_clients || in_employees">Username : {{item.username}}</h3>
+    <h3 *ngIf="in_clients || in_employees">Contraseña : {{item.password}}</h3>
+
+
+    <!--Movies-->
+    <h3 *ngIf="in_movies">Nombre: {{item.name}}</h3>
+    <h3 *ngIf="in_movies">Nombre original: {{item.original_name}}</h3>
+    <h3 *ngIf="in_movies">Durancion: {{item.length}}</h3>
+    <h3 *ngIf="in_movies"> Director: {{item.director}}</h3>
+    <h3 *ngIf="in_movies">Protagonista: {{item.actors}}</h3>
+
+    <!--Rooms-->
+    <h3 *ngIf="in_rooms"> Column_quantity {{item.column_quantity}}</h3>
+    <h3 *ngIf="in_rooms"> Row_quantity: {{item.row_quantity}}</h3>
+    <h3 *ngIf="in_rooms"> Capacity: {{item.capacity}}</h3>
+
+    <!--Projection-->
+    <h3 *ngIf="in_projections"> Movie {{item.movie}}</h3>
+    <h3 *ngIf="in_projections">Date: {{item.date}}</h3>
+    <h3 *ngIf="in_projections">Time: {{item.tim}}</h3>
+
+
+
+
+    
+
+    
+    
+</div>
