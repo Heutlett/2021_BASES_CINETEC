@@ -3,7 +3,7 @@
         <h5 class="text-white">Pantalla</h5>
     </div>
     <app-seat 
-        *ngFor = "let seat of seats$ |async" [text] = "1" [color] = "grey" > 
+        *ngFor = "let seat of seats$ |async" [text] = "seat.number" [status] = "seat.status" > 
     </app-seat>
 </div>
 <div>

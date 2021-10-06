@@ -7,7 +7,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 })
 export class SeatComponent implements OnInit {
   @Input() text: string;
-  @Input() color: string;
+  @Input() status: string;
   //@Output() btnClick = new EventEmitter();
 
   constructor() { }
