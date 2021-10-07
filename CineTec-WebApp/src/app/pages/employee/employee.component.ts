@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { Subscription } from 'rxjs';
 import {Router} from '@angular/router';
-
+import {ApiService} from '../../services/api.service';
 
 @Component({
   selector: 'app-employee',
@@ -20,7 +20,7 @@ export class EmployeeComponent implements OnInit {
 
   url:string;
 
-  constructor(private router:Router ,private global : GlobalService) {
+  constructor(private apiService : ApiService, private router:Router ,private global : GlobalService) {
 
     this.url = router.url
 
@@ -30,6 +30,12 @@ export class EmployeeComponent implements OnInit {
 
     this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
+
+    this.apiService.get_employees().subscribe((employees) => this.items = employees);
+
+
+
+
   }
 
 
@@ -44,7 +50,7 @@ export class EmployeeComponent implements OnInit {
 
   add_item(item:any){
 
-      this.items.push(item);
+      this.apiService.post_employees(item).subscribe(()=> this.items.push(item));
 
 
     }
@@ -52,8 +58,11 @@ export class EmployeeComponent implements OnInit {
     
 
   edit_item(item:any){
-    this.items = this.items.filter(i => i.username !== this.global.getCurrentItem().username)
-    this.items.push(item);
+    this.apiService.put(item).subscribe(() => {
+
+      this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula)
+      this.items.push(item);
+    });
     this.global.toggleEditItem();
     
 
@@ -70,7 +79,7 @@ export class EmployeeComponent implements OnInit {
 
   deleteItem(){
     this.cancelEditItem();
-    this.items = this.items.filter(i => i.username !== this.global.getCurrentItem().username)
+    this.apiService.delete().subscribe(() => this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula));
   }
 
 

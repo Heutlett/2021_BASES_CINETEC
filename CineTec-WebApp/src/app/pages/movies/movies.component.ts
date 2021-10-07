@@ -44,7 +44,6 @@ export class MoviesComponent implements OnInit {
   }
 
   add_item(item:any){
-
       this.items.push(item);
 
 

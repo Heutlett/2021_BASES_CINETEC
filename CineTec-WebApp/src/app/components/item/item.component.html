@@ -23,6 +23,10 @@
 
 
     <!--Client and Employeee-->
+    <label *ngIf="in_employees">Sucursal: {{item.branch_id}}</label>
+    <br *ngIf=" in_employees">
+    <label *ngIf="in_clients || in_employees">Cedula : {{item.cedula}}</label>
+    <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Primer nombre : {{item.first_name}}</label>
     <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Primer apellido : {{item.first_surname}}</label>

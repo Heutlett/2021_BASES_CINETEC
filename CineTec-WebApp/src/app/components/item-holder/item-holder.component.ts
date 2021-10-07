@@ -72,7 +72,7 @@ export class ItemHolderComponent implements OnInit {
    * @param item el item seleccionado
    */
   editItemClicked(item:any){
-    this.global.toggleEditItem();
+    this.global.toggleEditItem(); 
   }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { Subscription } from 'rxjs';
 import {Router} from '@angular/router';
+import {ApiService} from '../../services/api.service';
 
 
 
@@ -21,7 +22,7 @@ export class ClientsComponent implements OnInit {
 
   url:string;
 
-  constructor(private router:Router ,private global : GlobalService) {
+  constructor(private apiService : ApiService , private router:Router ,private global : GlobalService) {
 
     this.url = router.url
 
@@ -31,6 +32,10 @@ export class ClientsComponent implements OnInit {
 
     this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
+
+
+    this.apiService.get_clients().subscribe(clients => this.items = clients);
+
   }
 
 
@@ -44,17 +49,18 @@ export class ClientsComponent implements OnInit {
   }
 
   add_item(item:any){
-
-      this.items.push(item);
-
+    this.apiService.post(item).subscribe(() => this.items.push(item));
 
     }
 
     
 
   edit_item(item:any){
-    this.items = this.items.filter(i => i.username !== this.global.getCurrentItem().username)
-    this.items.push(item);
+    this.apiService.put(item).subscribe(() => {
+
+      this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula)
+      this.items.push(item);
+    });
     this.global.toggleEditItem();
     
 
@@ -71,7 +77,7 @@ export class ClientsComponent implements OnInit {
 
   deleteItem(){
     this.cancelEditItem();
-    this.items = this.items.filter(i=> i.username !== this.global.getCurrentItem().username);
+    this.apiService.delete().subscribe(() => this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula))
 
   }
 
