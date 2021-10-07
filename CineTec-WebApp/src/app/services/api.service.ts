@@ -6,6 +6,7 @@ import { Branch } from '../../interfaces/Branch';
 import { GlobalService } from './global.service';
 import { Seat } from 'interfaces/Seat';
 import { Room } from 'interfaces/Room';
+import { Projection_branch } from 'interfaces/Projection_branch';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,13 +19,22 @@ const httpOptions = {
 })
 export class ApiService {
     
-  private apiURL = '/api/';   // Esta ruta corresponde al url del proxy http://localhost:5000
+  //private apiURL = '/api/';  
+  private apiURL = 'http://localhost:5000/';
 
   constructor(private http:HttpClient, private globalService : GlobalService) { }
 
 
   //        ______________________
   //_______/ GET
+
+
+  get_dates():Observable<Projection_branch>{
+
+    //return this.http.get<Projection[]>( this.apiURL + "Projection" + this.globalService.current_branch);
+    return this.http.get<Projection_branch>( this.apiURL + "Projection_branch");
+
+  }
 
   /**
    * Funcion GET para todas las proyecciones de una sucursal y dia especificos

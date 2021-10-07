@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class GlobalService {
   
+  
   current_branch: string;
   current_date: string;
   current_movie: string;
@@ -19,7 +20,7 @@ export class GlobalService {
   current_columns: number;
   current_rows: number;
 
-
+  private name = new Subject<any>();
   private showAddItem : boolean = false;
   private showEditItem : boolean = false;
   private add = new Subject<any>();
@@ -32,6 +33,14 @@ export class GlobalService {
 
 
   constructor() { }
+
+
+  current_branch_check():Observable<any> {
+    this.name.next(this.current_branch);
+    console.log(this.current_branch)
+    return this.name.asObservable();
+
+  }
 
 
     /**

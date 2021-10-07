@@ -1,4 +1,11 @@
 {
+
+  "Projection_branch": [
+    {
+      "dates": ["15/11/21","15/12/21","15/13/21", "15/14/21"]
+    }
+  ],
+
     "Projection": [
       {
         "id": 1,
@@ -42,7 +49,7 @@
         "price": 1000
       }
     ],
-    "Branch": [
+    "Branches": [
       {
         "cinema_name": "CineTec del Este",
         "province": "San José",
@@ -68,6 +75,7 @@
         "room_quantity": 3
       }
     ],
+
 
     "Room": [
       {

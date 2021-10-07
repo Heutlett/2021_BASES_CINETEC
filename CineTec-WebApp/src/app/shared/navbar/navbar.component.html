@@ -16,7 +16,7 @@
                     <div ngbDropdown class="btn-primary">
                         <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Sucursales</a>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
-                            <a href="#/listing" (click)="branchSelected(branch.cinema_name)" *ngFor = "let branch of branches$ |async"  class="dropdown-item">{{branch.cinema_name}}</a>
+                            <a (click)="branchSelected(branch.cinema_name)" *ngFor = "let branch of branches$ |async"  class="dropdown-item">{{branch.cinema_name}}</a>
                         </div>
                     </div>
                 </li>

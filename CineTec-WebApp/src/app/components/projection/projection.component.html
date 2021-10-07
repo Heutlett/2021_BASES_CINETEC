@@ -4,7 +4,7 @@
         <p class="text-center text-white">{{Name}}</p>
     </div>
     <div>
-        <button routerLink="/tickets" (click) = "timeSelected(time)" *ngFor = "let time of Time ; index as i"  type="button" class="btn btn-outline-primary btn-round">{{time}}</button>
+        <button routerLink="/tickets" (click) = "timeSelected(time)" *ngFor = "let time of Time"  type="button" class="btn btn-outline-primary btn-round">{{time}}</button>
     </div>
 </div>
 <hr>
