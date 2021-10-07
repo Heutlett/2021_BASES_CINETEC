@@ -1,8 +1,6 @@
-
 .wrapper{
 
     padding-top: 200px;
-
 
 }
 
@@ -18,13 +16,29 @@ app-button {
     margin-left: 10px;
 }
 
-.button-container {
+
+.add-button {
 
     position: absolute;
-    margin-top: 50px;
-    margin-left: 70px;
-    width: 500px;
-    height: 500px;
+    margin-left: 40%;
 
 
 }
+
+.delete-button {
+    
+    position: absolute;
+    margin-right: px;
+
+}
+
+.left-container {
+
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 2%;
+    width: 450px;
+    height: 500px;
+    align-items: center;
+}
+

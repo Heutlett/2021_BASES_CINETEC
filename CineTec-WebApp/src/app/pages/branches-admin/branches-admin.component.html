@@ -4,28 +4,35 @@
     <h1 class="text-white">Sistema de Gestion de Sucursales</h1>
 
 
-    <div class="button-container">
+    <div class="left-container">
 
 
-        
-        <app-button
+        <app-button class = "add-button" *ngIf = "!showEditItem"
             color="{{ showAddItem ? '#DEE2D6' : '#FCB07E'}}"
             text="{{ showAddItem ? 'Cerrar' : 'Agregar'}}" 
             (btnClick) = "toggleAddItem()">
         </app-button>
 
         <app-button *ngIf = "showEditItem" class = "deleteButton"
-        color="red"
-        text="Eliminar" 
-        (btnClick) = "deleteItem()"
-        >
+            color="red"
+            text="Eliminar" 
+            (btnClick) = "deleteItem()">
         </app-button>
+
+        <app-button *ngIf = "showEditItem" 
+            color="#DEE2D6"
+            text="Cancelar" 
+            (btnClick) = "cancelEditItem()">
+        </app-button>
+
+
+        <br>
+
 
         <app-add-item
             url = {{url}}
             (onAddItem)="add_item($event)"
             (onEditItem)="edit_item($event)">
-
         </app-add-item>
 
 

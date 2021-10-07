@@ -1,11 +1,8 @@
-
 .wrapper{
 
     padding-top: 200px;
 
-
 }
-
 
 h1 {
 
@@ -19,21 +16,28 @@ app-button {
 }
 
 
-.delete-button {
-    
+.add-button {
+
     position: absolute;
-    margin-top: 10px;
+    margin-left: 40%;
+
 
 }
 
-.button-container {
+.delete-button {
+    
+    position: absolute;
+    margin-right: px;
+
+}
+
+.left-container {
 
     position: absolute;
     margin-top: 50px;
-    margin-left: 70px;
-    width: 500px;
+    margin-left: 2%;
+    width: 450px;
     height: 500px;
-
-
+    align-items: center;
 }
 

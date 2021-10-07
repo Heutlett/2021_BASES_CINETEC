@@ -35,15 +35,15 @@ export class ItemComponent implements OnInit {
         this.in_branches = true;
         break;
 
-      case "/clients-admin":
+      case "/clients":
         this.in_clients = true;
         break;
 
-      case "/employees-admin":
+      case "/employees":
         this.in_employees = true;
         break;
 
-      case "/movies-admin":
+      case "/movies":
         this.in_movies = true;
         break;
 
@@ -51,7 +51,7 @@ export class ItemComponent implements OnInit {
         this.in_rooms = true;
         break;
 
-      case "/projections-admin":
+      case "/projections":
         this.in_projections = true;
         break;
     
