@@ -1,6 +1,8 @@
-<form class="login" *ngIf="showAddItem" (ngSubmit)="onSubmit()">
 
-    <div *ngIf='url == "/branches"' class="form-control">
+<form class="form-group" *ngIf="showAddItem" (ngSubmit)="onSubmit()">
+
+    <!--BRANCHES-->
+    <div *ngIf='url == "/branches"' class="form-group">
         <label for="branch_name"></label>
         <input
             type="text"
@@ -10,18 +12,18 @@
             placeholder="Nombre de la sucursal"
         >
     </div>
-    <div *ngIf='url == "/branches"' class="form-control">
+    <div *ngIf='url == "/branches"' class="form-group">
         <label for="province"></label>
         <input
             type="text"
             name="pronvince"
-            [(ngModel)]="pronvince"
+            [(ngModel)]="province"
             id="pronvince"
             placeholder="Provincia"
         >
     </div>
    
-    <div *ngIf='url == "/branches"' class="form-control">
+    <div *ngIf='url == "/branches"' class="form-group">
         <label for="district"></label>
         <input
             type="text"
@@ -32,7 +34,7 @@
         >
     </div>
 
-    <div *ngIf='url == "/branches"' class="form-control">
+    <div *ngIf='url == "/branches"' class="form-group">
         <label for="room_quantity"></label>
         <input
             type="text"
@@ -42,6 +44,267 @@
             placeholder="Cantidad de salas"
         >
     </div>
+
+
+
+
+
+    <!--CLIENTS AND EMPLOYEES-->
+    <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
+        <label for="first_name"></label>
+        <input
+            type="text"
+            name="branch_name"
+            [(ngModel)]="first_name"
+            id="first_name"
+            placeholder="Primer nombre"
+        >
+    </div>
+    <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
+        <label for="middle_name"></label>
+        <input
+            type="text"
+            name="middle_name"
+            [(ngModel)]="middle_name"
+            id="middle_name"
+            placeholder="Segundo Nombre"
+        >
+    </div>
+   
+    <div *ngIf= 'url == "/clients" || url == "/employees"' class="form-group">
+        <label for="first_surname"></label>
+        <input
+            type="text"
+            name="first_surname"
+            [(ngModel)]="first_surname"
+            id="first_surname"
+            placeholder="Pirmer apellido"
+        >
+    </div>
+
+    <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
+        <label for="second_surname"></label>
+        <input
+            type="text"
+            name="second_surname"
+            [(ngModel)]="second_surname"
+            id="second_surname"
+            placeholder="Segundo apellido"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
+        <label for="birth_date"></label>
+        <input
+            type="text"
+            name="birth_date"
+            [(ngModel)]="birth_date"
+            id="birth_date"
+            placeholder="Fecha de nacimiento"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
+        <label for="phone_number"></label>
+        <input
+            type="text"
+            name="phone_number"
+            [(ngModel)]="phone_number"
+            id="phone_number"
+            placeholder="Numero de telefono"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
+        <label for="username"></label>
+        <input
+            type="text"
+            name="username"
+            [(ngModel)]="username"
+            id="username"
+            placeholder="Usuario"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
+        <label for="password"></label>
+        <input
+            type="text"
+            name="password"
+            [(ngModel)]="password"
+            id="password"
+            placeholder="Contraseña"
+        >
+    </div>
+
+
+
+    <!--SALAS-->
+    <div *ngIf='url == "/rooms"' class="form-group">
+        <label for="row_quantity"></label>
+        <input
+            type="number"
+            name="row_quantity"
+            [(ngModel)]="row_quantity"
+            id="row_quantity"
+            placeholder="Cantidad de filas"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/rooms" ' class="form-group">
+        <label for="column_quantity"></label>
+        <input
+            type="number"
+            name="column_quantity"
+            [(ngModel)]="column_quantity"
+            id="column_quantity"
+            placeholder="Cantidad de columnas"
+        >
+    </div>
+
+
+
+
+    <!--MOVIES-->
+
+    <div *ngIf='url == "/movies"' class="form-group">
+        <label for="name"></label>
+        <input
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+            id="name"
+            placeholder="Nombre de la pelicula"
+        >
+    </div>
+
+    <div *ngIf='url == "/movies" ' class="form-group">
+        <label for="original_name"></label>
+        <input
+            type="text"
+            name="original_name"
+            [(ngModel)]="original_name"
+            id="original_name"
+            placeholder="Nombre original"
+        >
+    </div>
+
+    <div *ngIf='url == "/movies" ' class="form-group">
+        <label for="lenght"></label>
+        <input
+            type="text"
+            name="lenght"
+            [(ngModel)]="lenght"
+            id="lenght"
+            placeholder="Duracion"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/movies" ' class="form-group">
+        <label for="director"></label>
+        <input
+            type="text"
+            name="director"
+            [(ngModel)]="director"
+            id="director"
+            placeholder="Director de la pelicula"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/movies" ' class="form-group">
+        <label for="actors"></label>
+        <input
+            type="text"
+            name="actors"
+            [(ngModel)]="actors"
+            id="actors"
+            placeholder="Actores"
+        >
+    </div>
+
+    
+    <div *ngIf='url == "/movies" ' class="form-group">
+        <label for="image"></label>
+        <input
+            #FileSelectedInputDialog
+            type="file"
+            name="image"
+            [(ngModel)]="image"
+            id="image"
+            placeholder="Imagen"
+        >
+    </div>
+
+
+    <!--PROJECTIONS-->
+
+    
+
+
+    <div *ngIf='url == "/projections"'>
+
+        <form >
+
+            
+            <label class="label-movie-selected" class="label-movie-selected">Seleccione una pelicula: </label>
+            <select [(ngModel)] = "movie_name" name="movie" class="form-group" >
+
+                <option *ngFor="let movie of movies_list" [value] = "movie.name"> {{movie.name}}</option>
+    
+    
+            </select>
+
+
+        </form>
+
+    </div>
+
+    <div *ngIf='url == "/projections" ' class="form-group">
+        <label for="date"></label>
+        <input
+            type="date"
+            name="date"
+            [(ngModel)]="date"
+            id="date"
+            placeholder="Fecha"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/projections" ' class="form-group">
+        <label for="time"></label>
+        <input
+            type="time"
+            name="time"
+            [(ngModel)]="time"
+            id="time"
+            placeholder="Hora"
+        >
+    </div>
+
+
+    <div *ngIf='url == "/projections" ' class="form-group">
+        <label for="room"></label>
+        <input
+            type="text"
+            name="room"
+            [(ngModel)]="room"
+            id="room"
+            placeholder="Sala"
+        >
+    </div>
+
+
+
+
+
 
     <br>
 

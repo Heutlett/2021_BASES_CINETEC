@@ -15,15 +15,7 @@ export class RoomsComponent implements OnInit {
   showAddItem:boolean;
   showEditItem: boolean;
 
-  items = [
-    {
-      "column_quantity":"2",
-      "row_quantity":"3",
-      "capacity":"3"
-
-    },
-
-  ];
+  items = [ ];
 
 
   constructor(private router:Router ,private global : GlobalService) {
@@ -62,7 +54,8 @@ export class RoomsComponent implements OnInit {
   }
 
 
-  deleteItem(){}
+  deleteItem(){
+  }
 
 
 

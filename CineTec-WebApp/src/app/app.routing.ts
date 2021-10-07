@@ -15,6 +15,8 @@ import { ClientsComponent } from './pages/clients/clients.component';
 import { ProjectionComponent } from './components/projection/projection.component';
 import { RoomsComponent } from './pages/rooms/rooms.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
+import { MoviesComponent } from './pages/movies/movies.component';
+import { ProjectionsComponent } from './pages/projections/projections.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,12 +29,11 @@ const routes: Routes =[
     { path: 'seats',            component: SeatsComponent },
     { path: 'branches',         component: BranchesAdminComponent },
     { path: 'clients',         component: ClientsComponent },
-    { path: 'projections',         component: ProjectionComponent },
+    { path: 'projections',         component: ProjectionsComponent },
     { path: 'rooms',         component: RoomsComponent },
     { path: 'employees',         component: EmployeeComponent },
+    { path: 'movies',         component: MoviesComponent },
     
-
-
 ];
 
 @NgModule({

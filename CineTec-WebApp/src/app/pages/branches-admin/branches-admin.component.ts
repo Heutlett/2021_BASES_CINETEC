@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { Subscription } from 'rxjs';
 import {Router} from '@angular/router';
-
+import {ApiService} from '../../services/api.service';
 
 @Component({
   selector: 'app-branches-admin',
@@ -16,21 +16,11 @@ export class BranchesAdminComponent implements OnInit {
   showEditItem: boolean;
 
 
-  items = [
-    {
-      "cinema_name":"cinepolis",
-      "province":"San Jose",
-      "district":"Guadalupe",
-      "room_quantity":3
-
-    },
-
-
-    ];
+  items = [];
 
   url:string;
 
-  constructor(private router:Router ,private global : GlobalService) {
+  constructor(private apiService : ApiService ,private router:Router ,private global : GlobalService) {
 
     this.url = router.url
 
@@ -40,6 +30,13 @@ export class BranchesAdminComponent implements OnInit {
 
     this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
+
+    this.apiService.get_branches().subscribe((branches) => this.items = branches);
+
+    console.log(this.items);
+    
+
+
   }
 
 
@@ -62,15 +59,26 @@ export class BranchesAdminComponent implements OnInit {
     
 
   edit_item(item:any){
-    this.items = this.items.filter(i => i.cinema_name !== "cinepolis")
+    this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name)
     this.items.push(item);
+    this.global.toggleEditItem();
     
 
   }
 
+    /**
+   * esconde la barra de edicion de item
+   */
+  cancelEditItem(){
+      this.global.cancelEdit();
+  }
+  
 
-  deleteItem(){}
 
+  deleteItem(){
+    this.cancelEditItem();
+    this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name)
+  }
 
 
 

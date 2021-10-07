@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class ApiService {
     
-  private apiURL = 'http://localhost:5000/';   // Esta ruta corresponde al url del proxy http://localhost:5000
+  private apiURL = '/api/';   // Esta ruta corresponde al url del proxy http://localhost:5000
 
   constructor(private http:HttpClient, private globalService : GlobalService) { }
 
@@ -39,8 +39,7 @@ export class ApiService {
   }
 
   get_branches(): Observable<Branch[]> {
-
-    return this.http.get<Branch[]>(this.apiURL + "Branch");
+    return this.http.get<Branch[]>(this.apiURL + "Branches");
 
   }
 
@@ -49,5 +48,6 @@ export class ApiService {
     return this.http.get<Seat[]>(this.apiURL + "Seat");
 
   }
+  
 
 }

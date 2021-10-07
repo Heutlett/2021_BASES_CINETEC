@@ -3,6 +3,8 @@
     margin: 5px;
     padding: 10px 20px;
     border-left: 5px solid #0A3361;
+    border-style: solid;
+    border-color: orange;
   }
 
 label {
