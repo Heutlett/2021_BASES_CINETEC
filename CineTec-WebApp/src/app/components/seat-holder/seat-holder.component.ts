@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'app/services/api.service';
 import { GlobalService } from 'app/services/global.service';
+import { Room } from 'interfaces/Room';
 import { Seat } from 'interfaces/Seat';
 import { Observable } from 'rxjs';
+import { updateLanguageServiceSourceFile } from 'typescript';
 
 
 @Component({
@@ -12,14 +14,44 @@ import { Observable } from 'rxjs';
 })
 export class SeatHolderComponent implements OnInit {
 
-  seats$ : Observable<Seat[]>;
+  seats : Seat[];
+  selectable_amount : number;
+  //room$ : Observable<Room[]>;
+  @Input() room: Room;
+  ready = false;
+  rows: number;
+  columns: number;
+  width : number;
+  width_str : string;
+  
+
 
   constructor(private apiService : ApiService , private globalService : GlobalService) { }
 
   ngOnInit(): void {
 
-    this.seats$ = this.apiService.get_seats();
+    this.apiService.get_seats().subscribe((seats)=>{this.seats = seats
+                                                    this.update()});
 
-  }
+    this.selectable_amount = this.globalService.current_tickets;
 
+    this.columns = this.room.column_quantity;
+    this.rows = this.room.row_quantity;
+    this.globalService.current_columns = this.columns;
+    this.globalService.current_rows = this.rows;
+    console.log(this.globalService.current_columns,this.globalService.current_rows,1)
+
+    this.width = 70 * this.columns;  
+
+    //console.log(this.room)
+    }
+
+
+    update(){
+
+      this.ready = true;
+      //console.log(this.globalService.current_columns,this.globalService.current_rows,0)
+
+
+    }
 }

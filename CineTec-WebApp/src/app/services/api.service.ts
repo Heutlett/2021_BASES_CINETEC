@@ -5,6 +5,7 @@ import { Projection } from 'interfaces/Projection';
 import { Branch } from '../../interfaces/Branch';
 import { GlobalService } from './global.service';
 import { Seat } from 'interfaces/Seat';
+import { Room } from 'interfaces/Room';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -47,6 +48,12 @@ export class ApiService {
   get_seats(): Observable<Seat[]> {
 
     return this.http.get<Seat[]>(this.apiURL + "Seat");
+
+  }
+
+  get_room_capacity(): Observable<Room[]> {
+
+    return this.http.get<Room[]>(this.apiURL + "Room");
 
   }
 

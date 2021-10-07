@@ -15,6 +15,9 @@ export class GlobalService {
   current_projection: number;
   current_price: number;
   current_subtotal: number;
+  current_room: number;
+  current_columns: number;
+  current_rows: number;
 
 
   private showAddItem : boolean = false;
@@ -24,6 +27,8 @@ export class GlobalService {
 
 
   private current_item : any;
+  
+  
 
 
   constructor() { }

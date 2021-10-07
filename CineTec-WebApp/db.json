@@ -69,11 +69,19 @@
       }
     ],
 
+    "Room": [
+      {
+        "room_id":1,
+        "row_quantity":3,
+        "column_quantity":10
+      }
+    ],
+
     "Seat": [
       {
         "room_id": "1",
         "number": "0",
-        "status": "a"
+        "status": "c"
       },
       {
         "room_id": "1",
@@ -83,7 +91,7 @@
       {
         "room_id": "1",
         "number": "2",
-        "status": "a"
+        "status": "c"
       },
       {
         "room_id": "1",
@@ -93,16 +101,11 @@
       {
         "room_id": "1",
         "number": "4",
-        "status": "a"
+        "status": "c"
       },
       {
         "room_id": "1",
         "number": "5",
-        "status": "a"
-      },
-      {
-        "room_id": "1",
-        "number": "6",
         "status": "a"
       },
       {
@@ -118,17 +121,17 @@
       {
         "room_id": "1",
         "number": "8",
-        "status": "a"
+        "status": "o"
       },
       {
         "room_id": "1",
         "number": "9",
-        "status": "a"
+        "status": "o"
       },
       {
         "room_id": "1",
         "number": "10",
-        "status": "a"
+        "status": "o"
       },
       {
         "room_id": "1",
@@ -183,11 +186,6 @@
       {
         "room_id": "1",
         "number": "21",
-        "status": "a"
-      },
-      {
-        "room_id": "1",
-        "number": "22",
         "status": "a"
       },
       {

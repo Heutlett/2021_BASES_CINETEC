@@ -46,16 +46,16 @@
 
 .btn-2{
     position: relative;
-    left: 27%;
-    transform: translate(-27%);
+    left: 37%;
+    transform: translate(-37%);
 
 }
 
 .text-amount{
     position: relative;
     top: 80%;
-    left: 38%;
-    transform: translate(-38%,-80%);
+    left: 40%;
+    transform: translate(-40%,-80%);
     padding-top: 20px;
 
 }

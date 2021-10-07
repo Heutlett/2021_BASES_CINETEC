@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'app/services/api.service';
 import { GlobalService } from 'app/services/global.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class TicketsComponent implements OnInit {
   Cantidad = 1;
   Subtotal : number;
 
-  constructor(private globalService : GlobalService, private router: Router) { }
+  constructor(private globalService : GlobalService, private router: Router, private apiService : ApiService) { }
 
   ngOnInit(): void {
 

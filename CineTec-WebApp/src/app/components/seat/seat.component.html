@@ -1,1 +1,6 @@
-<button type="button" [ngStyle]="{'background-color':color}" (click)="onClick()" class="btn btn-outline-default">{{ text }}</button>
+<button type="button" 
+[ngStyle]="{'border-color':color,'color':color}" 
+[disabled] = "disabled == true"
+(click)="onClick()" class="btn btn-outline-primary">
+    {{ text }}
+</button>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'app/services/api.service';
+import { Room } from 'interfaces/Room';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-seats',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeatsComponent implements OnInit {
 
-  constructor() { }
+  room$ : Observable <Room[]>
+
+  constructor(private apiService : ApiService) { }
 
   ngOnInit(): void {
+
+    this.room$ = this.apiService.get_room_capacity();
+    
   }
 
 }
