@@ -1,6 +1,6 @@
 {
-  "#/api": {
-    "target": "https://localhost:44339/api/",
+  "/api": {
+    "target": "https://localhost:44339/api",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {
