@@ -3,6 +3,8 @@ import { Component, OnInit, Output , EventEmitter,Input} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StringLiteralLike } from 'typescript';
 import { GlobalService } from '../../services/global.service';
+import { ApiService } from '../../services/api.service';
+
 
 @Component({
   selector: 'app-add-item',
@@ -23,13 +25,14 @@ export class AddItemComponent implements OnInit {
   
 
   //Client and employeee
-
+  branch_id:string;
+  cedula:number;
   first_name: string;
   middle_name : string;
   first_surname : string;
   second_surname: string;
   birth_date : string;
-  phone_number : string;
+  phone_number : number;
   username : string;
   password : string;
 
@@ -45,7 +48,7 @@ export class AddItemComponent implements OnInit {
 
 
   //Branches
-  branch_name:string;
+  cinema_name:string;
   province:string;
   district:string;
   room_quantity:string;
@@ -85,7 +88,10 @@ export class AddItemComponent implements OnInit {
   new_item:any;
 
 
-  constructor(private global: GlobalService) { 
+  branches:any[];
+
+
+  constructor(private global: GlobalService, private apiService : ApiService) { 
 
 
 
@@ -99,20 +105,14 @@ export class AddItemComponent implements OnInit {
     this.subscrition = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
     this.subscrition2 = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
 
-
-    console.log(this.url)
     if (this.url === "/projections"){
 
+    }
 
-      console.log("ENTRAAA")
-      this.movies_list = [
+    if(this.url === "/employees"){
 
-        {id:'1', name:"avengers"},
-         {id:'2', name:"batman"}
-
-      ]
-
-      //Se obtienen las peliculas
+      this.apiService.get_branches().subscribe((branches) => this.branches = branches);
+  
 
 
     }
@@ -134,7 +134,7 @@ export class AddItemComponent implements OnInit {
     switch (this.url) {
       case "/branches":
 
-      if(!this.branch_name){
+      if(!this.cinema_name && !this.showEditItem){
         alert("Por favor indique un nombre");
         return;
 
@@ -158,15 +158,20 @@ export class AddItemComponent implements OnInit {
       }
 
 
+      if(this.showEditItem){
+        this.cinema_name = this.global.getCurrentItem().cinema_name;
+      }
+
+
       this.new_item = { 
-          "cinema_name":this.branch_name,
+          "cinema_name":this.cinema_name,
           "province":this.province,
           "district":this.district,
           "room_quantity":this.room_quantity
           }
 
 
-          this.branch_name = "";
+          this.cinema_name = "";
           this.province = "";
           this.district = "";
           this.room_quantity = "";
@@ -215,9 +220,15 @@ export class AddItemComponent implements OnInit {
           alert("Por favor indique una contraseña")
           return;
         }
+
+        
+        if(this.showEditItem){
+          this.cedula = this.global.getCurrentItem().cedula;
+        }
   
        
-        this.new_item = { 
+        this.new_item = {
+          "cedula":this.cedula, 
           "first_name":this.first_name,
           "middle_name":this.middle_name,
           "first_surname":this.first_surname,
@@ -229,12 +240,13 @@ export class AddItemComponent implements OnInit {
           }
 
 
+          this.cedula = 0;
           this.first_name = "";
           this.middle_name = "";
           this.first_surname = "";
           this.second_surname = "";
           this.birth_date = "";
-          this.phone_number = "";
+          this.phone_number = 0;
           this.username = "";
           this.password = "";
     
@@ -282,9 +294,18 @@ export class AddItemComponent implements OnInit {
           alert("Por favor indique una contraseña")
           return;
         }
+
+
+
+
+        if(this.showEditItem){
+          this.cedula = this.global.getCurrentItem().cedula;
+        }
   
        
         this.new_item = { 
+          "branch_id":this.branch_id,
+          "cedula":this.cedula,
           "first_name":this.first_name,
           "middle_name":this.middle_name,
           "first_surname":this.first_surname,
@@ -296,12 +317,13 @@ export class AddItemComponent implements OnInit {
           }
 
 
+          this.branch_id = "";
           this.first_name = "";
           this.middle_name = "";
           this.first_surname = "";
           this.second_surname = "";
           this.birth_date = "";
-          this.phone_number = "";
+          this.phone_number = 0;
           this.username = "";
           this.password = "";
         break;  
@@ -337,11 +359,14 @@ export class AddItemComponent implements OnInit {
           return; 
   
         }
+
+        console.log(this.image);
   
         this.new_item = {
           "name":this.name,
           "original_name":this.original_name,
           "length":this.length,
+          "image":this.image,
           "director":this.director,
           "actors":this.actors
 

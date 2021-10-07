@@ -3,12 +3,13 @@
 
     <!--BRANCHES-->
     <div *ngIf='url == "/branches"' class="form-group">
-        <label for="branch_name"></label>
+        <label for="cinema_name"></label>
         <input
+            [disabled]="showEditItem"
             type="text"
-            name="branch_name"
-            [(ngModel)]="branch_name"
-            id="branch_name"
+            name="cinema_name"
+            [(ngModel)]="cinema_name"
+            id="cinema_name"
             placeholder="Nombre de la sucursal"
         >
     </div>
@@ -37,7 +38,7 @@
     <div *ngIf='url == "/branches"' class="form-group">
         <label for="room_quantity"></label>
         <input
-            type="text"
+            type="number"
             name="room_quantity"
             [(ngModel)]="room_quantity"
             id="room_quantity"
@@ -50,6 +51,37 @@
 
 
     <!--CLIENTS AND EMPLOYEES-->
+
+    <div *ngIf='"/employees"'>
+            <form >
+
+            
+            <label class="label-movie-selected" class="label-movie-selected">Seleccione una sucursal : </label>
+            <select [(ngModel)] = "branch_id" name="branch_id" class="form-group" >
+
+                <option *ngFor="let branch of branches" [value] = "branch.cinema_name"> {{branch.cinema_name}}</option>
+    
+    
+            </select>
+
+
+        </form>
+
+    </div>
+
+
+    <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
+        <label for="cedula"></label>
+        <input
+            [disabled] = "showEditItem"
+            type="number"
+            name="cedula"
+            [(ngModel)]="cedula"
+            id="cedula"
+            placeholder="cedula"
+        >
+    </div>
+
     <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
         <label for="first_name"></label>
         <input
@@ -97,7 +129,7 @@
     <div *ngIf='url == "/clients" || url == "/employees"' class="form-group">
         <label for="birth_date"></label>
         <input
-            type="text"
+            type="date"
             name="birth_date"
             [(ngModel)]="birth_date"
             id="birth_date"
@@ -110,7 +142,7 @@
         <label for="phone_number"></label>
         <input
             type="text"
-            name="phone_number"
+            name="number"
             [(ngModel)]="phone_number"
             id="phone_number"
             placeholder="Numero de telefono"
@@ -199,7 +231,7 @@
         <input
             type="text"
             name="lenght"
-            [(ngModel)]="lenght"
+            [(ngModel)]="length"
             id="lenght"
             placeholder="Duracion"
         >
