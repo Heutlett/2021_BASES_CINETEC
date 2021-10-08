@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SeatComponent } from 'app/components/seat/seat.component';
 import { Observable, Subject } from 'rxjs';
 
 
@@ -6,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class GlobalService {
+  
   
   current_branch: string;
   current_date: string;
@@ -19,7 +21,9 @@ export class GlobalService {
   current_columns: number;
   current_rows: number;
 
+  selected_seats = [];
 
+  private name = new Subject<any>();
   private showAddItem : boolean = false;
   private showEditItem : boolean = false;
   private add = new Subject<any>();
@@ -32,6 +36,14 @@ export class GlobalService {
 
 
   constructor() { }
+
+
+  current_branch_check():Observable<any> {
+    this.name.next(this.current_branch);
+    console.log(this.current_branch)
+    return this.name.asObservable();
+
+  }
 
 
     /**
@@ -90,5 +102,59 @@ export class GlobalService {
       return this.current_item;
 
     }
-  
+
+    seatSelected(seat){
+
+      console.log(this.current_tickets);
+
+      console.log(this.selected_seats.length)
+
+      if (this.selected_seats.length > this.current_tickets - 1 ){
+
+        this.selected_seats.push(seat);
+
+        this.selected_seats[0].color = "white";
+
+        this.selected_seats.shift();
+
+      }
+
+      else{
+
+        this.selected_seats.push(seat);
+
+      }
+
+    }
+
+    clear_seats(){
+
+      this.selected_seats = [];
+    }
+
+    seats_str(){
+
+      var numbers = [];
+
+      for (var seat of this.selected_seats) {
+
+        numbers.push(seat.text);
+
+      }
+
+      var res = "";
+
+      for (var seat_num of numbers){
+
+        res = res + seat_num + ",";
+
+      }
+
+      res = res.slice(0,-1);
+      
+      return res;
+
+
+      }
+
 }

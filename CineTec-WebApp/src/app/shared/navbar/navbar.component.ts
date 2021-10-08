@@ -4,6 +4,7 @@ import { Branch } from 'interfaces/Branch';
 import { Observable } from 'rxjs';
 import { ApiService } from 'app/services/api.service';
 import { GlobalService } from 'app/services/global.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     branches$: Observable<Branch[]>;
 
-    constructor(public location: Location, private element : ElementRef , private apiService : ApiService , private globalService : GlobalService) {
+    constructor(public location: Location, private element : ElementRef , private apiService : ApiService , private globalService : GlobalService , private router: Router) {
         this.sidebarVisible = false;
 
     }
@@ -32,7 +33,10 @@ export class NavbarComponent implements OnInit {
 
     branchSelected(branch:string){
 
+        this.router.navigateByUrl('/listing');
         this.globalService.current_branch = branch;
+        this.globalService.current_branch_check();
+        console.log(branch);
         
     }
 

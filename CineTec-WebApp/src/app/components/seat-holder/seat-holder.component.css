@@ -15,6 +15,7 @@
     text-align: center;
 }
 
+
 .btn { 
 
     margin: 100px;
@@ -22,6 +23,18 @@
     left: 35%;
     transform: translate(-35%);
     font-size: 16px;
+}
+
+
+.btn-spc { 
+
+    margin: 100px;
+    position: relative;
+    left: 35%;
+    transform: translate(-35%);
+    font-size: 16px;
+    background-color: transparent;
+    border-color: transparent;
 
 }
 
