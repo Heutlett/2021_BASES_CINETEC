@@ -48,14 +48,26 @@ export class EmployeeComponent implements OnInit {
     this.global.toggleAddItem();
   }
 
+
+
+    /**
+   * En via al API la accion de post con un item desconocido y lo agrega a la interfaz de ser exitosa la peticion
+   * @param item recibe un item cualquiera para enviar al API
+   */
   add_item(item:any){
 
-      this.apiService.post_employees(item).subscribe(()=> this.items.push(item));
+      this.apiService.post(item).subscribe(()=> this.items.push(item));
 
 
     }
 
+
     
+    /**
+   * Funcion que envia al API la peticion de put para un item. La funcion es llamada
+   * con un diferente atributo dependiendo el url del usuario y la llave primaria del objeto
+   * @param item El item a editar
+   */
 
   edit_item(item:any){
     this.apiService.put(item).subscribe(() => {
@@ -77,6 +89,10 @@ export class EmployeeComponent implements OnInit {
   
 
 
+    /**
+   * Funcion que envia al API la peticion de delete para un item. La funcion es llamada
+   * con un diferente atributo dependiendo el url del usuario y la llave primaria del objeto
+   */
   deleteItem(){
     this.cancelEditItem();
     this.apiService.delete().subscribe(() => this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula));

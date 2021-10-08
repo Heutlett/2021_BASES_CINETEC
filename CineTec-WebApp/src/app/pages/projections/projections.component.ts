@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
 import { Subscription } from 'rxjs';
 import {Router} from '@angular/router';
-
+import {ApiService} from '../../services/api.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class ProjectionsComponent implements OnInit {
 
   url:string;
 
-  constructor(private router:Router ,private global : GlobalService) {
+  constructor(private apiService : ApiService, private router:Router ,private global : GlobalService) {
 
     this.url = router.url
 
@@ -31,6 +31,10 @@ export class ProjectionsComponent implements OnInit {
 
     this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
+
+
+    this.apiService.get_projections().subscribe((projections) => {this.items = projections});
+
   }
 
 
@@ -43,18 +47,30 @@ export class ProjectionsComponent implements OnInit {
     this.global.toggleAddItem();
   }
 
+
+
+    /**
+   * En via al API la accion de post con un item desconocido y lo agrega a la interfaz de ser exitosa la peticion
+   * @param item recibe un item cualquiera para enviar al API
+   */
   add_item(item:any){
 
-      this.items.push(item);
+      this.apiService.post(item).subscribe(() => this.apiService.get_projections().subscribe((projections)=> this.items = projections));
 
 
     }
 
     
 
+    /**
+   * Funcion que envia al API la peticion de put para un item. La funcion es llamada
+   * con un diferente atributo dependiendo el url del usuario y la llave primaria del objeto
+   * @param item El item a editar
+   */
   edit_item(item:any){
-    this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name)
-    this.items.push(item);
+    this.apiService.put(item).subscribe(() => {
+      this.apiService.get_projections().subscribe((projections)=> this.items = projections )
+    });
     this.global.toggleEditItem();
     
 
@@ -69,9 +85,14 @@ export class ProjectionsComponent implements OnInit {
   
 
 
+    /**
+   * Funcion que envia al API la peticion de delete para un item. La funcion es llamada
+   * con un diferente atributo dependiendo el url del usuario y la llave primaria del objeto
+   */
+
   deleteItem(){
     this.cancelEditItem();
-    this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name)
+    this.apiService.delete().subscribe(()=> this.apiService.get_projections().subscribe((projections) => this.items = projections));
   }
 
 

@@ -53,7 +53,14 @@ export class ClientsComponent implements OnInit {
 
     }
 
-    
+ 
+
+
+    /**
+   * Funcion que envia al API la peticion de put para un item. La funcion es llamada
+   * con un diferente atributo dependiendo el url del usuario y la llave primaria del objeto
+   * @param item El item a editar
+   */
 
   edit_item(item:any){
     this.apiService.put(item).subscribe(() => {
@@ -74,6 +81,10 @@ export class ClientsComponent implements OnInit {
   }
   
 
+    /**
+   * Funcion que envia al API la peticion de delete para un item. La funcion es llamada
+   * con un diferente atributo dependiendo el url del usuario y la llave primaria del objeto
+   */
 
   deleteItem(){
     this.cancelEditItem();

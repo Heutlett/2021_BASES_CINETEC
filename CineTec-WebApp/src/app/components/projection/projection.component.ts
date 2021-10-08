@@ -26,9 +26,9 @@ export class ProjectionComponent implements OnInit {
     console.log(this.projection);
 
     this.Id = this.projection.id;
-    this.Name = this.projection.name;
-    this.Time = this.projection.time;
-    this.Price = this.projection.price;
+    //this.Name = this.projection.name;
+    //this.Time = this.projection.time;
+    //this.Price = this.projection.price;
     this.Room_id = this.projection.room_id;
     this.Img  = "assets/img/"  + this.Name + ".jpg";
    
