@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'app/services/api.service';
 import { GlobalService } from 'app/services/global.service';
 import { Room } from 'interfaces/Room';
 import { Seat } from 'interfaces/Seat';
-import { Observable } from 'rxjs';
-import { updateLanguageServiceSourceFile } from 'typescript';
 
 
 @Component({
@@ -16,7 +15,6 @@ export class SeatHolderComponent implements OnInit {
 
   seats : Seat[];
   selectable_amount : number;
-  //room$ : Observable<Room[]>;
   @Input() room: Room;
   ready = false;
   rows: number;
@@ -26,7 +24,7 @@ export class SeatHolderComponent implements OnInit {
   
 
 
-  constructor(private apiService : ApiService , private globalService : GlobalService) { }
+  constructor(private apiService : ApiService , private globalService : GlobalService, private router : Router) { }
 
   ngOnInit(): void {
 
@@ -39,19 +37,36 @@ export class SeatHolderComponent implements OnInit {
     this.rows = this.room.row_quantity;
     this.globalService.current_columns = this.columns;
     this.globalService.current_rows = this.rows;
-    console.log(this.globalService.current_columns,this.globalService.current_rows,1)
 
     this.width = 70 * this.columns;  
 
-    //console.log(this.room)
-    }
 
+    }
 
     update(){
 
       this.ready = true;
-      //console.log(this.globalService.current_columns,this.globalService.current_rows,0)
-
 
     }
+
+
+    back(){
+
+      this.globalService.clear_seats();
+
+      this.router.navigateByUrl('/tickets');
+
+    }
+
+    buy(){
+
+      
+
+      this.globalService.clear_seats();
+
+      this.router.navigateByUrl('/tickets');
+
+    }
+
+
 }

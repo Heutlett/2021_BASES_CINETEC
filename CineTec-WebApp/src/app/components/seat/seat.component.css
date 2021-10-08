@@ -4,3 +4,11 @@
     width: 45px;
     text-align: center;
 }
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+    color: transparent;
+    background-color: transparent;
+    
+  }

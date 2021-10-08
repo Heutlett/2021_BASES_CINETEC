@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { GlobalService } from 'app/services/global.service';
 
 @Component({
   selector: 'app-seat',
@@ -12,7 +13,7 @@ export class SeatComponent implements OnInit {
   disabled: boolean;
   //@Output() btnClick = new EventEmitter();
 
-  constructor() { }
+  constructor(private globalService: GlobalService) { }
 
   ngOnInit(): void {
 
@@ -44,7 +45,7 @@ export class SeatComponent implements OnInit {
       //Si la lista es mas grande q las entradas compradas saca el
       // ultimo y le pone color blanco
 
-      //this.globalService
+      this.globalService.seatSelected(this);
 
   }
 

@@ -21,7 +21,7 @@ export class ProjectionHolderComponent implements OnInit {
   name: string;
   dates:string[];
   date:string;
-  show_dates = false;
+  show_dates = true;
   projections$: Observable<Projection[]>;
   subscription_name: Subscription;
 
@@ -43,16 +43,15 @@ export class ProjectionHolderComponent implements OnInit {
 
   update():void{
 
-    this.show_dates = false;
     this.projections$ = this.apiService.get_projections();
-    this.show_dates = true;
-    
 
   }
 
   date_init() : void {
 
     this.date = this.dates[0];
+
+    this.update();
 
   }
 
