@@ -11,6 +11,9 @@
         "id": 1,
         "name": "Spirited Away",
         "time": ["11:30","13:00","18:00"],
+        "actors":["Bruce Lee","Keanu Reeves"],
+        "director":"Tarantino",
+        "classification":"R",
         "price": 1000,
         "room_id":0
       },
@@ -18,6 +21,9 @@
         "id": 2,
         "name": "Spider-Verse",
         "time": ["11:00","13:30","22:00"],
+        "actors":["actor1","actor2"],
+        "director":"Tarantino",
+        "classification":"R",
         "price": 2000,
         "room_id":1
       },
