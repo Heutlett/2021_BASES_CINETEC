@@ -10,6 +10,9 @@ import { Projection_branch } from 'interfaces/Projection_branch';
 import { Client } from 'interfaces/Client';
 import { Router } from '@angular/router';
 import { Employee } from 'interfaces/Employees';
+import { Movie } from 'interfaces/Movies';
+
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -49,7 +52,7 @@ export class ApiService {
    get_projections():Observable<Projection[]>{
 
     //return this.http.get<Projection[]>( this.apiURL + "Projection" + this.globalService.current_branch);
-    return this.http.get<Projection[]>( this.apiURL + "Projection");
+    return this.http.get<Projection[]>( this.apiURL + "Projections");
 
   }
 
@@ -84,6 +87,21 @@ export class ApiService {
 
   }
 
+  get_movies(): Observable<Movie[]> {
+
+    return this.http.get<Movie[]>(this.apiURL + "Movies");
+
+  }
+
+  get_rooms(): Observable<Room[]> {
+
+    return this.http.get<Room[]>(this.apiURL + "Rooms");
+
+  }
+
+
+
+
 
 
 
@@ -108,6 +126,18 @@ export class ApiService {
         return this.post_client(item);
 
       case "/employees":
+        return this.post_employees(item);
+
+      case "/movies":
+        console.log(item);
+        return this.post_movie(item);
+
+      case "/rooms":
+        console.log(item);
+        return this.post_room(item);
+      
+      case "/projections":
+        return this.post_projections(item);
 
 
       
@@ -153,6 +183,47 @@ export class ApiService {
 
   }
 
+
+    /**
+  * Funcion POST para un pelicula
+  * @param moovie pelicula a crear
+  * @returns repuesta del API
+  */
+  post_movie(movie:Movie){
+      return this.http.post<Movie>(this.apiURL + "Movies", movie, httpOptions)
+  
+  
+    }
+  
+  /**
+  * Funcion POST para un empleado
+  * @param employee empleado a crear
+  * @returns repuesta del API
+  */
+  post_room(room:Room){
+
+    console.log(room);
+    return this.http.post<Room>(this.apiURL + "Rooms", room, httpOptions);
+
+
+  }
+
+
+    /**
+  * Funcion POST para un empleado
+  * @param employee empleado a crear
+  * @returns repuesta del API
+  */
+     post_projections(projection:Projection){
+
+      console.log(projection);
+      return this.http.post<Projection>(this.apiURL + "Projections", projection, httpOptions);
+  
+  
+    }
+  
+    
+
   
 
   
@@ -167,13 +238,19 @@ export class ApiService {
    delete(): Observable<any>{
     switch (this.router.url) {
       case "/branches":
-        return this.delete_branch(this.globalService.getCurrentItem())
+        return this.delete_branch(this.globalService.getCurrentItem());
 
       case "/clients":
-        return this.delete_client(this.globalService.getCurrentItem())
+        return this.delete_client(this.globalService.getCurrentItem());
   
       case "/employees":
-        return this.delete_employee(this.globalService.getCurrentItem())
+        return this.delete_employee(this.globalService.getCurrentItem());
+
+      case "/rooms":
+        return this.delete_room(this.globalService.getCurrentItem());
+      
+      case "/projections":
+        return this.delete_projections(this.globalService.getCurrentItem());  
 
 
       default:
@@ -215,12 +292,39 @@ export class ApiService {
   * @param branch sucursal a eliminar
   * @returns repuesta del API
   */
-     delete_employee(employee:Employee): Observable<Employee> {
+  delete_employee(employee:Employee): Observable<Employee> {
 
       const url = `${this.apiURL + "Employees" }/${employee.cedula}`;
       return this.http.delete<Employee>(url);
     
   }
+
+
+      /**
+  * Funcion DELETE para un empleado
+  * @param room sala a eliminar
+  * @returns repuesta del API
+  */
+  delete_room(room:Room): Observable<Room> {
+
+      const url = `${this.apiURL + "Rooms" }/${room.id}`;
+      return this.http.delete<Room>(url);
+      
+    }
+  
+        /**
+  * Funcion DELETE para un proyecciones
+  * @param projection projeccion a eliminar
+  * @returns repuesta del API
+  */
+  delete_projections(projeccion:Projection): Observable<Projection> {
+          console.log(projeccion);
+          const url = `${this.apiURL + "Projections" }/${projeccion.id}`;
+          return this.http.delete<Projection>(url);
+          
+  }
+      
+  
 
 
 
@@ -242,6 +346,12 @@ export class ApiService {
 
       case "/employees":
         return this.put_employee(item);
+
+      case "/rooms":
+        return this.put_room(item);
+
+      case "/projections":
+        return this.put_projections(item);
 
 
     }
@@ -279,8 +389,8 @@ export class ApiService {
 
 
   /**
-  * Funcion PUT para un branch
-  * @param branch los nuevos datos de la sucursal
+  * Funcion PUT para un empleado
+  * @param empleado los nuevos datos del empleado
   * @returns respuesta del API
   */
 
@@ -290,6 +400,33 @@ export class ApiService {
       
       
   }
+
+
+  /**
+  * Funcion PUT para un branch
+  * @param branch los nuevos datos de la sucursal
+  * @returns respuesta del API
+  */
+
+  put_room(room:Room):Observable<Room> {
+    const url = `${this.apiURL + "Rooms" }/${this.globalService.getCurrentItem().id}`;
+    return this.http.put<Room>(url, room, httpOptions);
+       
+}
+
+  /**
+  * Funcion PUT para un branch
+  * @param branch los nuevos datos de la sucursal
+  * @returns respuesta del API
+  */
+
+  put_projections(projection:Projection):Observable<Projection> {
+    const url = `${this.apiURL + "Projections" }/${this.globalService.getCurrentItem().id}`;
+    return this.http.put<Projection>(url, projection, httpOptions);
+       
+}
+  
+  
     
     
 

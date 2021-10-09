@@ -18,7 +18,7 @@
     <br *ngIf="in_branches">
     <label *ngIf="in_branches">Districto: {{item.district}}</label>
     <br *ngIf="in_branches">
-    <label *ngIf="in_branches">Cantidad de salas: {{item.room_quantity}}</label>
+    <label *ngIf="in_branches">Cantidad de salas: {{item.rooms_quantity}}</label>
     <br *ngIf="in_branches">
 
 
@@ -28,6 +28,8 @@
     <label *ngIf="in_clients || in_employees">Cedula : {{item.cedula}}</label>
     <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Primer nombre : {{item.first_name}}</label>
+    <br *ngIf="in_clients || in_employees">
+    <label *ngIf="in_clients || in_employees">Segundo nombre : {{item.middle_name}}</label>
     <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Primer apellido : {{item.first_surname}}</label>
     <br *ngIf="in_clients || in_employees">
@@ -48,6 +50,8 @@
     <br *ngIf="in_movies">
     <label *ngIf="in_movies">Nombre original: {{item.original_name}}</label>
     <br *ngIf="in_movies">
+    <label *ngIf="in_movies">clasification: {{item.classification_id}}</label>
+    <br *ngIf="in_movies">
     <label *ngIf="in_movies">Durancion: {{item.length}}</label>
     <br *ngIf="in_movies">
     <label *ngIf="in_movies"> Director: {{item.director}}</label>
@@ -57,7 +61,11 @@
 
 
     <!--Rooms-->
-    <label *ngIf="in_rooms"> Columnas {{item.column_quantity}}</label>
+    <label *ngIf="in_rooms"> Sucursal: {{item.branch_name}}</label>
+    <br *ngIf="in_rooms">
+    <label *ngIf="in_rooms"> Sala:  {{item.id}}</label>
+    <br *ngIf="in_rooms">
+    <label *ngIf="in_rooms"> Columnas: {{item.column_quantity}}</label>
     <br *ngIf="in_rooms">
     <label *ngIf="in_rooms"> Filas: {{item.row_quantity}}</label>
     <br *ngIf="in_rooms">
@@ -65,14 +73,16 @@
     <br *ngIf="in_rooms">
 
 
+
+
     <!--Projection-->
-    <label *ngIf="in_projections">Pelicula: {{item.movie}}</label>
+    <label *ngIf="in_projections">Pelicula: {{item.movie_id}}</label>
     <br *ngIf="in_projections">
     <label *ngIf="in_projections">Fecha: {{item.date}}</label>
     <br *ngIf="in_projections">
     <label *ngIf="in_projections">Hora: {{item.time}}</label>
     <br *ngIf="in_projections"> 
-    <label *ngIf="in_projections">Sala: {{item.room}}</label>
+    <label *ngIf="in_projections">Sala: {{item.room_id}}</label>
     <br *ngIf="in_projections"> 
 
 

@@ -49,7 +49,7 @@ export class BranchesAdminComponent implements OnInit {
 
 
   add_item(item:any){
-      this.apiService.post(item).subscribe(() => this.items.push(item));
+      this.apiService.post(item).subscribe(() => this.apiService.get_branches().subscribe((branches) => this.items = branches));
     }
 
     
@@ -59,8 +59,8 @@ export class BranchesAdminComponent implements OnInit {
 
     this.apiService.put(item).subscribe(() => {
 
-      this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name)
-      this.items.push(item);
+      this.apiService.get_branches().subscribe((branches) => this.items = branches)
+
     });
 
     this.global.toggleEditItem();
@@ -78,6 +78,7 @@ export class BranchesAdminComponent implements OnInit {
 
 
   deleteItem(){
+    console.log("SE ELIMINA")
     this.cancelEditItem();
     this.apiService.delete().subscribe(() => this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name))
   }

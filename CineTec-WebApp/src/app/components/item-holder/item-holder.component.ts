@@ -60,7 +60,6 @@ export class ItemHolderComponent implements OnInit {
       case "/projections":
         this.titulo = "Lista de proyecciones";
         break;
-  
       default:
         break;
     }
