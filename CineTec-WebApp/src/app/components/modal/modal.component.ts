@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { GlobalService } from 'app/services/global.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { ApiService } from 'app/services/api.service';
 
 @Component({
     selector: 'app-modal-content',
@@ -17,7 +19,7 @@ export class NgbdModalContent implements OnInit {
     subtotal:string;
     total:string;
 
-    constructor(public activeModal: NgbActiveModal , private globalService : GlobalService) {}
+    constructor(public activeModal: NgbActiveModal , private globalService : GlobalService, private router : Router, private apiService : ApiService) {}
 
     ngOnInit(){
 
@@ -28,6 +30,14 @@ export class NgbdModalContent implements OnInit {
       this.subtotal =this.globalService.current_subtotal.toString();
       this.total = (this.globalService.current_subtotal + (this.globalService.current_subtotal * 0.13)).toString();
 
+
+    }
+
+    confirmed(){
+
+        this.router.navigateByUrl("/billing");
+
+        this.apiService.seats_bought();
 
     }
 }

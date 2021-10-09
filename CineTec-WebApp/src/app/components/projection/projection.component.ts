@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GlobalService } from 'app/services/global.service';
-import { Projection } from 'interfaces/Projection';
+import { Projections } from 'interfaces/Projection';
 
 @Component({
   selector: 'app-projection',
@@ -9,7 +9,7 @@ import { Projection } from 'interfaces/Projection';
 })
 export class ProjectionComponent implements OnInit {
 
-  @Input() projection: Projection;
+  @Input() projection: Projections;
   Id:number;
   Name:string;
   Time:string[];
@@ -26,9 +26,9 @@ export class ProjectionComponent implements OnInit {
     console.log(this.projection);
 
     this.Id = this.projection.id;
-    //this.Name = this.projection.name;
-    //this.Time = this.projection.time;
-    //this.Price = this.projection.price;
+    this.Name = this.projection.name;
+    this.Time = this.projection.time;
+    this.Price = this.projection.price;
     this.Room_id = this.projection.room_id;
     this.Img  = "assets/img/"  + this.Name + ".jpg";
    
