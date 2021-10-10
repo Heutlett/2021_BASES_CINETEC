@@ -1,7 +1,10 @@
 package com.example.cinetec_appmovil;
 
+import static java.security.AccessController.getContext;
+
 import android.os.Bundle;
 
+import com.example.cinetec_appmovil.database.CineTecDatabase;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +20,8 @@ import com.example.cinetec_appmovil.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         this.setTitle("Bienvenido");
+
 
     }
 

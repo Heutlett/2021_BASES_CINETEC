@@ -12,8 +12,12 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
+import com.example.cinetec_appmovil.database.CineTecDatabase;
 import com.example.cinetec_appmovil.databinding.FragmentSeatsBinding;
+import com.example.cinetec_appmovil.projectionsItem.Projection;
+import com.example.cinetec_appmovil.room.Room;
 import com.example.cinetec_appmovil.seats.ButtonSeat;
+import com.example.cinetec_appmovil.seats.Seat;
 
 import java.util.ArrayList;
 
@@ -70,30 +74,33 @@ public class Seats extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        int row = 15;
-        int column = 10;
+        ArrayList<Seat> seats = CineTecDatabase.getInstance(getContext()).getSeats(Projections.room_id);
+        Room currentRoom = CineTecDatabase.getInstance(getContext()).getRoom(Projections.room_id);
+
+
+        int row = currentRoom.getRows();
+        int column = currentRoom.getColumns();
         GridLayout seats_layout= view.findViewById(R.id.seats_layout);
         seats_layout.setRowCount(row);
         seats_layout.setColumnCount(column);
-        int seat = 1;
+        int index = 0;
 
         for(int i=0; i<row; i++){
 
             for(int j=0; j<column; j++){
 
 
-                ButtonSeat currentButton = createButton(seat, column, j);
+                Seat currentSeat = seats.get(index);
+                ButtonSeat currentButton = createButton(currentSeat.getNumber(), column, j);
                 seats_layout.addView(currentButton);
                 this.buttonSeats.add(currentButton);
-                seat++;
+                index++;
 
 
             }
 
 
         }
-
-
 
     }
 

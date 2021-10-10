@@ -12,7 +12,7 @@
         android:background="@drawable/bg6">
 
         <ListView
-            android:id="@+id/branch_view"
+            android:id="@+id/moviesView"
             android:layout_width="410dp"
             android:layout_height="655dp"
             android:layout_marginTop="80dp"
