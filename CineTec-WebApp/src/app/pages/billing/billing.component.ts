@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GlobalService } from 'app/services/global.service';
 import { DateTime } from 'luxon';
 import * as jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable'
 
 
 @Component({
@@ -18,7 +19,19 @@ export class BillingComponent implements OnInit {
   seats:string;
   subtotal:string;
   total:string;
+  security_code:number;
+  download:boolean = false;
+  consecutive: number;
+  id: number;
+  now = DateTime.now().toString()
+
   @ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
+  client_name: string;
+  client_id: string;
+  unit: number;
+  tickets_amount: number;
+  tax: number;
+  full_address: string;
 
   constructor(private globalService : GlobalService, private router : Router) { }
 
@@ -30,10 +43,16 @@ export class BillingComponent implements OnInit {
     this.seats = this.globalService.current_bill.seats;
     this.subtotal = this.globalService.current_bill.subtotal;
     this.total = this.globalService.current_bill.total;
+    this.client_name = this.globalService.client_name;
+    this.client_id = this.globalService.client_id;
+    this.unit = this.globalService.current_price;
+    this.tickets_amount = this.globalService.current_tickets;
+    this.tax = this.globalService.current_subtotal*0.13;
+    this.full_address = this.globalService.current_branch + this.globalService.current_address;
 
-    var security_code = Math.floor(Math.random() * 10000000000);
-    var consecutive = Math.floor(Math.random() * 10000000000);
-    var id = Math.floor(Math.random() * 1000000000);
+    this.security_code = Math.floor(Math.random() * 10000000000);
+    this.consecutive = Math.floor(Math.random() * 10000000000);
+    this.id = Math.floor(Math.random() * 1000000000);
 
     function makeid(length) {
       var result           = '';
@@ -49,15 +68,12 @@ export class BillingComponent implements OnInit {
   var signature  = makeid(500);
   var certificate  = makeid(1500);
   
-  console.log(makeid(5));
-
-
     var builder = require('xmlbuilder');
  
     var xml = builder.create('FacturaElectronica', {version: '1.0', encoding: 'UTF-8', standalone: false})
       .att('xmlns', 'https://tribunet.hacienda.go.cr/docs/esquemas/2016/v4.2/FacturaElectronica_V.4.2.xsd')
-        .ele('Clave', '506'+ id + this.globalService.client_id+'0010000101' + consecutive.toString()+security_code.toString()).up()
-        .ele('Consecutivo', consecutive.toString()).up()
+        .ele('Clave', '506'+ this.id + this.globalService.client_id+'0010000101' + this.consecutive.toString()+this.security_code.toString()).up()
+        .ele('Consecutivo', this.consecutive.toString()).up()
         .ele( 'Fecha_emision', DateTime.now().toString()).up()
         .ele('Emisor')
           .ele('Nombre','CineTEC CR, S.A.').up()
@@ -113,7 +129,7 @@ export class BillingComponent implements OnInit {
           .ele('Total_serv_exentos','0').up()
           .ele('Total_merc_gravada','0').up()
           .ele('Total_merc_exenta','0').up()
-          .ele('Total_gravados','0').up()
+          .ele('Total_gravados',this.globalService.current_subtotal).up()
           .ele('Total_exentos','0').up()
           .ele('Total_ventas',(this.globalService.current_subtotal + this.globalService.current_subtotal*0.13 ).toString()).up()
           .ele('Total_descuentos','0').up()
@@ -186,15 +202,17 @@ export class BillingComponent implements OnInit {
 
   view_pdf(){
 
-
     this.router.navigateByUrl("/pdf")
 
   }
 
+  
+
 
 
   public downloadAsPDF() {
-    const doc = new jsPDF();
+
+    const doc = new jsPDF('p', 'pt', 'letter');
 
     const specialElementHandlers = {
       '#editor': function (element, renderer) {
@@ -205,11 +223,13 @@ export class BillingComponent implements OnInit {
     const pdfTable = this.pdfTable.nativeElement;
 
     doc.fromHTML(pdfTable.innerHTML, 15, 15, {
-      width: 190,
+      width: 500,
       'elementHandlers': specialElementHandlers
     });
 
-    doc.save('tableToPdf.pdf');
+
+    doc.save('Factura_Electronica_CineTec_' + this.movie + '.pdf');
+
   }
 
 

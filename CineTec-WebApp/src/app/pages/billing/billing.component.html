@@ -4,7 +4,7 @@
         <h2 class="text-primary">Gracias por su compra!</h2>
     </div>
 
-    <div class="container" id="pdfTable" #pdfTable>
+    <div class="container">
         <div class="modal-header">
             <h2 class="modal-title text-center text-primary">Factura CineTEC</h2>
         </div>
@@ -30,3 +30,67 @@
         </div>
     </div>
 </div>
+
+
+<div class="bill" id="pdfTable" #pdfTable>
+    <h1>Factura Electronica CineTEC</h1>
+    <h3> CineTec Costa Rica S.A.</h3>
+
+    <h4>(+506)22723616</h4>
+    <h4>cinetec.asistecia@cineTecSA.com</h4>
+    <h4>CineTEC {{full_address}}</h4>
+
+
+    <h4>Consecutivo: {{consecutive}}</h4>
+    <h4>Clave numerica: {{security_code}}</h4>
+    <h3>#Factura Electronica: {{id}} </h3>
+    <h5> {{now}}</h5>
+
+    <h3>Cliente</h3>
+    <h4>{{client_name}}</h4>
+    <h4>Ced. {{client_id}}</h4>
+
+    <table>
+        <tr>
+          <th>Moneda</th>
+          <th>Precio Unitario</th>
+          <th>Cantidad</th>
+        </tr>
+        <tr>
+          <td>CRC</td>
+          <td>{{unit}}</td>
+          <td>{{tickets_amount}}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+          <th>Des. %</th>
+          <th>Imp.</th>
+          <th>T.Excento</th>
+          <th>T.grabado</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>{{tax}}</td>
+          <td>0</td>
+          <td>{{subtotal}}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+          <th>Subtotal</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <td>{{subtotal}}</td>
+          <td>{{total}}</td>
+        </tr>
+    </table>
+
+
+
+    
+    <h6>Autorizada mediante resolución No DGT-R-48-2016 del 7 de octubre de 2016</h6>
+  
+   
+  </div>

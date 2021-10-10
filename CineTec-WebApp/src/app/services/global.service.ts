@@ -23,6 +23,10 @@ export class GlobalService {
   current_columns: number;
   current_rows: number;
   current_bill: NgbdModalContent;
+  current_address: string;
+  client_id: string;
+  client_name: string;
+  xml: any;
 
   selected_seats = [];
 
@@ -35,9 +39,7 @@ export class GlobalService {
 
   private current_item : any;
 
-  client_id: string;
-  client_name: string;
-  xml: any;
+
   
   
   
