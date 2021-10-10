@@ -21,6 +21,9 @@ export class FooterComponent implements OnInit {
           if( titlee === '/signup' ) {
               return true;
           }
+          if( titlee === '/admin-login' ) {
+            return true;
+        }
           else {
               return false;
           }

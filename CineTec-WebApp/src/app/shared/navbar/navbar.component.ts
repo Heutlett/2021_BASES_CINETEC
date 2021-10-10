@@ -78,6 +78,9 @@ export class NavbarComponent implements OnInit {
         if( titlee === '/signup' ) {
             return true;
         }
+        if(!this.isClient()){
+            return true;
+        }
         else {
             return false;
         }
@@ -87,9 +90,25 @@ export class NavbarComponent implements OnInit {
       if(titlee.charAt(0) === '#'){
           titlee = titlee.slice( 1 );
       }
-        if( titlee === '/documentation' ) {
-            return true;
+        if( titlee === '/branches' ) {
+            return false;
         }
+        if( titlee === '/clients' ) {
+            return false;
+        }
+        if( titlee === '/projections' ) {
+            return false;
+        }
+        if( titlee === '/rooms' ) {
+            return false;
+        }
+        if( titlee === '/employees' ) {
+            return false;
+        }
+        if( titlee === '/movies' ) {
+            return false;
+        }
+
         else {
             return true;
         }
@@ -105,6 +124,9 @@ export class NavbarComponent implements OnInit {
               return false;
           }
           if( titlee === '/signup' ) {
+            return false;
+          }
+          if( titlee === '/admin-login' ) {
             return false;
           }
           else {

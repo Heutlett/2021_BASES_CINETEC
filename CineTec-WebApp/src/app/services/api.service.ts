@@ -27,7 +27,8 @@ const httpOptions = {
 })
 export class ApiService {
     
-  private apiURL = '/api/'; 
+  //private apiURL = '/api/'; 
+  private apiURL = 'http://localhost:5000/'; 
    
 
   constructor(private http:HttpClient, private globalService : GlobalService, private router : Router) { }

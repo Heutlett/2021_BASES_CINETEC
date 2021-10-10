@@ -43,5 +43,6 @@ app-button {
     width: 450px;
     height: 500px;
     align-items: center;
+    padding-bottom: 100px;
 }
 

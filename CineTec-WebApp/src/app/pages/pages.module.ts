@@ -19,6 +19,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { BillingComponent } from './billing/billing.component';
 import { XmlComponent } from './xml/xml.component';
 import { PdfComponent } from './pdf/pdf.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import { PdfComponent } from './pdf/pdf.component';
         BillingComponent,
         XmlComponent,
         PdfComponent,
+        AdminLoginComponent,
         
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

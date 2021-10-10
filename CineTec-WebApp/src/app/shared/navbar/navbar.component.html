@@ -15,7 +15,7 @@
         </div>
         <div *ngIf="show_nav()" class="navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li *ngIf="isClient()" class="nav-item">
                     <div ngbDropdown class="btn-primary">
                         <a style="color:#000000;"class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Sucursales</a>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
@@ -24,13 +24,13 @@
                     </div>
                 </li>
                 <li class="nav-item" *ngIf="isClient()">
-                    <a style="color:#ffffff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link" target="_blank">Promociones</a>
+                    <a style="color:#ffffff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link">Promociones</a>
                 </li>
                 <li class="nav-item" *ngIf="isClient()">
-                    <a style="color:#ffffff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link" target="_blank">Preventas</a>
+                    <a style="color:#ffffff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link">Contáctenos</a>
                 </li>
                 <li class="nav-item" *ngIf="isClient()">
-                    <a style="color:#ffffff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link" target="_blank">Contáctenos</a>
+                    <a style="color:#ffffff;" href="#/user-profile" class="nav-link">Perfil</a>
                 </li>
                 <li class="nav-item" *ngIf="isClient()">
                     <a style="color:#ffffff;" href="#/signup" class="nav-link">Cerrar sesion</a>
@@ -52,6 +52,29 @@
                         <i style="color:#ffffff;" class="fa fa-instagram"></i>
                         <p class="d-lg-none">Instagram</p>
                     </a>
+                </li>
+
+                <li class="nav-item" *ngIf="!isClient()">
+                    <a style="color:#ffffff;" href="#/branches" class="nav-link">Sucursales</a>
+                </li>
+                
+                <li class="nav-item" *ngIf="!isClient()">
+                    <a style="color:#ffffff;" href="#/projections" class="nav-link">Proyecciones</a>
+                </li>
+                <li class="nav-item" *ngIf="!isClient()">
+                    <a style="color:#ffffff;" href="#/rooms" class="nav-link">Salas</a>
+                </li>
+                <li class="nav-item" *ngIf="!isClient()">
+                    <a style="color:#ffffff;" href="#/movies" class="nav-link">Películas</a>
+                </li>
+                <li class="nav-item" *ngIf="!isClient()">
+                    <a style="color:#ffffff;" href="#/employees" class="nav-link">Empleados</a>
+                </li>
+                <li class="nav-item" *ngIf="!isClient()">
+                    <a style="color:#ffffff;" href="#/clients" class="nav-link">Clientes</a>
+                </li>
+                <li class="nav-item" *ngIf="!isClient()">
+                    <a style="color:#ffffff;" href="#/admin-login" class="nav-link">Cerrar sesion</a>
                 </li>
             </ul>
         </div>
