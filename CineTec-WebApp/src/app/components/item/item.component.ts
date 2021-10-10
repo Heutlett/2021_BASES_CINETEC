@@ -27,7 +27,7 @@ export class ItemComponent implements OnInit {
   in_rooms = false;
   in_projections = false;
 
-
+  
   constructor(private router:Router, private global : GlobalService) {
 
     switch (this.router.url) {

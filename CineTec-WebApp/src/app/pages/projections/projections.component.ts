@@ -55,7 +55,16 @@ export class ProjectionsComponent implements OnInit {
    */
   add_item(item:any){
 
-      this.apiService.post(item).subscribe(() => this.apiService.get_projections().subscribe((projections)=> this.items = projections));
+      this.apiService.post(item).subscribe(() => {
+        
+        this.apiService.get_projections().subscribe((projections)=> this.items = projections)
+      
+      
+      }, (error)=>{
+
+        alert(error.error);
+
+      });
 
 
     }
@@ -69,11 +78,18 @@ export class ProjectionsComponent implements OnInit {
    */
   edit_item(item:any){
     this.apiService.put(item).subscribe(() => {
-      this.apiService.get_projections().subscribe((projections)=> this.items = projections )
-    });
-    this.global.toggleEditItem();
-    
 
+
+      this.apiService.get_projections().subscribe((projections)=> this.items = projections );
+
+
+    }, (error)=>{
+
+
+      alert(error.error);
+    
+    });
+  
   }
 
     /**
@@ -92,7 +108,16 @@ export class ProjectionsComponent implements OnInit {
 
   deleteItem(){
     this.cancelEditItem();
-    this.apiService.delete().subscribe(()=> this.apiService.get_projections().subscribe((projections) => this.items = projections));
+    this.apiService.delete().subscribe(()=> {
+      
+      this.apiService.get_projections().subscribe((projections) => this.items = projections)}, 
+      
+      
+      (error)=>{
+        
+        alert(error.error);
+      
+      });
   }
 
 

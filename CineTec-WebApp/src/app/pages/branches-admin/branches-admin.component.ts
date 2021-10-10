@@ -3,6 +3,8 @@ import { GlobalService } from '../../services/global.service';
 import { Subscription } from 'rxjs';
 import {Router} from '@angular/router';
 import {ApiService} from '../../services/api.service';
+import 'rxjs/add/operator/catch';
+
 
 @Component({
   selector: 'app-branches-admin',
@@ -19,6 +21,7 @@ export class BranchesAdminComponent implements OnInit {
   items = [];
 
   url:string;
+  x:any;
 
   constructor(private apiService : ApiService ,private router:Router ,private global : GlobalService) {
 
@@ -31,7 +34,8 @@ export class BranchesAdminComponent implements OnInit {
     this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
 
-    this.apiService.get_branches().subscribe((branches) => this.items = branches);
+    this.apiService.get_branches().subscribe((branches) => {this.items = branches; console.log(branches)});
+
 
   }
 
@@ -48,8 +52,17 @@ export class BranchesAdminComponent implements OnInit {
 
 
 
+
   add_item(item:any){
-      this.apiService.post(item).subscribe(() => this.apiService.get_branches().subscribe((branches) => this.items = branches));
+
+      this.apiService.post(item).subscribe(()  => {
+
+        this.apiService.get_branches().subscribe((branches) => {this.items = branches})
+      
+      
+      }, (error) =>{alert(error.error)} );
+
+    
     }
 
     
@@ -57,15 +70,13 @@ export class BranchesAdminComponent implements OnInit {
 
   edit_item(item:any){
 
-    this.apiService.put(item).subscribe(() => {
+    this.apiService.put(item).subscribe(() =>{
+                                          
+      this.apiService.get_branches().subscribe((branches) => this.items = branches);
 
-      this.apiService.get_branches().subscribe((branches) => this.items = branches)
 
-    });
-
-    this.global.toggleEditItem();
-    
-
+      }, (error) => {alert(error.error);}); 
+                                    
   }
 
     /**
@@ -78,12 +89,19 @@ export class BranchesAdminComponent implements OnInit {
 
 
   deleteItem(){
-    console.log("SE ELIMINA")
     this.cancelEditItem();
-    this.apiService.delete().subscribe(() => this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name))
+    this.apiService.delete().subscribe(() =>{
+
+      this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name);
+
+    
+
+    },(error) =>
+         (alert(error.error)));
   }
 
 
 
 
 }
+                                              

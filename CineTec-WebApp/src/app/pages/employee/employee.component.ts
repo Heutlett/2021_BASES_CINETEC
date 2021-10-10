@@ -56,7 +56,17 @@ export class EmployeeComponent implements OnInit {
    */
   add_item(item:any){
 
-      this.apiService.post(item).subscribe(()=> this.items.push(item));
+      this.apiService.post(item).subscribe(()=> {
+        
+        this.items.push(item);
+      
+      
+      }, (error)=> {
+        
+        alert(error.error);
+      
+      
+      });
 
 
     }
@@ -74,9 +84,12 @@ export class EmployeeComponent implements OnInit {
 
       this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula)
       this.items.push(item);
-    });
-    this.global.toggleEditItem();
+      
+    }, (error)=> {
+      
+      alert(error.error)
     
+    });
 
   }
 
@@ -95,7 +108,15 @@ export class EmployeeComponent implements OnInit {
    */
   deleteItem(){
     this.cancelEditItem();
-    this.apiService.delete().subscribe(() => this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula));
+    this.apiService.delete().subscribe(() => {
+
+      this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula)}, 
+      
+      (error)=> {
+        
+        alert(error.error);
+      
+      });
   }
 
 

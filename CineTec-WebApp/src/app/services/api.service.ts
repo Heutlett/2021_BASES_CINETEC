@@ -26,8 +26,8 @@ const httpOptions = {
 })
 export class ApiService {
     
-  //private apiURL = '/api/';  
-  private apiURL = 'http://localhost:5000/';
+  private apiURL = '/api/'; 
+   
 
   constructor(private http:HttpClient, private globalService : GlobalService, private router : Router) { }
 
@@ -366,6 +366,7 @@ export class ApiService {
    */
 
   put_branch(branch:Branch):Observable<Branch> {
+    console.log(this.globalService.getCurrentItem());
     const url = `${this.apiURL + "Branches" }/${this.globalService.getCurrentItem().cinema_name}`;
     return this.http.put<Branch>(url, branch, httpOptions);
 
@@ -409,6 +410,7 @@ export class ApiService {
   */
 
   put_room(room:Room):Observable<Room> {
+    console.log(room);
     const url = `${this.apiURL + "Rooms" }/${this.globalService.getCurrentItem().id}`;
     return this.http.put<Room>(url, room, httpOptions);
        

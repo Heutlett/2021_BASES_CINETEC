@@ -54,7 +54,15 @@ export class RoomsComponent implements OnInit {
    */
   add_item(item:any){
 
-      this.apiService.post(item).subscribe(()=> {this.apiService.get_rooms().subscribe((rooms) => this.items = rooms)});
+      this.apiService.post(item).subscribe(()=> {
+        
+        this.apiService.get_rooms().subscribe((rooms) => this.items = rooms)
+      
+      }, (error)=> {
+
+        alert(error.error);
+
+      });
 
 
     }
@@ -72,8 +80,14 @@ export class RoomsComponent implements OnInit {
     this.apiService.put(item).subscribe(() => {
 
       this.items = this.items.filter(() => this.apiService.get_rooms().subscribe((rooms) => this.items = rooms));
+
+
+    }, (error) => {
+      
+      alert(error.error);
+    
     });
-    this.global.toggleEditItem();
+    
     
 
 
@@ -96,7 +110,16 @@ export class RoomsComponent implements OnInit {
    */  
   deleteItem(){
     this.cancelEditItem();
-    this.apiService.delete().subscribe(() => this.items = this.items.filter(i => i.id !== this.global.getCurrentItem().id));
+    this.apiService.delete().subscribe(() => {
+      
+      this.items = this.items.filter(i => i.id !== this.global.getCurrentItem().id)
+    
+    }, (error)=>{
+      
+      alert(error.error)
+    
+    
+     });
   }
 
 

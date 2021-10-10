@@ -266,26 +266,54 @@
         <input
             type="text"
             name="actors"
-            [(ngModel)]="actors"
+            [(ngModel)]="current_actor"
             id="actors"
             placeholder="Actores"
         >
+       
+    </div>
+
+    <div>
+        <label class="text-white" style="font-weight: bold; font-size: 20; margin-right: 10px;">Actores agregados</label>
+        <select [(ngModel)] = "actorSelected" name="actorSelected" class="form-select" >
+            <option *ngFor="let actor of actors" [value] = "actor"> {{actor}}</option>
+        </select>
     </div>
 
 
+    <div *ngIf='url== "/movies"' class="form-group" >
+        <button 
+        type="button"
+        style="float: right;"
+        [ngStyle]="{'background-color':'green'}" 
+        class="btn" 
+        (click)="addActor()"
+                > Agregar actor</button>
+
+    <button 
+        type="button"
+        style="float: left;"
+        [ngStyle]="{'background-color':'red'}" 
+        class="btn" 
+        (click)="deleteActor()"
+        > Eliminar actor</button>
+
+        <br>
+    
+
+    </div>
+
+
+
     <div *ngIf='url == "/movies"'>
-
+        
         <form class="form-group" >
-
-            
             <label class="label-selected" class="label-selected">Seleccione una clasificacion: </label>
             <select [(ngModel)] = "classification_id" name="classfication" >
 
                 <option *ngFor="let classification_ of classfications" [value] = "classification_"> {{classification_}}</option>
     
             </select>
-
-
         </form>
 
     </div>
@@ -303,6 +331,12 @@
             placeholder="Imagen"
         >
     </div>
+
+
+
+    
+
+
 
 
     <!--PROJECTIONS-->
@@ -392,3 +426,5 @@
 
     <input type="submit" value="Enviar a la base de datos" class="btn btn-block">
 </form>
+
+
