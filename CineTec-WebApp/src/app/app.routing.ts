@@ -17,6 +17,7 @@ import { RoomsComponent } from './pages/rooms/rooms.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { ProjectionsComponent } from './pages/projections/projections.component';
+import { BillingComponent } from './pages/billing/billing.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes =[
     { path: 'rooms',         component: RoomsComponent },
     { path: 'employees',         component: EmployeeComponent },
     { path: 'movies',         component: MoviesComponent },
+    { path: 'billing',         component: BillingComponent}
     
 ];
 

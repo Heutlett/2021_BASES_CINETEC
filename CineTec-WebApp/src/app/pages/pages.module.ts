@@ -16,6 +16,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { MoviesComponent } from './movies/movies.component';
 import { ProjectionsComponent } from './projections/projections.component';
 import { RoomsComponent } from './rooms/rooms.component';
+import { BillingComponent } from './billing/billing.component';
 
 @NgModule({
     imports: [
@@ -36,7 +37,8 @@ import { RoomsComponent } from './rooms/rooms.component';
         EmployeeComponent,
         MoviesComponent,
         ProjectionsComponent,
-        RoomsComponent
+        RoomsComponent,
+        BillingComponent
         
     ]
 })
