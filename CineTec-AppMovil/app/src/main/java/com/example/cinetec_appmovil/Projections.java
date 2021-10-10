@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.example.cinetec_appmovil.database.CineTecDatabase;
 import com.example.cinetec_appmovil.databinding.FragmentProjectionBinding;
+import com.example.cinetec_appmovil.movieItem.Movie;
 import com.example.cinetec_appmovil.movieItem.MovieAdapter;
 import com.example.cinetec_appmovil.projectionsItem.Projection;
 import com.example.cinetec_appmovil.projectionsItem.ProjectionAdapter;
@@ -27,6 +29,8 @@ import java.util.ArrayList;
 public class Projections extends Fragment {
 
     private FragmentProjectionBinding binding;
+    public static int room_id;
+    public static int current_projection_id;
 
 
     public Projections() {
@@ -56,15 +60,8 @@ public class Projections extends Fragment {
 
 
 
-        ArrayList<Projection> projections = new ArrayList<>();
-
-        for(int i=0; i < 20; i++)
-        {
-
-
-            projections.add(new Projection("Sabado 19", "15:00", ":$200"));
-
-        }
+        ArrayList<Projection> projections = CineTecDatabase.getInstance(getContext()).getProjections(Branchs.current_branch, Movies.current_movie_id);
+        setValues(projections);
 
         ProjectionAdapter arrayAdapter = new ProjectionAdapter(getContext(), projections);
         binding.projectionView.setAdapter(arrayAdapter);
@@ -72,6 +69,11 @@ public class Projections extends Fragment {
         binding.projectionView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                Projection current_projection =  ((Projection) binding.projectionView.getItemAtPosition(i));
+                room_id = current_projection.getRoom_id();
+                current_projection_id = current_projection.getId();
 
 
                 NavHostFragment.findNavController(Projections.this)
@@ -83,6 +85,13 @@ public class Projections extends Fragment {
 
 
 
+
+    }
+
+
+    public void setValues(ArrayList<Projection> projections){
+
+        room_id = projections.get(0).getRoom_id();
 
     }
 

@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 
 import com.example.cinetec_appmovil.branchItem.Branch;
 import com.example.cinetec_appmovil.branchItem.BranchAdapter;
+import com.example.cinetec_appmovil.database.CineTecDatabase;
 import com.example.cinetec_appmovil.databinding.FragmentMoviesBinding;
 import com.example.cinetec_appmovil.movieItem.Movie;
 import com.example.cinetec_appmovil.movieItem.MovieAdapter;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 public class Movies extends Fragment {
 
     private FragmentMoviesBinding binding;
+    public static int current_movie_id;
 
 
     public Movies() {
@@ -45,6 +47,7 @@ public class Movies extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+
         binding = FragmentMoviesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -53,21 +56,19 @@ public class Movies extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<Movie> movies = new ArrayList<>();
-
-        for(int i=0; i < 20; i++)
-        {
-            movies.add(new Movie("Once Upon a Time in HOllywood", "2 hours 30 minutes", "R+", "Leornado Di Caprio, Brad Pitt", "Quetin Tarantino"));
-
-        }
+        ArrayList<Movie> movies = CineTecDatabase.getInstance(getContext()).getMovies();
 
 
         MovieAdapter arrayAdapter = new MovieAdapter(getContext(), movies);
-        binding.branchView.setAdapter(arrayAdapter);
+        binding.moviesView.setAdapter(arrayAdapter);
 
-        binding.branchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.moviesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+
+                current_movie_id =  ((Movie) binding.moviesView.getItemAtPosition(i)).getId();
 
                 NavHostFragment.findNavController(Movies.this)
                         .navigate(R.id.action_movies_to_projection);

@@ -39,6 +39,14 @@ public class Menu extends Fragment {
 
         binding = FragmentMenuBinding.inflate(inflater, container, false);
 
+
+        binding.nameText.setText(String.format("Nombre: %s %s %s %s", Login.currentClient.first_name, Login.currentClient.middle_name, Login.currentClient.first_surname, Login.currentClient.second_surname));
+        binding.birthText.setText(String.format("Fecha de nacimiento: %s", Login.currentClient.birth_date));
+        binding.phoneNumberText.setText(String.format("Phone: %s", Login.currentClient.phone_number));
+
+
+
+
         return binding.getRoot();
     }
 

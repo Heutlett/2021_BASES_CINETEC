@@ -5,6 +5,7 @@ import { GlobalService } from '../../services/global.service';
 import { ApiService } from '../../services/api.service';
 
 
+
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
@@ -20,6 +21,8 @@ import { ApiService } from '../../services/api.service';
 export class AddItemComponent implements OnInit {
   @Output() onAddItem: EventEmitter<any> = new EventEmitter();
   @Output() onEditItem: EventEmitter<any> = new EventEmitter();
+
+  private datosFormulario = new FormData();
   
   
 
@@ -42,8 +45,11 @@ export class AddItemComponent implements OnInit {
   length:string;
   classification_id:string;
   director:string;
-  actors:string;
+  current_actor:string;
+  actorSelected:string;
   image:any;
+  selectedFile:any;
+  actors = [];
 
 
 
@@ -143,31 +149,46 @@ export class AddItemComponent implements OnInit {
     switch (this.url) {
       case "/branches":
 
-        this.add_or_edit_branches();
+        if(!this.add_or_edit_branches()){
+          console.log("No se puede realizar la acciones")
+          return;
+        };
         break;
       
       case "/clients" :
 
-        this.add_or_update_clients();
+        if(!this.add_or_update_clients()){
+          return;
+
+        };
         break;
 
       case "/employees":
 
-        this.add_or_edit_employees();
+        if(!this.add_or_edit_employees()){
+          return;
+        };
         break;  
 
       case "/movies":
 
-        this.add_or_edit_movies();
+        if(!this.add_or_edit_movies()){
+          return;
+        };
         break;
 
       case "/rooms":
 
-      this.add_or_edit_rooms();
+        if(!this.add_or_edit_rooms()){
+          return;
+        };
         break;
       
       case "/projections":
-        this.add_or_edit_projections();
+        
+        if(!this.add_or_edit_projections()){
+          return;
+        };
         break;
 
       
@@ -178,10 +199,12 @@ export class AddItemComponent implements OnInit {
     }
 
     if (this.showEditItem) {
+      console.log("Entra a editar");
       this.onEditItem.emit(this.new_item);
       this.global.cancelEdit();
     }
     else{
+      console.log("Entra a agregar");
       this.onAddItem.emit(this.new_item);
       this.global.toggleAddItem();
     }
@@ -199,19 +222,19 @@ export class AddItemComponent implements OnInit {
 
     if(!this.cinema_name && !this.showEditItem){
       alert("Por favor indique un nombre");
-      return;
+      return false;
 
     }
 
     if(!this.province){
       alert("Por favor indique una provincia");
-      return;
+      return false;
 
     }
 
     if(!this.district){
       alert("Por favor indique un districto");
-      return; 
+      return false; 
 
     }
 
@@ -231,6 +254,9 @@ export class AddItemComponent implements OnInit {
         this.cinema_name = "";
         this.province = "";
         this.district = "";
+
+    
+    return true;
   }
 
 
@@ -244,36 +270,36 @@ export class AddItemComponent implements OnInit {
     
     if(!this.first_name){
       alert("Por favor indique un primer nombre");
-      return;
+      return false;
 
     }
 
     if(!this.first_surname){
       alert("Por favor indique un primer apellido");
-      return; 
+      return false; 
 
     }
 
     if(!this.second_surname){
       alert("Por favor indique un segundo apellido")
-      return;
+      return false;
     }
 
     if(!this.birth_date){
       alert("Por favor indique una fecha de nacimiento");
-      return;
+      return false;
 
     }
 
     if(!this.phone_number){
       alert("Por favor indique un numero de telefono");
-      return;
+      return false;
 
     }
 
     if(!this.username){
       alert("Por favor indique un nombre de usuario");
-      return; 
+      return false; 
 
     }
 
@@ -312,6 +338,9 @@ export class AddItemComponent implements OnInit {
       this.password = "";
 
 
+      return true;
+
+
   }
 
 
@@ -325,47 +354,47 @@ export class AddItemComponent implements OnInit {
        
     if(!this.first_name){
       alert("Por favor indique un primer nombre");
-      return;
+      return false;
 
     }
 
     if(!this.first_surname){
       alert("Por favor indique un primer apellido");
-      return; 
+      return false; 
 
     }
 
     if(!this.second_surname){
       alert("Por favor indique un segundo apellido")
-      return;
+      return false;
     }
 
     if(!this.birth_date){
       alert("Por favor indique una fecha de nacimiento");
-      return;
+      return false;
 
     }
 
     if(!this.phone_number){
       alert("Por favor indique un numero de telefono");
-      return;
+      return false;
 
     }
 
     if(!this.username){
       alert("Por favor indique un nombre de usuario");
-      return; 
+      return false; 
 
     }
 
     if(!this.password){
       alert("Por favor indique una contraseña");
-      return;
+      return false;
     }
 
     if(!this.branch_id){
       alert("Por favor seleccione una sucursal");
-      return;
+      return false;
     }
 
 
@@ -399,6 +428,9 @@ export class AddItemComponent implements OnInit {
       this.phone_number = 0;
       this.username = "";
       this.password = "";
+
+
+      return;
   }
 
 
@@ -412,30 +444,30 @@ export class AddItemComponent implements OnInit {
 
       if(!this.name){
         alert("Por favor indique  el nombre de la pelicula");
-        return; 
+        return false; 
 
       }
 
       if(!this.original_name){
         alert("Por favor indique el nombre original de la pelicula")
-        return;
+        return false;
       }
 
       if(!this.length){
         alert("Por favor indique la duracion de la pelicula");
-        return;
+        return false;
 
       }
 
       if(!this.director){
         alert("Por favor indique el director de la pelicula");
-        return;
+        return false;
 
       }
 
       if(!this.actors){
         alert("Por favor indique los actores de la pelicula");
-        return; 
+        return false; 
 
       }
 
@@ -447,8 +479,6 @@ export class AddItemComponent implements OnInit {
         "length":this.length,
         "image":this.image,
         "director":this.director,
-        "actors":this.actors
-
       }
 
       this.name = "";
@@ -456,32 +486,63 @@ export class AddItemComponent implements OnInit {
       this.length = "";
       this.classification_id="";
       this.director = "";
-      this.actors = "";
+    
+    
+      return true;
+    }
+
+    onFileSelected(event){
+
+      this.selectedFile = event.target.files[0].name;
+      console.log(typeof(this.selectedFile));
+
+      this.datosFormulario.delete('archivo');
+      this.datosFormulario.append('archivo', event.target.files[0], event.target.files[0].name);
+
+
+    }
+
+    addActor(){
+
+      this.actors.push(this.current_actor);
+      console.log(this.actors);
+
+    }
+
+    deleteActor(){
+
+      this.actors = this.actors.filter((i) => i !== this.actorSelected )
+      this.actorSelected = "";
     }
 
 
 
 
+  //         __________________________________
+  //________/  ROOMS
 
   add_or_edit_rooms(){
 
-    if(!this.branch_name){
+    if(!this.branch_name && !this.showEditItem){
       alert("Seleccione una sucursal");
+      return false;
     }
 
     if(!this.row_quantity){
       alert("Ingrese una cantidad de filas");
+      return false;
     }
 
     if(!this.column_quantity){
       alert("Ingrese una cantidad de columnas");
+      return false;
     }
 
 
     if(this.showEditItem){
       this.new_item = {
         "id":this.global.getCurrentItem().id,
-        "branch_name":this.branch_name,
+        "branch_name":this.global.getCurrentItem().branch_name,
         "row_quantity": this.row_quantity,
         "column_quantity":this.column_quantity,
         "capacity":this.global.getCurrentItem().capacity
@@ -495,7 +556,6 @@ export class AddItemComponent implements OnInit {
         "column_quantity":this.column_quantity,
 
       }
-
     }
 
 
@@ -504,6 +564,9 @@ export class AddItemComponent implements OnInit {
     this.row_quantity = 0;
     this.column_quantity = 0;
     this.capacity = 0
+
+    return true;
+
   }
 
 
@@ -516,18 +579,23 @@ export class AddItemComponent implements OnInit {
 
     if (!this.movie_name){
       alert("Selecciones una pelicula");
+      return false;
+    
     }
 
     if(!this.date){
       alert("Selecciones una fecha");
+      return false;
     }
     
     if(!this.time){
       alert("Seleccione una hora");
+      return false;
     }
 
     if(!this.room_id){
       alert("Seleccione una sala");
+      return false;
     }
 
     this.movie_id = this.movies_list.filter((i) => i.name == this.movie_name)[0].id;
@@ -554,6 +622,8 @@ export class AddItemComponent implements OnInit {
 
 
     }
+
+    return true;
 
   }
 
