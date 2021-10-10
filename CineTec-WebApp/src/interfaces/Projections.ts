@@ -1,4 +1,4 @@
-export interface Projection{
+export interface Projections{
     id:number;
     name:string;
     time:string[];

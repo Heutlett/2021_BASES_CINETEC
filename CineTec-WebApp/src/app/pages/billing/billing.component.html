@@ -1,1 +1,21 @@
-<p>billing works!</p>
+<div class="wrapper" style=" background-image: linear-gradient(#03022C, black);">
+
+    <div class="tittle" >
+        <h2 class="text-primary">Gracias por su compra!</h2>
+    </div>
+
+    <div class="container" >
+        <div class="modal-header">
+            <h2 class="modal-title text-center text-primary">Detalles de compra</h2>
+        </div>
+        <div class="modal-body"> 
+            <h3>Sucursal: {{location}}</h3>
+            <h3>Película: {{movie}}</h3>
+            <h4>Sala: {{room}}</h4>
+            <h4>Numeros de Asiento: {{seats}}</h4>
+            <hr>
+            <h4>Subtotal: ₡{{subtotal}}</h4>
+            <h3>Total (*IVA): ₡{{total}}</h3>
+        </div>
+    </div>
+</div>

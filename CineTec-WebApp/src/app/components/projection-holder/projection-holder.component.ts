@@ -50,6 +50,7 @@ export class ProjectionHolderComponent implements OnInit {
   date_init() : void {
 
     this.date = this.dates[0];
+    this.globalService.current_date = this.date;
 
     this.update();
 

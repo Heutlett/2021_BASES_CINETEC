@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GlobalService } from 'app/services/global.service';
-import { Projections } from 'interfaces/Projection';
+import { Projections } from 'interfaces/Projections';
 
 @Component({
   selector: 'app-projection',

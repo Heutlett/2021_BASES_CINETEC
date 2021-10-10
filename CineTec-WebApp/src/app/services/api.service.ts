@@ -11,6 +11,7 @@ import { Client } from 'interfaces/Client';
 import { Router } from '@angular/router';
 import { Employee } from 'interfaces/Employees';
 import { Movie } from 'interfaces/Movies';
+import { SeatComponent } from 'app/components/seat/seat.component';
 
 
 
@@ -100,6 +101,20 @@ export class ApiService {
   }
 
 
+  put_seat_bought(seat:Seat): Observable<Seat>{
+
+    const url = `${this.apiURL + "byId?room_id=" + seat.room_id+"&number="+seat.number}`;
+    console.log(url);
+    const req = {
+      status:"o"
+    }
+    console.log(req);
+    return this.http.put<Seat>(url,req,httpOptions)
+
+
+  }
+
+
 
 
 
@@ -112,7 +127,7 @@ export class ApiService {
   /**
    * Funcion POST general. Dependiendo del url hace el post especifico
    * @param item Un item de cualquier tipo que contine datos para enviar al API
-   * @returns Un observe con la respuesta del API
+   * @returns Un observable con la respuesta del API
    */
 
   post(item:any): Observable<any>{

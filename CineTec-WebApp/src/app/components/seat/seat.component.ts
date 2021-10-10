@@ -9,6 +9,7 @@ import { GlobalService } from 'app/services/global.service';
 export class SeatComponent implements OnInit {
   @Input() text: string;
   @Input() status: string;
+  @Input() room_id: number;
   color: string;
   disabled: boolean;
   //@Output() btnClick = new EventEmitter();

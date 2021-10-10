@@ -35,9 +35,23 @@ export class NgbdModalContent implements OnInit {
 
     confirmed(){
 
+
+        this.globalService.current_bill = this;
+
         this.router.navigateByUrl("/billing");
 
-        this.apiService.seats_bought();
+        this.globalService.selected_seats.forEach(seat => {
+
+            const seat_interface = {
+                room_id : seat.room_id,
+                number : seat.text,
+                status : seat.status,
+            }
+
+            this.apiService.put_seat_bought(seat_interface);
+            
+        });
+
 
     }
 }

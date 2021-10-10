@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NgbdModalContent } from 'app/components/modal/modal.component';
 import { SeatComponent } from 'app/components/seat/seat.component';
 import { Observable, Subject } from 'rxjs';
 
@@ -7,6 +8,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class GlobalService {
+  
   
   
   current_branch: string;
@@ -20,6 +22,7 @@ export class GlobalService {
   current_room: number;
   current_columns: number;
   current_rows: number;
+  current_bill: NgbdModalContent;
 
   selected_seats = [];
 
@@ -31,10 +34,13 @@ export class GlobalService {
 
 
   private current_item : any;
+
+  client_id: string;
+  client_name: string;
+  xml: any;
   
   
-
-
+  
   constructor() { }
 
 
