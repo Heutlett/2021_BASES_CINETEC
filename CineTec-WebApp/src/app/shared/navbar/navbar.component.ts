@@ -70,19 +70,19 @@ export class NavbarComponent implements OnInit {
             this.sidebarClose();
         }
     };
-    isHome() {
+    isSignup() {
       var titlee = this.location.prepareExternalUrl(this.location.path());
       if(titlee.charAt(0) === '#'){
           titlee = titlee.slice( 1 );
       }
-        if( titlee === '/home' ) {
+        if( titlee === '/signup' ) {
             return true;
         }
         else {
             return false;
         }
     }
-    isDocumentation() {
+    isClient() {
       var titlee = this.location.prepareExternalUrl(this.location.path());
       if(titlee.charAt(0) === '#'){
           titlee = titlee.slice( 1 );
@@ -91,7 +91,27 @@ export class NavbarComponent implements OnInit {
             return true;
         }
         else {
-            return false;
+            return true;
         }
     }
+
+    
+    show_nav() {
+        var titlee = this.location.prepareExternalUrl(this.location.path());
+        if(titlee.charAt(0) === '#'){
+            titlee = titlee.slice( 1 );
+        }
+          if( titlee === '/xml' ) {
+              return false;
+          }
+          if( titlee === '/signup' ) {
+            return false;
+          }
+          else {
+              return true;
+          }
+
+    }
+
+    
 }

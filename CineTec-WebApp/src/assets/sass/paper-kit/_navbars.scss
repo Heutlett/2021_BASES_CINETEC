@@ -231,7 +231,7 @@
     }
     .navbar-nav{
         .nav-item .nav-link:not(.btn){
-            color: $dark-gray;
+            color: #0491a3;
         }
 
         .active .nav-link,
@@ -307,7 +307,7 @@
         height: 22px;
         font-size: $font-size-navbar;
         line-height: $line-height-general;
-        color: $light-gray;
+        color: #0491a3;
     }
     .navbar-transparent & .form-control,
     [class*="bg"] & .form-control{
@@ -472,7 +472,7 @@
     .collapse{
         .navbar-nav{
             a{
-                color: $black-color;
+                color: #0491a3;
             }
         }
     }

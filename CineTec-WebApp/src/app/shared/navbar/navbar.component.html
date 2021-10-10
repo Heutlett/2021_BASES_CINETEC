@@ -1,46 +1,55 @@
-<nav style="background-color:#22222e;" class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="500">
+<nav style="background-color:#000000;" class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="500">
     <div class="container">
         <div class="navbar-translate">
-            <a href="#/signup">
+            <a *ngIf="!isSignup()" href="#/home">
                  <img class="img" src="../../../assets/img/logo_nbg.png">
             </a>
+            <a *ngIf="isSignup()">
+                <img class="img" src="../../../assets/img/logo_nbg.png">
+           </a>
             <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
                 <span class="navbar-toggler-bar"></span>
                 <span class="navbar-toggler-bar"></span>
                 <span class="navbar-toggler-bar"></span>
             </button>
         </div>
-        <div class="navbar-collapse" id="navbarToggler">
+        <div *ngIf="show_nav()" class="navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <div ngbDropdown class="btn-primary">
-                        <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Sucursales</a>
+                        <a style="color:#000000;"class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Sucursales</a>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-primary">
                             <a (click)="branchSelected(branch.cinema_name)" *ngFor = "let branch of branches$ |async"  class="dropdown-item">{{branch.cinema_name}}</a>
                         </div>
                     </div>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
-                    <a href="http://pk2-angular.creative-tim.com/documentation/tutorial" class="nav-link" target="_blank">Contactenos</a>
+                <li class="nav-item" *ngIf="isClient()">
+                    <a style="color:#ffffff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link" target="_blank">Promociones</a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
-                    <a href="http://pk2-angular.creative-tim.com/documentation/tutorial" class="nav-link" target="_blank">Acerca de nosotros</a>
+                <li class="nav-item" *ngIf="isClient()">
+                    <a style="color:#ffffff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link" target="_blank">Preventas</a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item" *ngIf="isClient()">
+                    <a style="color:#ffffff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="nav-link" target="_blank">Contáctenos</a>
+                </li>
+                <li class="nav-item" *ngIf="isClient()">
+                    <a style="color:#ffffff;" href="#/signup" class="nav-link">Cerrar sesion</a>
+                </li>
+                <li class="nav-item"*ngIf="isClient()" >
                     <a class="nav-link" rel="tooltip" title="Siguenos en Twitter" data-placement="bottom" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-                        <i class="fa fa-twitter"></i>
+                        <i style="color:#ffffff;" class="fa fa-twitter"></i>
                         <p class="d-lg-none">Twitter</p>
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item"*ngIf="isClient()">
                     <a class="nav-link" rel="tooltip" title="Siguenos en Facebook" data-placement="bottom" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-                        <i class="fa fa-facebook-square"></i>
+                        <i  style="color:#ffffff;" class="fa fa-facebook-square"></i>
                         <p class="d-lg-none">Facebook</p>
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item" *ngIf="isClient()">
                     <a class="nav-link" rel="tooltip" title="Siguenos en Instagram" data-placement="bottom" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-                        <i class="fa fa-instagram"></i>
+                        <i style="color:#ffffff;" class="fa fa-instagram"></i>
                         <p class="d-lg-none">Instagram</p>
                     </a>
                 </li>
