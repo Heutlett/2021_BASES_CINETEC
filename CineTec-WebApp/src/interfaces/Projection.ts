@@ -1,6 +1,7 @@
 export interface Projection{
-    Id:number;
-    Name:string;
-    Time:string[];
-    Price:number;
+    id:number;
+    room_id:number;
+    movie_id:number;
+    date:string;
+    time:string;
 }

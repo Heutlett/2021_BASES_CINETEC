@@ -6,16 +6,20 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { RouterModule } from '@angular/router';
 
-import { BasicelementsComponent } from './basicelements/basicelements.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { TypographyComponent } from './typography/typography.component';
-import { NucleoiconsComponent } from './nucleoicons/nucleoicons.component';
+
 import { ComponentsComponent } from './components.component';
-import { NotificationComponent } from './notification/notification.component';
-import { NgbdModalComponent } from './modal/modal.component';
-import { NgbdModalContent } from './modal/modal.component';
+
 import { ProjectionHolderComponent } from './projection-holder/projection-holder.component';
 import { ProjectionComponent } from './projection/projection.component';
+import { ItemComponent } from './item/item.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { ButtonComponent } from './button/button.component';
+import { ItemHolderComponent } from './item-holder/item-holder.component';
+import { SeatHolderComponent } from './seat-holder/seat-holder.component';
+import { SeatComponent } from './seat/seat.component';
+import { SeatRowHolderComponent } from './seat-row-holder/seat-row-holder.component';
+import { NgbdModalComponent } from './modal/modal.component';
+import { AddActorsComponent } from './add-actors/add-actors.component';
 
 @NgModule({
     imports: [
@@ -28,17 +32,19 @@ import { ProjectionComponent } from './projection/projection.component';
     ],
     declarations: [
         ComponentsComponent,
-        BasicelementsComponent,
-        NavigationComponent,
-        TypographyComponent,
-        NucleoiconsComponent,
-        NotificationComponent,
-        NgbdModalComponent,
-        NgbdModalContent,
         ProjectionHolderComponent,
-        ProjectionComponent
+        ProjectionComponent,
+        ButtonComponent,
+        AddItemComponent,
+        ItemComponent,
+        ItemHolderComponent,
+        SeatHolderComponent,
+        SeatComponent,
+        SeatRowHolderComponent,
+        NgbdModalComponent,
+        AddActorsComponent
     ],
-    entryComponents: [NgbdModalContent],
-    exports:[ ComponentsComponent,ProjectionComponent,ProjectionHolderComponent ]
+    entryComponents: [],
+    exports:[ ComponentsComponent,ProjectionComponent,ProjectionHolderComponent, ItemComponent, AddItemComponent, ItemHolderComponent, ButtonComponent,SeatHolderComponent,SeatComponent ]
 })
 export class ComponentsModule { }

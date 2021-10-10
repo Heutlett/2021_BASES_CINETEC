@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z2hDyK7oi/l0ZJi3/RvX7w2SiAEtJjSucLPfPxhplFiw6wdbY8m4jOJWu/appKudeRN9eRlzF1pt/PzfEALd1g==",
+  "dgSpecHash": "mRvf63c9dkL+G/iOoQZ+Orhphzupvp3BTF95RmuFKMDT6xwniRT4qHQat4icKfwt8IB141NsOZWmCX8f6KqbyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jeyki\\OneDrive\\01. SEMESTERS\\2021 - Semestre II\\Bases de Datos\\2021_BASES_CINETEC\\CineTEC.API\\NetCoreAPIPostgreSQL.Model\\NetCoreAPIPostgreSQL.Model.csproj",
+  "projectFilePath": "C:\\Users\\sebas\\OneDrive\\TEC\\2021_BASES_CINETEC\\CineTEC.API\\NetCoreAPIPostgreSQL.Model\\NetCoreAPIPostgreSQL.Model.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

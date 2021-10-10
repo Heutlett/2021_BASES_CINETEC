@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Projection } from 'interfaces/Projection';
+import { GlobalService } from 'app/services/global.service';
+import { Projections } from 'interfaces/Projection';
 
 @Component({
   selector: 'app-projection',
@@ -8,14 +9,15 @@ import { Projection } from 'interfaces/Projection';
 })
 export class ProjectionComponent implements OnInit {
 
-  @Input() projection: Projection;
+  @Input() projection: Projections;
   Id:number;
   Name:string;
   Time:string[];
   Price:number;
+  Room_id: number;
   Img:string;
 
-  constructor() {}
+  constructor( private globalService: GlobalService) {}
 
     
 
@@ -23,12 +25,24 @@ export class ProjectionComponent implements OnInit {
 
     console.log(this.projection);
 
-    this.Id = this.projection.Id;
-    this.Name = this.projection.Name;
-    this.Time = this.projection.Time;
-    this.Price = this.projection.Price;
+    this.Id = this.projection.id;
+    this.Name = this.projection.name;
+    this.Time = this.projection.time;
+    this.Price = this.projection.price;
+    this.Room_id = this.projection.room_id;
     this.Img  = "assets/img/"  + this.Name + ".jpg";
    
+  }
+
+  timeSelected(time : string){
+
+    this.globalService.current_movie = this.Name;
+    this.globalService.current_time = time;
+    this.globalService.current_projection = this.Id;
+    this.globalService.current_price = this.Price;
+    this.globalService.current_room = this.Room_id;
+    console.log(time);
+
   }
 
 }

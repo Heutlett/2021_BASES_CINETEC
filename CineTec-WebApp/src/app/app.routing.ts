@@ -6,9 +6,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsComponent } from './components/components.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListingComponent } from './pages/listing/listing.component';
+import { TicketsComponent } from './pages/tickets/tickets.component';
+import { SeatsComponent } from './pages/seats/seats.component';
+import { BranchesAdminComponent } from './pages/branches-admin/branches-admin.component';
+import { ClientsComponent } from './pages/clients/clients.component';
+import { ProjectionComponent } from './components/projection/projection.component';
+import { RoomsComponent } from './pages/rooms/rooms.component';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { MoviesComponent } from './pages/movies/movies.component';
+import { ProjectionsComponent } from './pages/projections/projections.component';
+import { BillingComponent } from './pages/billing/billing.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +26,16 @@ const routes: Routes =[
     { path: 'listing',          component: ListingComponent },
     { path: 'user-profile',     component: ProfileComponent },
     { path: 'signup',           component: SignupComponent },
-    { path: 'nucleoicons',      component: NucleoiconsComponent }
+    { path: 'tickets',          component: TicketsComponent },
+    { path: 'seats',            component: SeatsComponent },
+    { path: 'branches',         component: BranchesAdminComponent },
+    { path: 'clients',         component: ClientsComponent },
+    { path: 'projections',         component: ProjectionsComponent },
+    { path: 'rooms',         component: RoomsComponent },
+    { path: 'employees',         component: EmployeeComponent },
+    { path: 'movies',         component: MoviesComponent },
+    { path: 'billing',         component: BillingComponent}
+    
 ];
 
 @NgModule({

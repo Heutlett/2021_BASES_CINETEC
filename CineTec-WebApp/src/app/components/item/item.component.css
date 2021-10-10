@@ -1,0 +1,16 @@
+.item {
+    background: #f4f4f4;
+    margin: 5px;
+    padding: 10px 20px;
+    border-left: 5px solid #0A3361;
+    border-style: solid;
+    border-color: orange;
+  }
+
+label {
+
+    font-weight: bold;
+    font-size: 0.5cm;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}

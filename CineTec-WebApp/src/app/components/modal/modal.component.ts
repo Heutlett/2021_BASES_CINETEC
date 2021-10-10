@@ -1,32 +1,45 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { GlobalService } from 'app/services/global.service';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { ApiService } from 'app/services/api.service';
 
 @Component({
     selector: 'app-modal-content',
-    template: `
-    <div class="modal-header">
-        <h5 class="modal-title text-center">Modal title</h5>
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body"> Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
-    </div>
-    <div class="modal-footer">
-        <div class="left-side">
-            <button type="button" class="btn btn-default btn-link" (click)="activeModal.close('Close click')">Never mind</button>
-        </div>
-        <div class="divider"></div>
-        <div class="right-side">
-            <button type="button" class="btn btn-danger btn-link" (click)="activeModal.close('Close click')">DELETE</button>
-        </div>
-    </div>
-    `
+    templateUrl: './modal.data.html'
 })
-export class NgbdModalContent {
+export class NgbdModalContent implements OnInit {
     @Input() name;
 
-    constructor(public activeModal: NgbActiveModal) {}
+    location:string;
+    movie:string;
+    room:string;
+    seats:string;
+    subtotal:string;
+    total:string;
+
+    constructor(public activeModal: NgbActiveModal , private globalService : GlobalService, private router : Router, private apiService : ApiService) {}
+
+    ngOnInit(){
+
+      this.location = this.globalService.current_branch;
+      this.movie = this.globalService.current_movie;
+      this.room = this.globalService.current_room.toString();
+      this.seats = this.globalService.seats_str();
+      this.subtotal =this.globalService.current_subtotal.toString();
+      this.total = (this.globalService.current_subtotal + (this.globalService.current_subtotal * 0.13)).toString();
+
+
+    }
+
+    confirmed(){
+
+        this.router.navigateByUrl("/billing");
+
+        this.apiService.seats_bought();
+
+    }
 }
 
 @Component({
@@ -40,3 +53,4 @@ export class NgbdModalComponent {
         modalRef.componentInstance.name = 'World';
     }
 }
+

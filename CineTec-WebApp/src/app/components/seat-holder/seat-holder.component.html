@@ -1,0 +1,19 @@
+<div class="container" [ngStyle]="{'width':width + 'px'}"  >
+    <div class="screen">
+        <h5 class="text-white">Pantalla</h5>
+    </div>
+    <div *ngIf = "ready == true ">
+        <div class="row">
+            <app-seat-row-holder 
+            *ngFor = "let num of [].constructor(rows) ; index as i" 
+            [row] = "i" [all_seats] = "seats"  
+            ></app-seat-row-holder>
+        </div>
+    </div>
+
+</div>
+<div>
+    <button type="button" (click)=back() class="btn btn-outline-default btn-select">Atrás</button>
+    <app-modal-component class="btn-spc"></app-modal-component>
+</div>
+

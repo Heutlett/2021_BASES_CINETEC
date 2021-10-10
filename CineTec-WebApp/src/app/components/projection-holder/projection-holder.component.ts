@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
 import { Projection } from 'interfaces/Projection'
+import { GlobalService } from 'app/services/global.service';
+import { Projection_branch } from 'interfaces/Projection_branch';
 
 @Component({
   selector: 'app-projection-holder',
@@ -16,17 +18,52 @@ import { Projection } from 'interfaces/Projection'
  */
 export class ProjectionHolderComponent implements OnInit {
 
-  name:String;
+  name: string;
+  dates:string[];
+  date:string;
+  show_dates = true;
   projections$: Observable<Projection[]>;
-  suscription: Subscription;
+  subscription_name: Subscription;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private globalService : GlobalService) { }
 
   ngOnInit(): void {
 
     //TODO susbscribe to API to get every projection in "projections". It must be according to the brach selected branch
 
+    this.apiService.get_dates().subscribe((res)=>{this.dates = res[0].dates
+                                                  this.date_init()});
+
+    this.name = this.globalService.current_branch;
+
+    this.subscription_name = this.globalService.current_branch_check().subscribe((name)=>{this.name = name
+                                                                                          this.update()});
+
+  }
+
+  update():void{
+
     this.projections$ = this.apiService.get_projections();
+
+  }
+
+  date_init() : void {
+
+    this.date = this.dates[0];
+
+    this.update();
+
+  }
+
+  dateSelected(date):void{
+
+    this.date = date;
+
+    this.globalService.current_date = date;
+
+    this.update();
+
+
 
   }
 
