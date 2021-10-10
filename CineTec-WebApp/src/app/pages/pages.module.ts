@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,13 +17,15 @@ import { MoviesComponent } from './movies/movies.component';
 import { ProjectionsComponent } from './projections/projections.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { BillingComponent } from './billing/billing.component';
+import { XmlComponent } from './xml/xml.component';
+import { PdfComponent } from './pdf/pdf.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         NgbModule,
-        ComponentsModule
+        ComponentsModule,
     ],
     declarations: [
         SignupComponent,
@@ -38,8 +40,11 @@ import { BillingComponent } from './billing/billing.component';
         MoviesComponent,
         ProjectionsComponent,
         RoomsComponent,
-        BillingComponent
+        BillingComponent,
+        XmlComponent,
+        PdfComponent,
         
-    ]
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PagesModule { }

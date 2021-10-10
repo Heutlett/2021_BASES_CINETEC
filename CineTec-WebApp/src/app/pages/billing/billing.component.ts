@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { GlobalService } from 'app/services/global.service';
 import { DateTime } from 'luxon';
+import * as jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-billing',
@@ -15,8 +18,9 @@ export class BillingComponent implements OnInit {
   seats:string;
   subtotal:string;
   total:string;
+  @ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
 
-  constructor(private globalService : GlobalService) { }
+  constructor(private globalService : GlobalService, private router : Router) { }
 
   ngOnInit(): void {
 
@@ -155,12 +159,57 @@ export class BillingComponent implements OnInit {
           .ele('ds:Object').up()
           .ele('xadas:Properties')
         .up()
-      .end({ pretty: true});
+      .end({ 
+        pretty: true,
+        indent: '  ',
+        newline: '\n',
+        width: 0,
+        allowEmpty: false,
+        spacebeforeslash: ''
+      });
     
     console.log(xml);
 
     this.globalService.xml = xml;
 
+  }
+
+
+
+  show_xml(){
+
+    this.router.navigateByUrl("/xml")
+
+  }
+
+
+
+  view_pdf(){
+
+
+    this.router.navigateByUrl("/pdf")
+
+  }
+
+
+
+  public downloadAsPDF() {
+    const doc = new jsPDF();
+
+    const specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+
+    const pdfTable = this.pdfTable.nativeElement;
+
+    doc.fromHTML(pdfTable.innerHTML, 15, 15, {
+      width: 190,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('tableToPdf.pdf');
   }
 
 

@@ -18,6 +18,8 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { ProjectionsComponent } from './pages/projections/projections.component';
 import { BillingComponent } from './pages/billing/billing.component';
+import { XmlComponent } from './pages/xml/xml.component';
+import { PdfComponent } from './pages/pdf/pdf.component';
 
 const routes: Routes =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,7 +36,9 @@ const routes: Routes =[
     { path: 'rooms',         component: RoomsComponent },
     { path: 'employees',         component: EmployeeComponent },
     { path: 'movies',         component: MoviesComponent },
-    { path: 'billing',         component: BillingComponent}
+    { path: 'billing',         component: BillingComponent},
+    { path: 'xml',              component: XmlComponent },
+    { path: 'pdf',                 component:PdfComponent}
     
 ];
 

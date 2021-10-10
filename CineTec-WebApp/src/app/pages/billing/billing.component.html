@@ -4,9 +4,9 @@
         <h2 class="text-primary">Gracias por su compra!</h2>
     </div>
 
-    <div class="container" >
+    <div class="container" id="pdfTable" #pdfTable>
         <div class="modal-header">
-            <h2 class="modal-title text-center text-primary">Detalles de compra</h2>
+            <h2 class="modal-title text-center text-primary">Factura CineTEC</h2>
         </div>
         <div class="modal-body"> 
             <h3>Sucursal: {{location}}</h3>
@@ -16,6 +16,17 @@
             <hr>
             <h4>Subtotal: ₡{{subtotal}}</h4>
             <h3>Total (*IVA): ₡{{total}}</h3>
+        </div>
+    </div>
+    <div class="container button_cont">
+        <div class="modal-footer">
+            <div class="left-side">
+                <button type="button" class="btn btn-primary btn-link" (click)="show_xml()">Ver XML</button>
+            </div>
+            <div class="divider"></div>
+            <div class="right-side">
+                <button  type="button" class="btn btn-primary btn-link"  (click)="downloadAsPDF()">Descargar PDF</button>
+            </div>
         </div>
     </div>
 </div>
