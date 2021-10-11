@@ -28,7 +28,7 @@ export class ApiService {
 
     
   //private apiURL = '/api/'; 
-  private apiURL = 'http://localhost:5000/'; 
+  private apiURL = '/api/'; 
    
   constructor(private http:HttpClient, private globalService : GlobalService, private router : Router) { }
 
@@ -216,6 +216,9 @@ export class ApiService {
       case "/projections":
         return this.delete_projections(this.globalService.getCurrentItem());  
 
+      case "/movies":
+        return this.delete_movies(this.globalService.getCurrentItem());  
+
       default:
         return this.globalService.getCurrentItem();
     }
@@ -270,6 +273,17 @@ export class ApiService {
     const url = `${this.apiURL + "Projections" }/${projeccion.id}`;
     return this.http.delete<Projection>(url);      
   }
+
+    /**
+  * Funcion DELETE para un proyecciones
+  * @param projection projeccion a eliminar
+  * @returns repuesta del API
+  */
+  delete_movies(movie:Movie): Observable<Projection> {
+      const url = `${this.apiURL + "Movies" }/${movie.id}`;
+      return this.http.delete<Projection>(url);      
+    }
+        
       
 
    //        ______________________
@@ -306,6 +320,9 @@ export class ApiService {
       case "/projections":
         return this.put_projections(item);
 
+      case "/movies":
+        return this.put_movie(item);
+
     }
 
   }
@@ -341,23 +358,37 @@ export class ApiService {
   }
 
   /**
-  * Funcion PUT para un branch
-  * @param branch los nuevos datos de la sucursal
+  * Funcion PUT para una sala
+  * @param room los nuevos datos de la sala
   * @returns respuesta del API
   */
   put_room(room:Room):Observable<Room> {
+    console.log(room);
     const url = `${this.apiURL + "Rooms" }/${this.globalService.getCurrentItem().id}`;
     return this.http.put<Room>(url, room, httpOptions);     
   }
 
   /**
-  * Funcion PUT para un branch
-  * @param branch los nuevos datos de la sucursal
+  * Funcion PUT para una proyecion
+  * @param projection los nuevos datos de la projeccion
   * @returns respuesta del API
   */
   put_projections(projection:Projection):Observable<Projection> {
     const url = `${this.apiURL + "Projections" }/${this.globalService.getCurrentItem().id}`;
     return this.http.put<Projection>(url, projection, httpOptions); 
   }
+
+
+  
+  /**
+  * Funcion PUT para una pelicula
+  * @param movie los nuevos datos de la pelicula
+  * @returns respuesta del API
+  */
+   put_movie(movie:Movie):Observable<Movie> {
+    const url = `${this.apiURL + "Projections" }/${this.globalService.getCurrentItem().id}`;
+    return this.http.put<Movie>(url, movie, httpOptions); 
+  }
+
 
 }

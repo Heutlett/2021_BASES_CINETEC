@@ -31,7 +31,7 @@ export class RoomsComponent implements OnInit {
     this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
 
-    this.apiService.get_rooms().subscribe((rooms) => this.items = rooms );
+    this.apiService.get_rooms().subscribe((rooms) => {this.items = rooms; console.log(rooms)} );
 
   
   }
@@ -56,7 +56,7 @@ export class RoomsComponent implements OnInit {
 
       this.apiService.post(item).subscribe(()=> {
         
-        this.apiService.get_rooms().subscribe((rooms) => this.items = rooms)
+        this.apiService.get_rooms().subscribe((rooms) => {this.items = rooms})
       
       }, (error)=> {
 
@@ -84,7 +84,7 @@ export class RoomsComponent implements OnInit {
 
     }, (error) => {
       
-      alert(error.error);
+      alert(error.errors);
     
     });
     

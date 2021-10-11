@@ -34,7 +34,7 @@ export class MoviesComponent implements OnInit {
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
 
 
-    this.apiService.get_movies().subscribe((movies) => this.items = movies);
+    this.apiService.get_movies().subscribe((movies) => {this.items = movies; console.log(movies)});
 
 
     
@@ -56,7 +56,13 @@ export class MoviesComponent implements OnInit {
    * @param item recibe un item cualquiera para enviar al API
    */
   add_item(item:any){
-    this.apiService.post(item).subscribe(()=> this.items.push(item));
+    this.apiService.post(item).subscribe(()=> this.items.push(item),
+    
+    (error) => {
+
+      alert(error.error);
+
+    });
 
     }
 
@@ -69,9 +75,17 @@ export class MoviesComponent implements OnInit {
    */
 
   edit_item(item:any){
-    this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name)
-    this.items.push(item);
-    this.global.toggleEditItem();
+
+    this.apiService.put(item).subscribe(()=> {
+
+      this.apiService.get_movies().subscribe((movies)=> this.items = movies)
+    
+    }, (error) =>{
+
+      console.log(error);
+      alert(error.error);
+
+    })
     
 
   }

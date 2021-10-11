@@ -15,6 +15,7 @@ export class AdminLoginComponent implements OnInit {
   test : Date = new Date();
   focus;
   focus1;
+  
 
   constructor(private apiService:ApiService , private globalService:GlobalService , private router : Router) { }
 

@@ -479,8 +479,9 @@ export class AddItemComponent implements OnInit {
         "original_name":this.original_name,
         "classification_id":this.classification_id,
         "length":this.length,
-        "image":this.image,
+        "image":"",
         "director":this.director,
+        "actors":this.actors
       }
 
       this.name = "";
@@ -512,6 +513,7 @@ export class AddItemComponent implements OnInit {
 
       this.actors.push(this.current_actor);
       console.log(this.actors);
+      this.current_actor = "";
 
     }
 
@@ -547,11 +549,10 @@ export class AddItemComponent implements OnInit {
 
     if(this.showEditItem){
       this.new_item = {
-        "id":this.global.getCurrentItem().id,
         "branch_name":this.global.getCurrentItem().branch_name,
         "row_quantity": this.row_quantity,
         "column_quantity":this.column_quantity,
-        "capacity":this.global.getCurrentItem().capacity
+
 
       }
     } else {
