@@ -106,9 +106,17 @@ export class MoviesComponent implements OnInit {
 
   deleteItem(){
     this.cancelEditItem();
-    this.items = this.items.filter(i => i.original_name !== this.global.getCurrentItem().original_name)
+    this.apiService.delete().subscribe(() => {
+      
+      this.items = this.items.filter(i => i.id !== this.global.getCurrentItem().id)
+    
+    }, (error)=>{
+      
+      alert(error.error)
+    
+    
+     });
   }
-
 
 
 }

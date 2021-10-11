@@ -31,7 +31,7 @@ export class RoomsComponent implements OnInit {
     this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
 
-    this.apiService.get_rooms().subscribe((rooms) => {this.items = rooms; console.log(rooms)} );
+    this.apiService.get_rooms().subscribe((rooms) => {this.items = rooms} );
 
   
   }
@@ -115,6 +115,7 @@ export class RoomsComponent implements OnInit {
       this.items = this.items.filter(i => i.id !== this.global.getCurrentItem().id)
     
     }, (error)=>{
+      
       
       alert(error.error)
     

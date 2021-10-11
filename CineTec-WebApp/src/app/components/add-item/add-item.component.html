@@ -273,7 +273,7 @@
        
     </div>
 
-    <div>
+    <div *ngIf='url == "/movies"'>
         <label class="text-white" style="font-weight: bold; font-size: 20; margin-right: 10px;">Actores agregados</label>
         <select [(ngModel)] = "actorSelected" name="actorSelected" class="form-select" >
             <option *ngFor="let actor of actors" [value] = "actor"> {{actor}}</option>
