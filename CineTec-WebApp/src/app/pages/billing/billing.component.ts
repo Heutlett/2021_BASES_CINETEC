@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { GlobalService } from 'app/services/global.service';
 import { DateTime } from 'luxon';
 import * as jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable'
 
 
 @Component({

@@ -16,11 +16,13 @@ export class ProjectionComponent implements OnInit {
   Price:number;
   Room_id: number;
   Img:string;
+  Actors: string[];
+  Director: string;
+  Classification: string;
 
   constructor( private globalService: GlobalService) {}
 
-    
-
+  
   ngOnInit(): void {
 
     console.log(this.projection);
@@ -28,6 +30,9 @@ export class ProjectionComponent implements OnInit {
     this.Id = this.projection.id;
     this.Name = this.projection.name;
     this.Time = this.projection.time;
+    this.Actors = this.projection.actors;
+    this.Director = this.projection.director;
+    this.Classification = this.projection.classification;
     this.Price = this.projection.price;
     this.Room_id = this.projection.room_id;
     this.Img  = "assets/img/"  + this.Name + ".jpg";
@@ -41,7 +46,6 @@ export class ProjectionComponent implements OnInit {
     this.globalService.current_projection = this.Id;
     this.globalService.current_price = this.Price;
     this.globalService.current_room = this.Room_id;
-    console.log(time);
 
   }
 

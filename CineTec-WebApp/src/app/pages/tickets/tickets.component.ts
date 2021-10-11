@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from 'app/services/api.service';
 import { GlobalService } from 'app/services/global.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class TicketsComponent implements OnInit {
   Cantidad = 1;
   Subtotal : number;
 
-  constructor(private globalService : GlobalService, private router: Router, private apiService : ApiService) { }
+  constructor(private globalService : GlobalService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -25,13 +24,11 @@ export class TicketsComponent implements OnInit {
     this.Precio = this.globalService.current_price;
     this.Subtotal = this.Precio * this.Cantidad;
 
-  
   }
   
   add(){
 
     this.Cantidad ++;
-
     this.Subtotal = this.Precio * this.Cantidad;
 
   }
@@ -39,7 +36,6 @@ export class TicketsComponent implements OnInit {
   delete(){
 
     this.Cantidad --;
-
     this.Subtotal = this.Precio * this.Cantidad;
 
   }
@@ -48,9 +44,9 @@ export class TicketsComponent implements OnInit {
 
     this.globalService.current_tickets = this.Cantidad;
     this.globalService.current_subtotal = this.Subtotal;
+    this.globalService.clear_seats();
     this.router.navigateByUrl('/seats');
 
   }
-
 
 }

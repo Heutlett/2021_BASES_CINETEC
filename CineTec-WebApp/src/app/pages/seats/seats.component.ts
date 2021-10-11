@@ -16,7 +16,7 @@ export class SeatsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.room$ = this.apiService.get_room_capacity();
+    this.room$ = this.apiService.get_room();
     
   }
 

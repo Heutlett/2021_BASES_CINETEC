@@ -1,9 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
-import { Projection } from 'interfaces/Projection'
 import { GlobalService } from 'app/services/global.service';
-import { Projection_branch } from 'interfaces/Projection_branch';
+import { Projections } from 'interfaces/Projections';
 
 @Component({
   selector: 'app-projection-holder',
@@ -21,29 +20,32 @@ export class ProjectionHolderComponent implements OnInit {
   name: string;
   dates:string[];
   date:string;
-  show_dates = true;
-  projections$: Observable<Projection[]>;
+  projections$: Observable<Projections[]>;
   subscription_name: Subscription;
 
   constructor(private apiService: ApiService, private globalService : GlobalService) { }
 
   ngOnInit(): void {
 
-    //TODO susbscribe to API to get every projection in "projections". It must be according to the brach selected branch
-
-    this.apiService.get_dates().subscribe((res)=>{this.dates = res[0].dates
-                                                  this.date_init()});
+    this.apiService.get_dates().subscribe((res)=>{
+      this.dates = res[0].dates
+      this.date_init()
+    },(error)=> {
+      alert(error.error);
+    });
 
     this.name = this.globalService.current_branch;
 
-    this.subscription_name = this.globalService.current_branch_check().subscribe((name)=>{this.name = name
-                                                                                          this.update()});
+    this.subscription_name = this.globalService.current_branch_check().subscribe((name)=>{
+      this.name = name
+      this.update()
+    });
 
   }
 
   update():void{
 
-    this.projections$ = this.apiService.get_projections();
+    this.projections$ = this.apiService.get_day_branch_projections();
 
   }
 
@@ -51,7 +53,6 @@ export class ProjectionHolderComponent implements OnInit {
 
     this.date = this.dates[0];
     this.globalService.current_date = this.date;
-
     this.update();
 
   }
@@ -59,13 +60,9 @@ export class ProjectionHolderComponent implements OnInit {
   dateSelected(date):void{
 
     this.date = date;
-
     this.globalService.current_date = date;
-
     this.update();
 
-
-
   }
-
+  
 }

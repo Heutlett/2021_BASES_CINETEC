@@ -1,8 +1,7 @@
 <div class="container">
     <h1 class="text-primary">Sucursal: {{name}}</h1>
   
-
-    <div *ngIf = "show_dates == true" ngbDropdown class="btn btn-outline-primary btn-round">
+    <div ngbDropdown class="btn btn-outline-primary btn-round">
         <a id="dropdownBasic2" ngbDropdownToggle>Seleccionar fecha</a>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="dropdown-primary">
             <a (click)="dateSelected(date)" *ngFor = "let date of dates"  class="dropdown-item">{{date}}</a>

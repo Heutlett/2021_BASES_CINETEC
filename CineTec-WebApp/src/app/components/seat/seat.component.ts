@@ -18,34 +18,25 @@ export class SeatComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.status == "c"){
-
+    if (this.status == "COVID"){
       this.color = "grey";
       this.disabled = true;
-
     }
-    if (this.status == "a"){
 
+    if (this.status == "EMPTY"){
       this.color = "white"
-      
     }
-    if (this.status == "o"){
 
+    if (this.status == "TAKEN"){
       this.color = "red"
       this.disabled = true;
-      
     } 
+
   }
 
   onClick(){
     
       this.color  = "#16D6DD"
-
-
-      //TODO llamar al global para que meta este seat en una lista.
-      //Si la lista es mas grande q las entradas compradas saca el
-      // ultimo y le pone color blanco
-
       this.globalService.seatSelected(this);
 
   }

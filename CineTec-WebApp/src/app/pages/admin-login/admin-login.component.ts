@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from 'app/services/api.service';
+import { GlobalService } from 'app/services/global.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -13,7 +16,7 @@ export class AdminLoginComponent implements OnInit {
   focus;
   focus1;
 
-  constructor() { }
+  constructor(private apiService:ApiService , private globalService:GlobalService , private router : Router) { }
 
   ngOnInit(): void {
   }
@@ -28,14 +31,20 @@ export class AdminLoginComponent implements OnInit {
    onSubmit(): void {
 
     const user = {
-        username: this.username,
-        password:this.password,
-    }
+      username: this.username,
+      password:this.password,
+  }
 
-    console.log(user);
+  this.apiService.get_employee(user).subscribe((user)=> {
+    
+    this.router.navigateByUrl("#/branches");
 
-    this.username = '';
-    this.password = ''; 
+  }, (error)=> {
+    alert(error.error);
+  });
+
+  this.username = '';
+  this.password = ''; 
 
 
   }

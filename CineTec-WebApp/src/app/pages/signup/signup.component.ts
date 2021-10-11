@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'app/services/api.service';
+import { GlobalService } from 'app/services/global.service';
 
 @Component({
     selector: 'app-signup',
@@ -16,7 +18,7 @@ export class SignupComponent implements OnInit {
     test : Date = new Date();
     focus;
     focus1;
-    constructor() { }
+    constructor(private apiService:ApiService , private globalService:GlobalService , private router : Router) { }
 
     ngOnInit() {}
 
@@ -35,7 +37,15 @@ export class SignupComponent implements OnInit {
         password:this.password,
     }
 
-    console.log(user);
+    this.apiService.get_client(user).subscribe((user)=> {
+      
+      this.router.navigateByUrl("#/home");
+      this.globalService.client_id = user.cedula.toString();
+      this.globalService.client_name = user.first_name + " " + user.first_surname + " " + user.second_surname;
+    
+    }, (error)=> {
+      alert(error.error);
+    });
 
     this.username = '';
     this.password = ''; 

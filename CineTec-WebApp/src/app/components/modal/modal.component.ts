@@ -11,7 +11,6 @@ import { ApiService } from 'app/services/api.service';
 })
 export class NgbdModalContent implements OnInit {
     @Input() name;
-
     location:string;
     movie:string;
     room:string;
@@ -35,24 +34,17 @@ export class NgbdModalContent implements OnInit {
 
     confirmed(){
 
-
         this.globalService.current_bill = this;
-
         this.router.navigateByUrl("/billing");
 
         this.globalService.selected_seats.forEach(seat => {
-
             const seat_interface = {
                 room_id : seat.room_id,
                 number : seat.text,
                 status : seat.status,
             }
-
             this.apiService.put_seat_bought(seat_interface);
-            
         });
-
-
     }
 }
 
@@ -61,10 +53,17 @@ export class NgbdModalContent implements OnInit {
     templateUrl: './modal.component.html'
 })
 export class NgbdModalComponent {
-    constructor(private modalService: NgbModal) {}
+    constructor(private modalService: NgbModal, private globalService : GlobalService) {}
     open() {
-        const modalRef = this.modalService.open(NgbdModalContent);
-        modalRef.componentInstance.name = 'World';
+
+        if(this.globalService.selected_seats.length == this.globalService.current_tickets){
+            const modalRef = this.modalService.open(NgbdModalContent);
+            modalRef.componentInstance.name = 'World';
+    
+        }
+        else{
+            alert("Aun no ha selecionado todos sus asientos!")
+        }
     }
 }
 
