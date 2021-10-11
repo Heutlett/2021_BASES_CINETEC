@@ -6,6 +6,49 @@
     }
   ],
 
+  "Movies": [
+    {
+      "id": 1,
+      "classification_id":"R",
+      "director_id":2,
+      "original_name": "Spirited Away",
+      "name": "Spirited Away",
+      "length":"2:30"
+    },
+    {
+      "id": 1,
+      "classification_id":"R",
+      "director_id":2,
+      "original_name": "Spirited Away",
+      "name": "Spirited Away",
+      "length":"2:30"
+    },
+    {
+      "id": 1,
+      "classification_id":"R",
+      "director_id":2,
+      "original_name": "Spirited Away",
+      "name": "Spirited Away",
+      "length":"2:30"
+    },
+    {
+      "id": 1,
+      "classification_id":"R",
+      "director_id":2,
+      "original_name": "Spirited Away",
+      "name": "Spirited Away",
+      "length":"2:30"
+    },
+    {
+      "id": 1,
+      "classification_id":"R",
+      "director_id":2,
+      "original_name": "Spirited Away",
+      "name": "Spirited Away",
+      "length":"2:30"
+    } 
+  ],
+
     "Projections": [
       {
         "id": 1,
@@ -31,6 +74,9 @@
         "id": 3,
         "name": "Parasite",
         "time": ["12:30","17:15","19:00"],
+        "actors":["actor4","actor5"],
+        "director":"Tarantino",
+        "classification":"F",
         "price": 1000,
         "room_id":2
       }

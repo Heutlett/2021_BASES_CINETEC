@@ -27,8 +27,8 @@ const httpOptions = {
 export class ApiService {
 
     
-  private apiURL = '/api/'; 
-  //private apiURL = 'http://localhost:5000/'; 
+  //private apiURL = '/api/'; 
+  private apiURL = 'http://localhost:5000/'; 
    
   constructor(private http:HttpClient, private globalService : GlobalService, private router : Router) { }
 
@@ -49,6 +49,7 @@ export class ApiService {
   get_dates():Observable<Dates>{
     const url = `${this.apiURL + "Branches/all_projections_dates?cinema_name="+this.globalService.current_branch}`;
     return this.http.get<Dates>(url);
+    //return this.http.get<Dates>( this.apiURL + "Projection_branch");
   }
 
   /**
@@ -58,6 +59,7 @@ export class ApiService {
    get_day_branch_projections():Observable<Projections[]>{
     //const url = `${this.apiURL + "Branches/all_projections_dates?cinema_name="+this.globalService.current_branch}`;
     return this.http.get<Projections[]>( this.apiURL + "Projections");
+    //return this.http.get<Projections[]>( this.apiURL + "Projections");
   }
 
   get_projections():Observable<Projection[]>{

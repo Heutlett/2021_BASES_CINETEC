@@ -26,6 +26,7 @@
             </div>
         </div>
     </div>
+    <div *ngIf = "ready == true ">
             <div class="container">
                 <div class="tim-title text-primary">
                     <h1>Películas en Cartelera</h1>
@@ -36,46 +37,10 @@
                     <h4>Ingresá a sucursales para comprar tus tiquetes</h4>
                 </div>
             </div>
-            <div class="row-centered">
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-            </div>
-            <div class="row-centered">
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-            </div>
-            <div class="row-centered">    
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-                <div class="col-centered">
-                    <img src="assets/img/1.jpg" class="img-thumbnail img-responsive" alt="Rounded Image">
-                    <p class="text-center text-white">Tarantino</p>
-                </div>
-            </div>
+           <app-movie-row-holder
+           *ngFor = "let num of [].constructor(rows) ; index as i" 
+            [row] = "i" 
+            [all_movies] = "movies"  
+           ></app-movie-row-holder>
+        </div>
 </div>

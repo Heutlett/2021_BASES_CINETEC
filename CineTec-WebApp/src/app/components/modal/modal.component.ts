@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { GlobalService } from 'app/services/global.service';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ApiService } from 'app/services/api.service';
 

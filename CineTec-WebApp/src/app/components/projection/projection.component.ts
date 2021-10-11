@@ -16,7 +16,7 @@ export class ProjectionComponent implements OnInit {
   Price:number;
   Room_id: number;
   Img:string;
-  Actors: string[];
+  Actors: string;
   Director: string;
   Classification: string;
 
@@ -30,12 +30,12 @@ export class ProjectionComponent implements OnInit {
     this.Id = this.projection.id;
     this.Name = this.projection.name;
     this.Time = this.projection.time;
-    this.Actors = this.projection.actors;
     this.Director = this.projection.director;
     this.Classification = this.projection.classification;
     this.Price = this.projection.price;
     this.Room_id = this.projection.room_id;
     this.Img  = "assets/img/"  + this.Name + ".jpg";
+    this.Actors = this.parse_actors();
    
   }
 
@@ -46,6 +46,17 @@ export class ProjectionComponent implements OnInit {
     this.globalService.current_projection = this.Id;
     this.globalService.current_price = this.Price;
     this.globalService.current_room = this.Room_id;
+
+  }
+
+  parse_actors(){
+
+    var str = "";
+    this.projection.actors.forEach(actor => {
+      str = str+ ", " + actor
+    });
+    str = str.substring(1);
+    return str;
 
   }
 

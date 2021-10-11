@@ -6,7 +6,8 @@
         <div class="row">
             <app-seat-row-holder 
             *ngFor = "let num of [].constructor(rows) ; index as i" 
-            [row] = "i" [all_seats] = "seats"  
+            [row] = "i" 
+            [all_seats] = "seats"  
             ></app-seat-row-holder>
         </div>
     </div>

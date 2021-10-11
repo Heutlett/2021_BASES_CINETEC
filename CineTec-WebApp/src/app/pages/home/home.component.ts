@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'app/services/api.service';
+import { Movie } from 'interfaces/Movies';
 
 @Component({
   selector: 'app-home',
@@ -6,13 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  movies: Movie[];
+  ready: boolean;
+  rows: number;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
 
-    
 
+    this.apiService.get_movies().subscribe((movies)=>{
+      this.movies = movies
+      console.log(movies);
+      this.update();
+    });
+
+    
+  }
+
+  update(){
+
+    this.rows = Math.floor(this.movies.length/3) +1 ;
+    console.log(this.movies);
+    console.log(this.rows);
+    this.ready = true;
 
   }
 
