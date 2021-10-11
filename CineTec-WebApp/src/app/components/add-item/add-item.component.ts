@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { GlobalService } from '../../services/global.service';
 import { ApiService } from '../../services/api.service';
 
+import { HttpClient } from '@angular/common/http';
+
 
 
 @Component({
@@ -490,6 +492,9 @@ export class AddItemComponent implements OnInit {
     
       return true;
     }
+  
+
+    /*
 
     onFileSelected(event){
 
@@ -499,8 +504,9 @@ export class AddItemComponent implements OnInit {
       this.datosFormulario.delete('archivo');
       this.datosFormulario.append('archivo', event.target.files[0], event.target.files[0].name);
 
-
     }
+
+    */
 
     addActor(){
 
