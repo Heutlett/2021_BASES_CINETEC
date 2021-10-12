@@ -11,6 +11,7 @@ import { Client } from 'interfaces/Client';
 import { Router } from '@angular/router';
 import { Employee } from 'interfaces/Employees';
 import { Movie } from 'interfaces/Movies';
+import { Actor } from 'interfaces/Actor';
 import { Projections } from '../../interfaces/Projections';
 
 
@@ -96,6 +97,14 @@ export class ApiService {
 
   get_rooms(): Observable<Room[]> {
     return this.http.get<Room[]>(this.apiURL + "Rooms");
+  }
+
+  get_rooms_by_Id(cinema_name:string): Observable<Room[]>{
+    return this.http.get<Room[]>(this.apiURL + "Branches/all_rooms?cinema_name=" + cinema_name);
+  }
+
+  get_actors(): Observable<Actor[]>{
+    return this.http.get<Actor[]>(this.apiURL + "Actors");
   }
 
 
@@ -285,7 +294,8 @@ export class ApiService {
   * @returns repuesta del API
   */
   delete_movies(movie:Movie): Observable<Projection> {
-      const url = `${this.apiURL + "Movies" }/${movie.id}`;
+      console.log(movie);
+      const url = `${this.apiURL + "Movies/byId" }/${movie.id}`;
       return this.http.delete<Projection>(url);      
     }
         
@@ -391,7 +401,7 @@ export class ApiService {
   * @returns respuesta del API
   */
    put_movie(movie:Movie):Observable<Movie> {
-    const url = `${this.apiURL + "Projections" }/${this.globalService.getCurrentItem().id}`;
+    const url = `${this.apiURL + "Movies/byId" }/${this.globalService.getCurrentItem().name}`;
     return this.http.put<Movie>(url, movie, httpOptions); 
   }
 
