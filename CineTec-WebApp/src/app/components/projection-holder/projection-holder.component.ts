@@ -47,12 +47,13 @@ export class ProjectionHolderComponent implements OnInit {
 
   update():void{
 
-    // this.apiService.get_dates().subscribe((res)=>{
-    //   console.log("fechas son : ",res)
-    //   this.dates = res[0]
-    //   this.date_init()
-    // });
-    //this.projections$ = this.apiService.get_day_branch_projections();
+    this.apiService.get_dates().subscribe((res)=>{
+      console.log("fechas son : ",res)
+      this.dates = res
+      this.update_proj();
+    },(error)=> {
+      alert(error.error);
+    });
 
   }
 
@@ -60,7 +61,6 @@ export class ProjectionHolderComponent implements OnInit {
 
     this.date = this.dates[0];
     this.globalService.current_date = this.date;
-    this.update();
 
   }
 
@@ -69,6 +69,12 @@ export class ProjectionHolderComponent implements OnInit {
     this.date = date;
     this.globalService.current_date = date;
     this.update();
+
+  }
+
+  update_proj(){
+
+    this.projections$ = this.apiService.get_day_branch_projections();
 
   }
   

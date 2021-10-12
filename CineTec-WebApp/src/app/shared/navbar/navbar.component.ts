@@ -12,6 +12,10 @@ import { Router } from '@angular/router';
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss']
 })
+
+/**
+ * Componente barra de navegacion boostrap
+ */
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;

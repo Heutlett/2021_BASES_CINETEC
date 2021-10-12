@@ -50,7 +50,6 @@ export class ApiService {
     console.log("Buscando todas las feachas")
     const url = `${this.apiURL + "Branches/all_projections_dates?cinema_name="+this.globalService.current_branch}`;
     return this.http.get<Dates>(url);
-    //return this.http.get<Dates>( this.apiURL + "Projection_branch");
   }
 
   /**
@@ -58,9 +57,8 @@ export class ApiService {
    * @returns JSON con todos las proyecciones de una sucursal y dia especificos
    */
    get_day_branch_projections():Observable<Projections[]>{
-    //const url = `${this.apiURL + "Branches/all_projections_dates?cinema_name="+this.globalService.current_branch}`;
-    return this.http.get<Projections[]>( this.apiURL + "Projections");
-    //return this.http.get<Projections[]>( this.apiURL + "Projections");
+    const url = `${this.apiURL + "Branches/projections_by_date?cinema_name="+ this.globalService.current_branch + "&date="+this.globalService.current_date}`;
+    return this.http.get<Projections[]>(url);
   }
 
   get_projections():Observable<Projection[]>{
