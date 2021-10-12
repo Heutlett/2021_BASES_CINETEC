@@ -20,7 +20,7 @@ import { XmlComponent } from './pages/xml/xml.component';
 import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 
 const routes: Routes =[
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'signup', pathMatch: 'full' },
     { path: 'home',             component: HomeComponent },
     { path: 'listing',          component: ListingComponent },
     { path: 'user-profile',     component: ProfileComponent },

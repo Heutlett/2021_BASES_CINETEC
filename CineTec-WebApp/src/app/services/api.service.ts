@@ -47,6 +47,7 @@ export class ApiService {
   }
 
   get_dates():Observable<Dates>{
+    console.log("Buscando todas las feachas")
     const url = `${this.apiURL + "Branches/all_projections_dates?cinema_name="+this.globalService.current_branch}`;
     return this.http.get<Dates>(url);
     //return this.http.get<Dates>( this.apiURL + "Projection_branch");
@@ -90,7 +91,7 @@ export class ApiService {
   }
 
   get_movies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.apiURL + "Movies");
+    return this.http.get<Movie[]>(this.apiURL + "Movies/special_all");
   }
 
   get_rooms(): Observable<Room[]> {
@@ -161,16 +162,18 @@ export class ApiService {
   * @returns repuesta del API
   */
    post_employees(employee:Employee){
+    console.log("Posting",employee);
     return this.http.post<Branch>(this.apiURL + "Employees", employee, httpOptions)
   }
 
 
     /**
   * Funcion POST para un pelicula
-  * @param moovie pelicula a crear
+  * @param movie pelicula a crear
   * @returns repuesta del API
   */
   post_movie(movie:Movie){
+      console.log("Posting",movie);
       return this.http.post<Movie>(this.apiURL + "Movies", movie, httpOptions)
     }
   
@@ -180,6 +183,7 @@ export class ApiService {
   * @returns repuesta del API
   */
   post_room(room:Room){
+    console.log("Posting",room);
     return this.http.post<Room>(this.apiURL + "Rooms", room, httpOptions);
   }
 
@@ -189,6 +193,7 @@ export class ApiService {
   * @returns repuesta del API
   */
   post_projections(projection:Projection){
+    console.log("Posting",projection);
     return this.http.post<Projection>(this.apiURL + "Projections", projection, httpOptions);
   }
   

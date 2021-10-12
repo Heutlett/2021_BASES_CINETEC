@@ -40,9 +40,6 @@ export class GlobalService {
   private current_item : any;
 
 
-  
-  
-  
   constructor() { }
 
 

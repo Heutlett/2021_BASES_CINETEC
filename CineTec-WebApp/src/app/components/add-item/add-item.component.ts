@@ -71,7 +71,7 @@ export class AddItemComponent implements OnInit {
   movie_name:string; 
   movie_id:number;
   date:string;
-  time:string; 
+  schedule:string; 
   room_id:number;
   movies_list:any[];
   rooms_list:any[];
@@ -432,7 +432,7 @@ export class AddItemComponent implements OnInit {
       this.password = "";
 
 
-      return;
+      return true;
   }
 
 
@@ -595,7 +595,7 @@ export class AddItemComponent implements OnInit {
       return false;
     }
     
-    if(!this.time){
+    if(!this.schedule){
       alert("Seleccione una hora");
       return false;
     }
@@ -605,7 +605,9 @@ export class AddItemComponent implements OnInit {
       return false;
     }
 
-    this.movie_id = this.movies_list.filter((i) => i.name == this.movie_name)[0].id;
+    console.log(this.movies_list.filter((i) => i.name == this.movie_name))
+    this.movie_id = (this.movies_list.filter((i) => i.name == this.movie_name))[0].id;
+
 
 
     if(this.showEditItem){
@@ -613,7 +615,7 @@ export class AddItemComponent implements OnInit {
         "id":this.global.getCurrentItem().id,
         "movie_id": this.movie_id,
         "date":this.date,
-        "time":this.time,
+        "schedule":this.schedule,
         "room_id":this.room_id
   
       }
@@ -622,7 +624,7 @@ export class AddItemComponent implements OnInit {
       this.new_item = {
         "movie_id": this.movie_id,
         "date":this.date,
-        "time":this.time,
+        "schedule":this.schedule,
         "room_id":this.room_id
   
       }

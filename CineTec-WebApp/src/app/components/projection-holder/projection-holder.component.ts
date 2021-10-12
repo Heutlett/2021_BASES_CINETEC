@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
 import { GlobalService } from 'app/services/global.service';
 import { Projections } from 'interfaces/Projections';
+import { Dates } from 'interfaces/Dates';
 
 @Component({
   selector: 'app-projection-holder',
@@ -18,7 +19,7 @@ import { Projections } from 'interfaces/Projections';
 export class ProjectionHolderComponent implements OnInit {
 
   name: string;
-  dates:string[];
+  dates:Dates;
   date:string;
   projections$: Observable<Projections[]>;
   subscription_name: Subscription;
@@ -28,7 +29,8 @@ export class ProjectionHolderComponent implements OnInit {
   ngOnInit(): void {
 
     this.apiService.get_dates().subscribe((res)=>{
-      this.dates = res[0].dates
+      console.log("fechas son : ",res)
+      this.dates = res
       this.date_init()
     },(error)=> {
       alert(error.error);
@@ -45,7 +47,12 @@ export class ProjectionHolderComponent implements OnInit {
 
   update():void{
 
-    this.projections$ = this.apiService.get_day_branch_projections();
+    // this.apiService.get_dates().subscribe((res)=>{
+    //   console.log("fechas son : ",res)
+    //   this.dates = res[0]
+    //   this.date_init()
+    // });
+    //this.projections$ = this.apiService.get_day_branch_projections();
 
   }
 

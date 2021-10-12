@@ -6,5 +6,7 @@ export interface Movie{
     original_name:string;
     name:string;
     length:string;
+    director:string;
+    actors:string[];
     
 }

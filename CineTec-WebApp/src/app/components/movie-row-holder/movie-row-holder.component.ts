@@ -27,7 +27,7 @@ export class MovieRowHolderComponent implements OnInit {
   }
 
   img(name){
-    return 'assets/img/' +name + '.jpg';
+        return 'assets/img/' +name + '.jpg';
   }
 
 }

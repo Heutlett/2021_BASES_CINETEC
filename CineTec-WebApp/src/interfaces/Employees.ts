@@ -6,7 +6,6 @@ export interface Employee{
     first_surname:string;
     second_surname:string;
     birth_date:string;
-    phone_numner:bigint;
     username:string;
     password:string;
 }

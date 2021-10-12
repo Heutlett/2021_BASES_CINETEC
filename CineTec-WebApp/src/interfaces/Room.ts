@@ -3,4 +3,5 @@ export interface Room{
     id:number;
     row_quantity:number;
     column_quantity:number;
+    capacity:number;
 }

@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
 
     this.apiService.get_client(user).subscribe((user)=> {
       
-      this.router.navigateByUrl("#/home");
+      this.router.navigateByUrl("/home");
       this.globalService.client_id = user.cedula.toString();
       this.globalService.client_name = user.first_name + " " + user.first_surname + " " + user.second_surname;
     

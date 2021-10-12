@@ -38,7 +38,7 @@ export class AdminLoginComponent implements OnInit {
 
   this.apiService.get_employee(user).subscribe((user)=> {
     
-    this.router.navigateByUrl("#/branches");
+    this.router.navigateByUrl("/branches");
 
   }, (error)=> {
     alert(error.error);
