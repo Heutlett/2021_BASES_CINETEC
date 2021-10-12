@@ -266,19 +266,28 @@
         <input
             type="text"
             name="actors"
-            [(ngModel)]="current_actor"
+            [(ngModel)]="actorEntered"
             id="actors"
             placeholder="Actores"
         >
        
     </div>
 
-    <div *ngIf='url == "/movies"'>
-        <label class="text-white" style="font-weight: bold; font-size: 20; margin-right: 10px;">Actores agregados</label>
+    <div *ngIf='url == "/movies"' class="form-group">
+        <label class="text-white" style="font-weight: bold; font-size: 20; margin-right: 10px;">Actores  agregados </label>
         <select [(ngModel)] = "actorSelected" name="actorSelected" class="form-select" >
             <option *ngFor="let actor of actors" [value] = "actor"> {{actor}}</option>
         </select>
     </div>
+
+
+    <div *ngIf='url == "/movies"' class="form-group">
+        <label class="text-white" style="font-weight: bold; font-size: 20; margin-right: 10px;">Actores registrados </label>
+        <select [(ngModel)] = "actorEntered" name="actorSelected" class="form-select" >
+            <option *ngFor="let actor of actorsDB" [value] = "actor.name" > {{actor.name}}</option>
+        </select>
+    </div>
+
 
 
     <div *ngIf='url== "/movies"' class="form-group" >
@@ -390,11 +399,24 @@
 
     </form>
 
-
    </div>
 
+   <div *ngIf='url == "/projections"'>
 
 
+        <label class="label-selected" class="label-selected" style="margin-left: 30px;">Restriccion COVID </label>
+         <select [(ngModel)] = "covid"  name="covid" class="drop-down-primary" >
+
+            <option *ngFor="let porcentage of covidPorcentages" [ngValue] = "porcentage"> {{porcentage}} </option>
+
+
+        </select>
+
+
+
+
+
+    </div>
 
 
 

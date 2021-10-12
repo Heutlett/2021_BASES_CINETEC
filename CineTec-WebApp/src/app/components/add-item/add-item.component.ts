@@ -24,7 +24,6 @@ export class AddItemComponent implements OnInit {
   @Output() onAddItem: EventEmitter<any> = new EventEmitter();
   @Output() onEditItem: EventEmitter<any> = new EventEmitter();
 
-  private datosFormulario = new FormData();
   
   
 
@@ -47,11 +46,11 @@ export class AddItemComponent implements OnInit {
   length:string;
   classification_id:string;
   director:string;
-  current_actor:string;
+  actorEntered:string;
   actorSelected:string;
   image:any;
-  selectedFile:any;
   actors = [];
+  actorsDB = [];
 
 
 
@@ -76,6 +75,8 @@ export class AddItemComponent implements OnInit {
   movies_list:any[];
   rooms_list:any[];
   branch_selected_projection:string;
+  covid:number; 
+  covidPorcentages = [0, 25 , 50 , 75, 100];
 
 
 
@@ -117,6 +118,14 @@ export class AddItemComponent implements OnInit {
     this.subscrition = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
     this.subscrition2 = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
 
+
+    if(this.url == "/movies"){
+
+      this.apiService.get_actors().subscribe((actors) => this.actorsDB = actors);
+
+
+
+    }
 
 
     if(this.url == "/projections"){
@@ -201,12 +210,10 @@ export class AddItemComponent implements OnInit {
     }
 
     if (this.showEditItem) {
-      console.log("Entra a editar");
       this.onEditItem.emit(this.new_item);
       this.global.cancelEdit();
     }
     else{
-      console.log("Entra a agregar");
       this.onAddItem.emit(this.new_item);
       this.global.toggleAddItem();
     }
@@ -489,31 +496,20 @@ export class AddItemComponent implements OnInit {
       this.length = "";
       this.classification_id="";
       this.director = "";
+      this.actors = [];
     
     
       return true;
     }
   
 
-    /*
-
-    onFileSelected(event){
-
-      this.selectedFile = event.target.files[0].name;
-      console.log(typeof(this.selectedFile));
-
-      this.datosFormulario.delete('archivo');
-      this.datosFormulario.append('archivo', event.target.files[0], event.target.files[0].name);
-
-    }
-
-    */
 
     addActor(){
 
-      this.actors.push(this.current_actor);
+      console.log(this.actorEntered);
+      this.actors.push(this.actorEntered);
       console.log(this.actors);
-      this.current_actor = "";
+      this.actorEntered = "";
 
     }
 
@@ -638,7 +634,7 @@ export class AddItemComponent implements OnInit {
 
   update_rooms(){
 
-    this.apiService.get_rooms().subscribe((rooms) => this.rooms_list = rooms);
+    this.apiService.get_rooms_by_Id(this.branch_selected_projection).subscribe((rooms) => {this.rooms_list = rooms; console.log(rooms)});
 
   }
 

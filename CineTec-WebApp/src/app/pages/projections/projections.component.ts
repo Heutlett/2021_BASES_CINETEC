@@ -33,7 +33,7 @@ export class ProjectionsComponent implements OnInit {
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
 
 
-    this.apiService.get_projections().subscribe((projections) => {this.items = projections});
+    this.apiService.get_projections().subscribe((projections) => {this.items = projections, console.log(projections)});
 
   }
 

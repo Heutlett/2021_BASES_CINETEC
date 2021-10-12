@@ -56,7 +56,11 @@ export class MoviesComponent implements OnInit {
    * @param item recibe un item cualquiera para enviar al API
    */
   add_item(item:any){
-    this.apiService.post(item).subscribe(()=> this.items.push(item),
+    this.apiService.post(item).subscribe(()=> {
+
+      this.apiService.get_movies().subscribe((movies) => {this.items = movies});
+
+    },
     
     (error) => {
 
