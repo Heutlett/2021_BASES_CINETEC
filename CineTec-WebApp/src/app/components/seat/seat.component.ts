@@ -7,16 +7,18 @@ import { GlobalService } from 'app/services/global.service';
   styleUrls: ['./seat.component.css']
 })
 export class SeatComponent implements OnInit {
-  @Input() text: string;
+  @Input() text: number;
   @Input() status: string;
-  @Input() room_id: number;
+  @Input() projection_id: number;
   color: string;
   disabled: boolean;
-  //@Output() btnClick = new EventEmitter();
 
   constructor(private globalService: GlobalService) { }
 
   ngOnInit(): void {
+
+    console.log("mi text", this.text)
+    console.log("mi status", this.status)
 
     if (this.status == "COVID"){
       this.color = "grey";

@@ -1,6 +1,6 @@
 <div class="row">
     <div>
-        <img src={{Img}} class="img-thumbnail img-responsive" alt="Rounded Image">
+        <img src={{Img}} onerror="this.onerror=null; this.src='assets/img/placeholder.jpg'" class="img-thumbnail img-responsive" alt="Rounded Image">
         <p class="text-center text-white">{{Name}}</p>
     </div>
     <div>
@@ -8,7 +8,7 @@
 
         <div class="container">
             <h4 class="text-white info">Director: {{Director}} </h4>
-            <h4 class="text-white info">Actores: {{Actors}} </h4>
+            <h6 class="text-white info">Actores: {{Actors}} </h6>
             <h4 class="text-white info">Clasificación: {{Classification}} </h4>
         </div>
     </div>

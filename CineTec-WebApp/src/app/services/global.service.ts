@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { NgbdModalContent } from 'app/components/modal/modal.component';
-import { SeatComponent } from 'app/components/seat/seat.component';
 import { Observable, Subject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Servicio globlal para control de variables de ejecucion, funciones multicomponente y control de interfaz
+ */
 export class GlobalService {
   
-  
-  
+
   current_branch: string;
   current_date: string;
   current_movie: string;
@@ -35,17 +37,16 @@ export class GlobalService {
   private showEditItem : boolean = false;
   private add = new Subject<any>();
   private edit = new Subject<any>();
-
-
   private current_item : any;
-
 
   constructor() { }
 
-
+  /**
+   * Funcion que revisa si la sucursal ha cambiado
+   * @returns un observable de sucursal
+   */
   current_branch_check():Observable<any> {
     this.name.next(this.current_branch);
-    console.log(this.current_branch)
     return this.name.asObservable();
 
   }

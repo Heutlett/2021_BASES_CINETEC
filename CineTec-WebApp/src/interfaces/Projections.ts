@@ -1,4 +1,5 @@
 export interface Projections{
+    schedule: string[];
     id:number;
     name:string;
     time:string[];
@@ -6,6 +7,6 @@ export interface Projections{
     director:string,
     classification:string;
     price:number;
-    room_id:number;
+    room:number;
 
 }

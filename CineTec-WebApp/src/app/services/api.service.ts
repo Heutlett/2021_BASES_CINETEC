@@ -25,10 +25,13 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Este servicio es el encargado de manejar todos las interacciones con el API. De aqui se emiten los
+ * querys HTTP hacia las url indicadas
+ */
 export class ApiService {
 
-    
-  //private apiURL = '/api/'; 
   private apiURL = '/api/'; 
    
   constructor(private http:HttpClient, private globalService : GlobalService, private router : Router) { }
@@ -37,70 +40,122 @@ export class ApiService {
   //        ______________________
   //_______/ GET
 
+  /**
+   * Funcion GET para un solo cliente
+   * @returns JSON con todos los clientes del empleado
+   */
   get_client(user):Observable<Client>{
     const url = `${this.apiURL + "Clients/LogIn?username="+user.username+"&password="+user.password}`;
     return this.http.get<Client>(url);
   }
 
+  /**
+   * Funcion GET para un solo empleado
+   * @returns JSON con todos los datos del empleado
+   */
   get_employee(user):Observable<Employee>{
     const url = `${this.apiURL + "Employees/LogIn?username="+user.username+"&password="+user.password}`;
     return this.http.get<Employee>(url);
   }
 
+  /**
+   * Funcion GET para todas las fechas donde hay una proyeccion para una sucursal en especifo
+   * @returns JSON con todas las fechas
+   */
   get_dates():Observable<Dates>{
-    console.log("Buscando todas las feachas")
     const url = `${this.apiURL + "Branches/all_projections_dates?cinema_name="+this.globalService.current_branch}`;
     return this.http.get<Dates>(url);
   }
 
   /**
-   * Funcion GET para todas las proyecciones de una sucursal y dia especificos
-   * @returns JSON con todos las proyecciones de una sucursal y dia especificos
+   * Funcion GET para todas la informacion de proyecciones y su peliculas para una sucursal y dia especificos
+   * @returns JSON en formato de Projections[]
    */
    get_day_branch_projections():Observable<Projections[]>{
     const url = `${this.apiURL + "Branches/projections_by_date?cinema_name="+ this.globalService.current_branch + "&date="+this.globalService.current_date}`;
     return this.http.get<Projections[]>(url);
   }
 
+  /**
+   * Funcion GET para todas las proyecciones
+   * @returns JSON con todas las proyecciones
+   */
   get_projections():Observable<Projection[]>{
     return this.http.get<Projection[]>( this.apiURL + "Projections");
   }
 
+  /**
+   * Funcion GET para todas las sucursales
+   * @returns JSON con todas las sucursales
+   */
   get_branches(): Observable<Branch[]> {
     return this.http.get<Branch[]>(this.apiURL + "Branches");
   }
 
-
+ /**
+   * Funcion GET para todas las sucursales
+   * @returns JSON con todas las sucursales
+   */
   get_seats(): Observable<Seat[]> {
     return this.http.get<Seat[]>(this.apiURL + "Seat");
   }
   
-
-  get_room(): Observable<Room[]> {
-    return this.http.get<Room[]>(this.apiURL + "Room/" + this.globalService.current_room);
+   /**
+   * Funcion GET para una sola sala
+   * @returns JSON con toda la infomacion de la sala
+   */
+  get_room(): Observable<Room> {
+    return this.http.get<Room>(this.apiURL + "Rooms/" + this.globalService.current_room);
   }
 
+  get_projection_seats(): Observable<Seat[]>{
+    return this.http.get<Seat[]>(this.apiURL + "Projections/seats/" + this.globalService.current_projection);
+  }
 
+  /**
+   * Funcion GET para todos los clientes
+   * @returns JSON con todos los clientes
+   */
   get_clients(): Observable<Client[]> {
     return this.http.get<Client[]>(this.apiURL + "Clients");
   }
 
-  get_employees(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.apiURL + "Employees");
+  /**
+   * Funcion GET para todos los empleados
+   * @returns JSON con todos los empleados
+   */
+  get_employees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.apiURL + "Employees");
   }
 
+  /**
+   * Funcion GET para todas las peliculas
+   * @returns JSON con todas las peliculas
+   */
   get_movies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.apiURL + "Movies/special_all");
   }
 
+  /**
+   * Funcion GET para todas las salas
+   * @returns JSON con todas las salas
+   */
   get_rooms(): Observable<Room[]> {
     return this.http.get<Room[]>(this.apiURL + "Rooms");
   }
 
+  /**
+   * Funcion GET para todas las salas en una sucursal
+   * @returns JSON con todas las salas de una sucursal
+   */
   get_rooms_by_Id(cinema_name:string): Observable<Room[]>{
     return this.http.get<Room[]>(this.apiURL + "Branches/all_rooms?cinema_name=" + cinema_name);
   }
 
+  /**
+   * Funcion GET para todos los actores
+   * @returns JSON con todos los actores
+   */
   get_actors(): Observable<Actor[]>{
     return this.http.get<Actor[]>(this.apiURL + "Actors");
   }
@@ -267,7 +322,7 @@ export class ApiService {
   }
 
   /**
-  * Funcion DELETE para un empleado
+  * Funcion DELETE para una sala
   * @param room sala a eliminar
   * @returns repuesta del API
   */
@@ -304,7 +359,7 @@ export class ApiService {
 
 
   put_seat_bought(seat:Seat): Observable<Seat>{
-    const url = `${this.apiURL + "byId?room_id=" + seat.room_id+"&number="+seat.number}`;
+    const url = `${this.apiURL + "byId?projection_id=" + seat.projection_id+"&number="+seat.number}`;
     const req = {
       status:"TAKEN"
     }
@@ -391,8 +446,6 @@ export class ApiService {
     return this.http.put<Projection>(url, projection, httpOptions); 
   }
 
-
-  
   /**
   * Funcion PUT para una pelicula
   * @param movie los nuevos datos de la pelicula
