@@ -38,7 +38,7 @@ export class NgbdModalContent implements OnInit {
 
         this.globalService.selected_seats.forEach(seat => {
             const seat_interface = {
-                room_id : seat.room_id,
+                projection_id : seat.projection_id,
                 number : seat.text,
                 status : seat.status,
             }

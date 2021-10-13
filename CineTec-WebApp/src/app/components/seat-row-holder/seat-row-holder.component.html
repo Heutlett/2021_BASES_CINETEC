@@ -1,6 +1,8 @@
-<app-seat 
-    *ngFor = "let seat of seats" 
-    [text] = "seat.number" [status] = "seat.status" [room_id] = "seat.room_id" >
-</app-seat>
-<hr>
+<div *ngIf = "ready == true">
+    <app-seat 
+        *ngFor = "let seat of seats" 
+        [text] = "seat.number" [status] = "seat.status" [projection_id] = "seat.projection_id">
+    </app-seat>
+    <hr>
+</div>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'app/services/api.service';
 import { Room } from 'interfaces/Room';
+import { Seat } from 'interfaces/Seat';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,13 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class SeatsComponent implements OnInit {
 
-  room$ : Observable <Room[]>
+  room : Room;
+  ready = false;
 
   constructor(private apiService : ApiService) { }
 
   ngOnInit(): void {
 
-    this.room$ = this.apiService.get_room();
+    this.apiService.get_room().subscribe((room) => {
+      this.room = room;
+      this.ready = true;
+    })
     
   }
 

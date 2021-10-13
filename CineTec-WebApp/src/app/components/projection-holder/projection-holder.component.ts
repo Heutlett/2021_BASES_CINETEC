@@ -20,13 +20,18 @@ export class ProjectionHolderComponent implements OnInit {
 
   name: string;
   dates:Dates;
-  date:string;
-  projections$: Observable<Projections[]>;
+  date = "10/24/21";
+  //projections$: Observable<Projections[]>;
   subscription_name: Subscription;
+  trimmed_list: Projections[];
+  projections: Projections[];
+  ready = false;
 
   constructor(private apiService: ApiService, private globalService : GlobalService) { }
 
   ngOnInit(): void {
+
+    this.globalService.current_date = this.date;
 
     this.apiService.get_dates().subscribe((res)=>{
       console.log("fechas son : ",res)
@@ -38,21 +43,17 @@ export class ProjectionHolderComponent implements OnInit {
 
     this.name = this.globalService.current_branch;
 
-    this.subscription_name = this.globalService.current_branch_check().subscribe((name)=>{
-      this.name = name
-      this.update()
-    });
-
   }
 
   update():void{
 
-    // this.apiService.get_dates().subscribe((res)=>{
-    //   console.log("fechas son : ",res)
-    //   this.dates = res[0]
-    //   this.date_init()
-    // });
-    //this.projections$ = this.apiService.get_day_branch_projections();
+    this.apiService.get_dates().subscribe((res)=>{
+      console.log("fechas son : ",res)
+      this.dates = res
+      this.update_proj();
+    },(error)=> {
+      alert(error.error);
+    });
 
   }
 
@@ -60,15 +61,70 @@ export class ProjectionHolderComponent implements OnInit {
 
     this.date = this.dates[0];
     this.globalService.current_date = this.date;
-    this.update();
+
+    this.subscription_name = this.globalService.current_branch_check().subscribe((name)=>{
+      this.name = name
+      this.update()
+    });
+    this.update_proj();
 
   }
 
   dateSelected(date):void{
 
+    this.ready = false;
     this.date = date;
     this.globalService.current_date = date;
     this.update();
+
+  }
+
+  update_proj(){
+
+    this.apiService.get_day_branch_projections().subscribe((projections_raw)=>{
+      console.log(projections_raw)
+      this.projections = this.parse_raw_projections(projections_raw)
+      console.log(this.projections)
+      this.ready = true;
+    })
+
+  }
+
+  parse_raw_projections(projections){
+
+    var added = false;
+    this.trimmed_list = [];
+
+    projections.forEach(projection => {
+      projection.time = [projection.schedule];
+      added = false;
+
+      if(this.trimmed_list != []){
+
+
+          this.trimmed_list.forEach(added_projection => {
+
+            console.log(projection.name , added_projection.name);
+            if(projection.name == added_projection.name){
+
+              added = true;
+              //console.log("trying to push new time",projection.schedule)
+              added_projection.time.push(projection.schedule)
+            }
+            
+          });
+
+    }
+
+     if (!added){
+      //console.log("pushing" , projection);
+      this.trimmed_list.push(projection);
+
+     }
+      
+    });
+
+    return this.trimmed_list;
 
   }
   

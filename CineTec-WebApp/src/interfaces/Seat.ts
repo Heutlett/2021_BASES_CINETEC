@@ -1,5 +1,5 @@
 export interface Seat{
-    room_id:number;
     number:number;
+    projection_id:number;
     status:string;
 }
