@@ -74,8 +74,8 @@ public class Seats extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        ArrayList<Seat> seats = CineTecDatabase.getInstance(getContext()).getSeats(Projections.room_id);
-        Room currentRoom = CineTecDatabase.getInstance(getContext()).getRoom(Projections.room_id);
+        ArrayList<Seat> seats = CineTecDatabase.getInstance(getContext()).getSeats(Projections.current_projection.getId());
+        Room currentRoom = CineTecDatabase.getInstance(getContext()).getRoom(Projections.current_projection.getRoom());
 
 
         int row = currentRoom.getRows();
@@ -91,7 +91,7 @@ public class Seats extends Fragment {
 
 
                 Seat currentSeat = seats.get(index);
-                ButtonSeat currentButton = createButton(currentSeat.getNumber(), column, j);
+                ButtonSeat currentButton = createButton(currentSeat.getNumber(), column, j, currentSeat.getStatus());
                 seats_layout.addView(currentButton);
                 this.buttonSeats.add(currentButton);
                 index++;
@@ -104,9 +104,9 @@ public class Seats extends Fragment {
 
     }
 
-    private ButtonSeat createButton(int seat, int column, int j){
+    private ButtonSeat createButton(int seat, int column, int j, String status){
 
-        ButtonSeat button = new ButtonSeat(getContext(), seat, false, false);
+        ButtonSeat button = new ButtonSeat(getContext(), seat, status);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(125, 125);
 

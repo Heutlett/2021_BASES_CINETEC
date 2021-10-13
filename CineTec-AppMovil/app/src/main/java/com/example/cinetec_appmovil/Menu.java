@@ -40,9 +40,13 @@ public class Menu extends Fragment {
         binding = FragmentMenuBinding.inflate(inflater, container, false);
 
 
-        binding.nameText.setText(String.format("Nombre: %s %s %s %s", Login.currentClient.first_name, Login.currentClient.middle_name, Login.currentClient.first_surname, Login.currentClient.second_surname));
-        binding.birthText.setText(String.format("Fecha de nacimiento: %s", Login.currentClient.birth_date));
-        binding.phoneNumberText.setText(String.format("Phone: %s", Login.currentClient.phone_number));
+        binding.firstNameText.setText(String.format("Primer nombre: %s", Login.currentClient.first_name));
+        binding.middleNameText.setText(String.format("Segundo nombre: %s", Login.currentClient.middle_name));
+        binding.firstSurname.setText(String.format("Primer apellido: %s", Login.currentClient.first_surname));
+        binding.secondSurname.setText(String.format("Segundo apellido: %s", Login.currentClient.second_surname));
+        binding.birthNameText3.setText(String.format("Fecha de nacimiento: %s", Login.currentClient.birth_date));
+        binding.usernameText2.setText(String.format("Username: %s", Login.currentClient.username));
+        binding.passwordText.setText(String.format("Password: %s", Login.currentClient.password));
 
 
 

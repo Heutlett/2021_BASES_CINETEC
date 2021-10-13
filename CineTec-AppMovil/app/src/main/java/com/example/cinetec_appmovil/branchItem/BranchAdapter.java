@@ -42,7 +42,11 @@ public class BranchAdapter extends ArrayAdapter<Branch> {
             textView1.setText(currentBranch.getName());
 
             TextView textView2 = currentItemView.findViewById(R.id.address_text);
-            textView2.setText(currentBranch.getProvince() + ", " + currentBranch.getDistrict());
+            textView2.setText("Localizacion: " +currentBranch.getProvince() + ", " + currentBranch.getDistrict());
+
+            TextView textView3 = currentItemView.findViewById(R.id.room_quantity_text);
+            textView3.setText("Cantidad de salas: " + currentBranch.getRoomQuantity());
+
 
 
 

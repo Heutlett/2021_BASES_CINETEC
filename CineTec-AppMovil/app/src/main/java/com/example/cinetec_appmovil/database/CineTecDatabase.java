@@ -5,10 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 
-import com.example.cinetec_appmovil.Projections;
+
 import com.example.cinetec_appmovil.branchItem.Branch;
 import com.example.cinetec_appmovil.client.Client;
 import com.example.cinetec_appmovil.movieItem.Movie;
@@ -16,12 +17,30 @@ import com.example.cinetec_appmovil.projectionsItem.Projection;
 import com.example.cinetec_appmovil.room.Room;
 import com.example.cinetec_appmovil.seats.Seat;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
+
+import javax.net.ssl.TrustManager;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class CineTecDatabase extends SQLiteOpenHelper {
 
 
+    private final String URL = "http://10.0.2.2:27078/api/";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "cinetec.db";
     private static final String TABLE_MOVIES = "Movies";
@@ -34,16 +53,22 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     private static final String TABLE_ROOM = "Room";
     private static final String TABLE_BILL = "Bill";
     private static final String TABLE_ACTOR = "Actor";
+    private static final String TABLE_ACTS = "Acts";
 
     private static CineTecDatabase DB_instance = null;
     private int i = 1000;
+    private Context context;
+
 
 
 
     private CineTecDatabase(@Nullable Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
-        synchronizeDataBase();
+
+        this.context = context;
+
+
 
 
 
@@ -59,7 +84,6 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
     }
 
-
     public CineTecDatabase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -67,38 +91,58 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
+
+        this.createTable(sqLiteDatabase);
+
+
+
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+        this.dropTables(sqLiteDatabase);
+        
+        onCreate(sqLiteDatabase);
+
+
+    }
+
+
+    private void createTable(SQLiteDatabase sqLiteDatabase)
+    {
+
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_MOVIES + "(" +
                 "id INTEGER NOT NULL," +
-                "classification_id INTEGER NOT NULL," +
-                "director_id INTEGER NOT NULL," +
-                "image VARCHAR NOT NULL," +
+                "director VARCHAR NOT NULL," +
                 "original_name VARCHAR NOT NULL," +
                 "name VARCHAR NOT NULL," +
+                "code VARCHAR NOT NULL," +
+                "age_rating VARCHAR NOT NULL," +
+                "details VARCHAR NOT NULL," +
                 "length VARCHAR NOT NULL," +
-                "PRIMARY KEY(id), " +
-                "FOREIGN KEY(director_id) REFERENCES " + TABLE_DIRECTOR + "(id)," +
-                "FOREIGN KEY(classification_id) REFERENCES " + TABLE_CLASSIFICATION + "(code)"
+                "actors VARCHAR NOT NULL," +
+                "PRIMARY KEY(id)"
                 +")");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CLIENTS + "(" +
-                "id INTEGER NOT NULL," +
+                "cedula VARCHAR NOT NULL," +
                 "first_name VARCHAR NOT NULL," +
                 "middle_name VARCHAR NOT NULL," +
                 "first_surname VARCHAR NOT NULL," +
                 "second_surname VARCHAR NOT NULL," +
                 "birth_date VARCHAR NOT NULL," +
-                "phone_number INTEGER NOT NULL," +
                 "username VARCHAR NOT NULL," +
-                "password VARCHAR NOT NULL," +
-                "PRIMARY KEY(id)"
+                "password VARCHAR NOT NULL"
                 +")");
 
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_BRANCHES + "(" +
                 "cinema_name VARCHAR NOT NULL," +
                 "province VARCHAR NOT NULL," +
-                "district VARCHAR NOT NULL, " +
-                "room_quantity VARCHAR NOT NULL, "+
+                "district VARCHAR NOT NULL, "+
+                "rooms_quantity VARCHAR NOT NULL, "+
                 "PRIMARY KEY(cinema_name)"
                 + ")" );
 
@@ -107,66 +151,34 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                 "id INTEGER NOT NULL," +
                 "row_quantity INTEGER NOT NULL, " +
                 "column_quantity INTEGER NOT NULL, "+
-                "PRIMARY KEY(id) ," +
-                "FOREIGN KEY(branch_name) REFERENCES " + TABLE_DIRECTOR + "(id)" +
-                 ")" );
+                "capacity INTEGER NOT NULL, "+
+                "PRIMARY KEY(id)" +
+                ")" );
 
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_PROJECTIONS + "(" +
-                "room_id INTEGER NOT NULL," +
-                "movie_id INTEGER NOT NULL," +
-                "id INTEGER NOT NULL," +
+                "room INTEGER NOT NULL," +
+                "movie VARCHAR NOT NULL," +
+                "projection_id INTEGER NOT NULL," +
                 "date VARCHAR NOT NULL," +
-                "time VARCHAR NOT NULL," +
-                "PRIMARY KEY(id)," +
-                "FOREIGN KEY(movie_id) REFERENCES " + TABLE_MOVIES + "(id)," +
-                "FOREIGN KEY(room_id) REFERENCES " + TABLE_ROOM + "(id)"
+                "schedule VARCHAR NOT NULL," +
+                "free_spaces INTEGER NOT NULL," +
+                "PRIMARY KEY(projection_id)"
                 + ")");
 
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_SEATS + "(" +
-                "room_id INTEGER NOT NULL,"+
+                "projection_id INTEGER NOT NULL,"+
                 "number INTEGER NOT NULL," +
-                "status VARCHAR NOT NULL," +
-                "FOREIGN KEY(room_id) REFERENCES " + TABLE_ROOM + "(id)"
+                "status VARCHAR NOT NULL"
                 + ")" );
 
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_BILL + "(" +
-                "client_id INTEGER NOT NULL,"  +
-                "projection_id  INTEGET NOT NULL," +
-                "id INTEGER NOT NULL,"  +
-                "detail VARCHAR NOT NULL," +
-                "PRIMARY KEY(id)" +
-                ")");
-
-
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_DIRECTOR + "(" +
-                "id INTEGER NOT NULL,"  +
-                "name VARCHAR NOT NULL," +
-                "PRIMARY KEY(id)" +
-                ")");
-
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_CLASSIFICATION + "(" +
-                "code INTEGER NOT NULL,"  +
-                "detail VARCHAR NOT NULL," +
-                "age_rating VARCHAR NOT NULL," +
-                "PRIMARY KEY(code)" +
-                ")");
-
-
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_ACTOR + "(" +
-                "id INTEGER NOT NULL,"  +
-                "Name VARCHAR NOT NULL," +
-                "PRIMARY KEY(id)" +
-                ")");
-
     }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-
+    
+    
+    private void dropTables(SQLiteDatabase sqLiteDatabase)
+    {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MOVIES);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CLIENTS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BRANCHES);
@@ -177,107 +189,13 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BILL);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CLASSIFICATION);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_SEATS);
-        onCreate(sqLiteDatabase);
-
-
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ACTS);
     }
 
     public boolean fillDateBase(){
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("first_name", "sebastian");
-        contentValues.put("middle_name", "jesus");
-        contentValues.put("first_surname", "mora");
-        contentValues.put("second_surname", "godinez");
-        contentValues.put("birth_date", "28/05/2000");
-        contentValues.put("phone_number", "88844165");
-        contentValues.put("username", "semora");
-        contentValues.put("password", "moragodi28");
-        DB_instance.getWritableDatabase().insert(TABLE_CLIENTS, null, contentValues);
 
-
-        ContentValues contentValues2 = new ContentValues();
-        contentValues2.put("cinema_name", "cinepolis");
-        contentValues2.put("province", "San Jose");
-        contentValues2.put("district", "Guadalupe");
-        contentValues2.put("room_quantity", "5");
-        DB_instance.getWritableDatabase().insert(TABLE_BRANCHES, null, contentValues2);
-
-        ContentValues contentValues4 = new ContentValues();
-        contentValues4.put("cinema_name", "multicines");
-        contentValues4.put("province", "San Jose");
-        contentValues4.put("district", "Perez Zeledon");
-        contentValues4.put("room_quantity", "5");
-        DB_instance.getWritableDatabase().insert(TABLE_BRANCHES, null, contentValues4);
-
-
-
-        ContentValues contentValues3 = new ContentValues();
-        contentValues3.put("classification_id", 1);
-        contentValues3.put("director_id", 2);
-        contentValues3.put("image", "avenger.png");
-        contentValues3.put("original_name", "avengers");
-        contentValues3.put("name", "vengadores");
-        contentValues3.put("length", "2 horas: 30 minutos");
-        DB_instance.getWritableDatabase().insert(TABLE_MOVIES, null, contentValues3);
-
-
-        ContentValues contentValues5 = new ContentValues();
-        contentValues5.put("classification_id", 1);
-        contentValues5.put("director_id", 2);
-        contentValues5.put("image", "avenger.png");
-        contentValues5.put("original_name", "Fast and Furious");
-        contentValues5.put("name", "A todo gas");
-        contentValues5.put("length", "2 horas: 30 minutos");
-        DB_instance.getWritableDatabase().insert(TABLE_MOVIES, null, contentValues5);
-
-        ContentValues contentValues6 = new ContentValues();
-        contentValues6.put("classification_id", 1);
-        contentValues6.put("director_id", 2);
-        contentValues6.put("image", "avenger.png");
-        contentValues6.put("original_name", "Batman The Dark knight");
-        contentValues6.put("name", "Batman el caballero oscuro");
-        contentValues6.put("length", "2 horas: 30 minutos");
-        DB_instance.getWritableDatabase().insert(TABLE_MOVIES, null, contentValues6);
-
-
-        ContentValues contentValues7 = new ContentValues();
-        contentValues7.put("branch_name", "cinepolis");
-        contentValues7.put("row_quantity", 10);
-        contentValues7.put("column_quantity", 15);
-        DB_instance.getWritableDatabase().insert(TABLE_ROOM, null, contentValues7);
-
-
-        ContentValues contentValues8 = new ContentValues();
-        contentValues8.put("branch_name", "cinepolis");
-        contentValues8.put("row_quantity", 15);
-        contentValues8.put("column_quantity", 20);
-        DB_instance.getWritableDatabase().insert(TABLE_ROOM, null, contentValues8);
-
-        ContentValues contentValues9 = new ContentValues();
-        contentValues9.put("branch_name", "multicines");
-        contentValues9.put("row_quantity", 10);
-        contentValues9.put("column_quantity", 10);
-        DB_instance.getWritableDatabase().insert(TABLE_ROOM, null, contentValues9);
-
-
-        ContentValues contentValues11 = new ContentValues();
-        contentValues11.put("room_id", 1);
-        contentValues11.put("movie_id", 1);
-        contentValues11.put("date", "25/22/2000");
-        contentValues11.put("time", "15:00");
-        DB_instance.getWritableDatabase().insert(TABLE_PROJECTIONS, null, contentValues11);
-
-
-        ContentValues contentValues12 = new ContentValues();
-        contentValues12.put("room_id", 2);
-        contentValues12.put("movie_id", 1);
-        contentValues12.put("date", "22/22/2222");
-        contentValues12.put("time", "13:00");
-        DB_instance.getWritableDatabase().insert(TABLE_PROJECTIONS, null, contentValues12);
-
-
-
+        synchronizeDataBase();
 
 
 
@@ -303,11 +221,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
         do {
 
-            String current_password = cursor.getString(8);
+            String current_password = cursor.getString(7);
             System.out.println(current_password);
 
             if (current_password.equals(password)){
-                return new Client(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),  cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8));
+                return new Client(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),  cursor.getString(5), cursor.getString(6), cursor.getString(7));
             }
         } while(cursor.moveToNext());
 
@@ -318,7 +236,6 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     public ArrayList<Branch> getBranches()
     {
         ArrayList<Branch> branches = new ArrayList<>();
-
         SQLiteDatabase DB = DB_instance.getWritableDatabase();
         Cursor cursor = DB.rawQuery("SELECT * FROM " + TABLE_BRANCHES, new String[]{});
 
@@ -353,7 +270,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         return branches;
     }
 
-    public ArrayList<Projection> getProjections(String cinema_name, int movie_id)
+    public ArrayList<Projection> getProjections(String cinema_name, String movie)
     {
         ArrayList<Projection> projections = new ArrayList<>();
 
@@ -361,55 +278,37 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
 
 
-        Cursor room = DB.rawQuery("SELECT id FROM " + TABLE_ROOM + " WHERE branch_name = ?", new String[]{cinema_name});
+        Cursor current = DB.rawQuery("SELECT date, schedule, projection_id, room, movie, free_spaces FROM Projections AS b JOIN Room AS r ON b.room = r.id WHERE branch_name = ? AND movie = ?", new String[]{cinema_name, movie});
 
-        Cursor movies = DB.rawQuery("SELECT room_id,date, time, id FROM " + TABLE_PROJECTIONS + " WHERE movie_id = ?", new String[]{Integer.toString(movie_id)});
 
-        if (movies != null){
 
-            movies.moveToFirst();
+        if (current != null) {
 
-            if (movies.getCount() != 0){
+            current.moveToFirst();
 
+            if (current.getCount() != 0) {
+                System.out.println("--------------------------------");
+                System.out.println(current.getCount());
 
                 do {
 
-                    int room_id = movies.getInt(0);
+                    System.out.println(current.getInt(0) + "  " + current.getString(1));
+                    String date = current.getString(0);
+                    String schedule = current.getString(1);
+                    int projection_id = current.getInt(2);
+                    int room = current.getInt(3);
+                    String movieName = current.getString(4);
+                    int free_spaces = current.getInt(5);
 
-                    if (room != null) {
-
-                        room.moveToFirst();
-
-
-                        if (room.getCount() != 0) {
-
-                            do {
-
-                                int current_room_id = room.getInt(0);
-
-                                if (current_room_id == room_id) {
-
-                                    Projection projection = new Projection(movies.getString(1), movies.getString(2), movies.getInt(3), current_room_id, movie_id);
-                                    projections.add(projection);
+                    projections.add(new Projection(date, schedule, projection_id, room, movieName, free_spaces));
 
 
-                                }
-
-
-                            } while (room.moveToNext());
-
-
-                        }
-
-
-                    }
-                }while(movies.moveToNext());
-
-
+                } while (current.moveToNext());
+                System.out.println("---------------------------------");
             }
-
-
         }
+
+
 
         return projections;
     }
@@ -431,14 +330,17 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                 do {
 
                     int id = cursor.getInt(0);
-                    int classification_id = cursor.getInt(1);
-                    int director_id = cursor.getInt(2);
-                    String image = cursor.getString(3);
-                    String original_name = cursor.getString(4);
-                    String name = cursor.getString(5);
-                    String length = cursor.getString(6);
+                    String director = cursor.getString(1);
+                    String original_name = cursor.getString(2);
+                    String name = cursor.getString(3);
+                    String code = cursor.getString(4);
+                    String age_rating = cursor.getString(5);
+                    String details = cursor.getString(6);
+                    String length = cursor.getString(7);
+                    String actors = cursor.getString(8);
+                    System.out.println(name);
 
-                    Movie movie = new Movie(id, classification_id, director_id, image, original_name, name, length);
+                    Movie movie = new Movie(id, director, original_name, name, code, age_rating, details, length, actors);
                     movies.add(movie);
 
 
@@ -450,7 +352,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             }
 
 
+
         }
+
+
 
         return movies;
     }
@@ -460,7 +365,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
 
         SQLiteDatabase DB = DB_instance.getWritableDatabase();
-        Cursor room = DB.rawQuery("SELECT row_quantity, column_quantity FROM " + TABLE_ROOM + " WHERE room_id = ?", new String[]{Integer.toString(room_id)});
+        Cursor room = DB.rawQuery("SELECT row_quantity, column_quantity FROM " + TABLE_ROOM + " WHERE id = ?", new String[]{Integer.toString(room_id)});
 
 
         if (room != null) {
@@ -475,13 +380,13 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Seat> getSeats(int room_id)
+    public ArrayList<Seat> getSeats(int projection_id)
     {
 
         ArrayList<Seat> seats = new ArrayList<>();
 
         SQLiteDatabase DB = DB_instance.getWritableDatabase();
-        Cursor seat = DB.rawQuery("SELECT number, status FROM " + TABLE_SEATS + " WHERE room_id = ?", new String[]{Integer.toString(room_id)});
+        Cursor seat = DB.rawQuery("SELECT number, status FROM " + TABLE_SEATS + " WHERE projection_id = ? ORDER BY number", new String[]{Integer.toString(projection_id)});
 
 
         if (seat != null)
@@ -496,7 +401,8 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
 
                     int number = seat.getInt(0);
-                    String status = seat.getString(1);
+                    String status = seat.getString(1);;
+                    System.out.println("Numero " + number );
 
                     Seat current_seat = new Seat(number, status);
                     seats.add(current_seat);
@@ -505,24 +411,17 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
                 }while(seat.moveToNext());
 
-
-
-
             }
-
 
         }
 
 
-
-
-
-
-
-
-
         return seats;
     }
+
+
+
+
 
 
     public void synchronizeDataBase(){
@@ -533,37 +432,317 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             public void run() {
 
 
-                long startTime = System.currentTimeMillis();
-                long endTime = startTime + 3*1000;
+                    System.out.println("Sincroniza la base de datos");
+                    updateBranches();
+                    updateClients();
+                    updateRooms();
+                    updateMovies();
+                    updateProjections();
+                    updateSeats();
 
-                while(true) {
-
-
-                    sleepSynchronizeDataBase();
-
-
-
-
-            }
 
 
             }
         }).start();
 
 
+
+
+
+
     }
 
 
-    public void sleepSynchronizeDataBase(){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
+
+
+    private void updateBranches()
+    {
+
+            Request request = new Request.Builder().url(URL + "Branches").build();
+            OkHttpClient client = new OkHttpClient();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                    System.out.println(e.getLocalizedMessage());
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+
+                        String data = response.body().source().readUtf8();
+                        DB_instance.getWritableDatabase().delete(TABLE_BRANCHES, "1", null);
+                        try {
+                            JSONArray jsonArray = new JSONArray(data);
+
+                            for (int i=0; i< jsonArray.length(); i++)
+                            {
+                                JSONObject currentBranch = jsonArray.getJSONObject(i);
+                                ContentValues contentValues2 = new ContentValues();
+                                contentValues2.put("cinema_name", currentBranch.getString("cinema_name"));
+                                contentValues2.put("province", currentBranch.getString("province"));
+                                contentValues2.put("district", currentBranch.getString("district"));
+                                contentValues2.put("rooms_quantity", currentBranch.getInt("rooms_quantity"));
+                                DB_instance.getWritableDatabase().insert(TABLE_BRANCHES, null, contentValues2);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+            });
+
         }
 
 
 
+        public void updateClients()
+        {
+
+            Request request = new Request.Builder().url(URL + "Clients").build();
+            OkHttpClient client = new OkHttpClient();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                    System.out.println(e.getLocalizedMessage());
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+
+                    if(response.isSuccessful()) {
+                        String data = response.body().source().readUtf8();
+                        DB_instance.getWritableDatabase().delete(TABLE_CLIENTS, "1", null);
+                        try {
+                            JSONArray jsonArray = new JSONArray(data);
+
+                            for (int i=0; i< jsonArray.length(); i++)
+                            {
+                                JSONObject currentClient = jsonArray.getJSONObject(i);
+                                ContentValues contentValues = new ContentValues();
+                                contentValues.put("cedula", currentClient.getInt("cedula"));
+                                contentValues.put("first_name", currentClient.getString("first_name"));
+                                contentValues.put("middle_name", currentClient.getString("middle_name"));
+                                contentValues.put("first_surname", currentClient.getString("first_surname"));
+                                contentValues.put("second_surname", currentClient.getString("second_surname"));
+                                contentValues.put("birth_date", currentClient.getString("birth_date"));
+                                contentValues.put("username", currentClient.getString("username"));
+                                contentValues.put("password", currentClient.getString("password"));
+                                DB_instance.getWritableDatabase().insert(TABLE_CLIENTS, null, contentValues);
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        System.out.println("error");
+                    }
+
+                }
+            });
+
+        }
+
+
+
+        public void updateRooms()
+        {
+
+            Request request = new Request.Builder().url(URL + "Rooms").build();
+            OkHttpClient client = new OkHttpClient();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                    System.out.println(e.getLocalizedMessage());
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+
+                    if(response.isSuccessful()) {
+                        String data = response.body().source().readUtf8();
+                        DB_instance.getWritableDatabase().delete(TABLE_ROOM, "1", null);
+                        try {
+                            JSONArray jsonArray = new JSONArray(data);
+
+                            for (int i=0; i< jsonArray.length(); i++)
+                            {
+                                JSONObject currentClient = jsonArray.getJSONObject(i);
+                                ContentValues contentValues = new ContentValues();
+                                contentValues.put("branch_name", currentClient.getString("branch_name"));
+                                contentValues.put("id", currentClient.getInt("id"));
+                                contentValues.put("column_quantity", currentClient.getString("column_quantity"));
+                                contentValues.put("row_quantity", currentClient.getString("row_quantity"));
+                                contentValues.put("capacity", currentClient.getInt("capacity"));
+                                DB_instance.getWritableDatabase().insert(TABLE_ROOM, null, contentValues);
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        System.out.println("error");
+                    }
+
+                }
+            });
+
+        }
+
+
+    public void updateMovies() {
+
+        Request request = new Request.Builder().url(URL + "Movies/special_all").build();
+        OkHttpClient client = new OkHttpClient();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                System.out.println(e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                if (response.isSuccessful()) {
+                    String data = response.body().source().readUtf8();
+                    System.out.println(data);
+                    DB_instance.getWritableDatabase().delete(TABLE_MOVIES, "1", null);
+                    try {
+                        JSONArray jsonArray = new JSONArray(data);
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject currentMovie = jsonArray.getJSONObject(i);
+                            ContentValues contentValues6 = new ContentValues();
+                            contentValues6.put("director", currentMovie.getString("director"));
+                            contentValues6.put("code", currentMovie.getString("code"));
+                            contentValues6.put("age_rating", currentMovie.getString("age_rating"));
+                            contentValues6.put("details", currentMovie.getString("details"));
+                            contentValues6.put("original_name", currentMovie.getString("original_name"));
+                            contentValues6.put("name", currentMovie.getString("name"));
+                            contentValues6.put("length", currentMovie.getString("length"));
+                            contentValues6.put("id", currentMovie.getInt("id"));
+                            contentValues6.put("actors", currentMovie.getJSONArray("actors").join(","));
+                            DB_instance.getWritableDatabase().insert(TABLE_MOVIES, null, contentValues6);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.out.println("error");
+                }
+
+            }
+        });
+
     }
+
+
+    public void updateProjections() {
+
+        Request request = new Request.Builder().url(URL + "Projections").build();
+        OkHttpClient client = new OkHttpClient();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                System.out.println(e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                if (response.isSuccessful()) {
+                    String data = response.body().source().readUtf8();
+                    DB_instance.getWritableDatabase().delete(TABLE_PROJECTIONS, "1", null);
+                    try {
+                        JSONArray jsonArray = new JSONArray(data);
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject currentProjections = jsonArray.getJSONObject(i);
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put("room", currentProjections.getInt("room"));
+                            contentValues.put("projection_id", currentProjections.getInt("id"));
+                            contentValues.put("movie", currentProjections.getString("movie"));
+                            contentValues.put("date", currentProjections.getString("date"));
+                            contentValues.put("schedule", currentProjections.getString("schedule"));
+                            contentValues.put("free_spaces", currentProjections.getInt("free_spaces"));
+                            DB_instance.getWritableDatabase().insert(TABLE_PROJECTIONS, null, contentValues);
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.out.println("error");
+                }
+
+            }
+        });
+
+    }
+
+
+    public void updateSeats() {
+
+        Request request = new Request.Builder().url(URL + "Seats").build();
+        OkHttpClient client = new OkHttpClient();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                System.out.println(e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                if (response.isSuccessful()) {
+                    String data = response.body().source().readUtf8();
+                    DB_instance.getWritableDatabase().delete(TABLE_SEATS, "1", null);
+                    try {
+                        JSONArray jsonArray = new JSONArray(data);
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject currentProjections = jsonArray.getJSONObject(i);
+                            ContentValues contentValues = new ContentValues();
+                            contentValues.put("projection_id", currentProjections.getInt("projection_id"));
+                            contentValues.put("number", currentProjections.getInt("number"));
+                            contentValues.put("status", currentProjections.getString("status"));
+                            DB_instance.getWritableDatabase().insert(TABLE_SEATS, null, contentValues );
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.out.println("error");
+                }
+
+            }
+        });
+
+
+
+
+    }
+
+
+
+
+
+
+
+
 }
 
 

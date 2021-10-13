@@ -606,6 +606,7 @@ export class AddItemComponent implements OnInit {
 
 
 
+
     if(this.showEditItem){
       this.new_item = {
         "id":this.global.getCurrentItem().id,
@@ -624,6 +625,8 @@ export class AddItemComponent implements OnInit {
         "room_id":this.room_id
   
       }
+
+      this.global.covid = this.covid;
 
 
     }

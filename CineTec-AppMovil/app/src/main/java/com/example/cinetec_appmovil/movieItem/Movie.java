@@ -4,32 +4,31 @@ public class Movie {
 
     private String name;
     private String length;
-    private String classification;
+
     private String protagonists;
     private String director;
+    private String code;
+    private String age_rating;
+    private String details;
+    private String actors;
 
     private String original_name;
-    private String image;
-    private int classification_id;
-    private int director_id;
+
+
+
     private int id;
 
-    public Movie(String name, String length, String classification, String protagonists, String director) {
-        this.name = name;
-        this.length = length;
-        this.classification = classification;
-        this.protagonists = protagonists;
-        this.director = director;
-    }
 
-    public Movie(int id, int classification_id, int director_id, String image, String original_name, String name, String length) {
+    public Movie(int id, String director, String original_name, String name, String code, String age_rating, String details, String length, String actors ) {
         this.name = name;
         this.length = length;
         this.original_name = original_name;
-        this.image = image;
-        this.classification_id = classification_id;
-        this.director_id = director_id;
+        this.director = director;
         this.id = id;
+        this.code = code;
+        this.age_rating = age_rating;
+        this.details = details;
+        this.actors = actors;
     }
 
     public String getName() {
@@ -44,15 +43,32 @@ public class Movie {
         return length;
     }
 
-    public String getClassification() {
-        return classification;
-    }
-
     public String getProtagonists() {
         return protagonists;
     }
 
     public String getDirector() {
         return director;
+    }
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getAge_rating() {
+        return age_rating;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public String getOriginal_name() {
+        return original_name;
     }
 }

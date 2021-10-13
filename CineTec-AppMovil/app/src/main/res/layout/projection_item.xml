@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/price_text"
+        android:id="@+id/room_text"
         android:layout_width="182dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -19,7 +19,7 @@
         android:layout_marginTop="45dp"
         android:layout_marginEnd="209dp"
         android:layout_marginBottom="10dp"
-        android:text="Price:"
+        android:text="Sala:"
         android:textColor="#1C1919"
         android:textSize="20sp"
         android:textStyle="bold" />

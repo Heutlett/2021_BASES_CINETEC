@@ -15,18 +15,34 @@ public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
     public boolean isTaken;
     public int seatNumber;
     private static int left_seats;
+    private String status;
 
-    public ButtonSeat(Context context, int seatNumber, boolean isRestricted, boolean isTaken) {
+    public ButtonSeat(Context context, int seatNumber, String status) {
         super(context);
 
         this.seatNumber = seatNumber;
         this.isSelected = false;
-        this.isRestricted = isRestricted;
-        this.isTaken = isTaken;
-        this.setColor();
+        this.isRestricted = false;
+        this.isTaken = false;
         this.setListener();
         this.setText(Integer.toString(seatNumber));
         left_seats = Tickets.getTotalSeats();
+
+
+        System.out.println(status);
+        if (status.equals("COVID"))
+        {
+            this.isRestricted = true;
+        }
+
+        else if (status.equals("TAKEN"))
+        {
+            this.isTaken = true;
+        }
+
+        this.setColor();
+
+
 
     }
 

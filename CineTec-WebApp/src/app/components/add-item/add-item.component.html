@@ -405,7 +405,7 @@
 
 
         <label class="label-selected" class="label-selected" style="margin-left: 30px;">Restriccion COVID </label>
-         <select [(ngModel)] = "covid"  name="covid" class="drop-down-primary" >
+         <select [(ngModel)] = "covid"  name="covid" class="drop-down-primary" [disabled] ="showEditItem">
 
             <option *ngFor="let porcentage of covidPorcentages" [ngValue] = "porcentage"> {{porcentage}} </option>
 

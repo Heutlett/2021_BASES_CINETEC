@@ -30,7 +30,7 @@ public class Projections extends Fragment {
 
     private FragmentProjectionBinding binding;
     public static int room_id;
-    public static int current_projection_id;
+    public static Projection current_projection;
 
 
     public Projections() {
@@ -50,6 +50,13 @@ public class Projections extends Fragment {
         // Inflate the layout for this fragment
 
         binding = FragmentProjectionBinding.inflate(inflater, container, false);
+
+        ArrayList<Projection> projections = CineTecDatabase.getInstance(getContext()).getProjections(Branchs.current_branch, Movies.current_movie);
+
+        ProjectionAdapter arrayAdapter = new ProjectionAdapter(getContext(), projections);
+        binding.projectionView.setAdapter(arrayAdapter);
+
+
         return binding.getRoot();
 
     }
@@ -60,20 +67,14 @@ public class Projections extends Fragment {
 
 
 
-        ArrayList<Projection> projections = CineTecDatabase.getInstance(getContext()).getProjections(Branchs.current_branch, Movies.current_movie_id);
-        setValues(projections);
-
-        ProjectionAdapter arrayAdapter = new ProjectionAdapter(getContext(), projections);
-        binding.projectionView.setAdapter(arrayAdapter);
 
         binding.projectionView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-                Projection current_projection =  ((Projection) binding.projectionView.getItemAtPosition(i));
-                room_id = current_projection.getRoom_id();
-                current_projection_id = current_projection.getId();
+                Projection current =  ((Projection) binding.projectionView.getItemAtPosition(i));
+                current_projection = current;
 
 
                 NavHostFragment.findNavController(Projections.this)
@@ -89,11 +90,6 @@ public class Projections extends Fragment {
     }
 
 
-    public void setValues(ArrayList<Projection> projections){
-
-        room_id = projections.get(0).getRoom_id();
-
-    }
 
 
 }

@@ -45,9 +45,6 @@ public class ProjectionAdapter extends ArrayAdapter<Projection> {
             textView1.setText("Día: " + currentProjection.getDate());
 
 
-            TextView textView2 = currentItemView.findViewById(R.id.price_text);
-            textView2.setText("Precio: " + currentProjection.getPrice());
-
 
             TextView textView3 = currentItemView.findViewById(R.id.time_text);
             textView3.setText("Hora: " + currentProjection.getTime());

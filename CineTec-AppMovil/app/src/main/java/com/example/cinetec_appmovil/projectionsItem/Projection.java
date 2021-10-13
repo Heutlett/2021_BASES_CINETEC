@@ -5,19 +5,20 @@ public class Projection {
     private String time;
     private String date;
     private int id;
-    private int room_id;
-    private int movie_id;
+    private int room;
+    private String movie;
+    private int free_spaces;
 
 
-    public Projection(String date, String time, int id, int room_id, int movie_id) {
+    public Projection(String date, String time, int id, int room, String movie, int free_spaces) {
         this.time = time;
         this.date = date;
         this.id = id;
-        this.id = room_id;
-        this.id = movie_id;
+        this.room = room;
+        this.movie = movie;
+        this.free_spaces = free_spaces;
 
     }
-
 
     public String getTime() {
         return time;
@@ -27,15 +28,19 @@ public class Projection {
         return date;
     }
 
-    public int getPrice() {
-        return id;
-    }
-
-    public int getRoom_id() {
-        return room_id;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public int getRoom() {
+        return room;
+    }
+
+    public String getMovie() {
+        return movie;
+    }
+
+    public int getFree_spaces() {
+        return free_spaces;
     }
 }

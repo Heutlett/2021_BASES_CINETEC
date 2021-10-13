@@ -30,6 +30,7 @@ export class GlobalService {
 
   selected_seats = [];
 
+  
   private name = new Subject<any>();
   private showAddItem : boolean = false;
   private showEditItem : boolean = false;
@@ -38,6 +39,8 @@ export class GlobalService {
 
 
   private current_item : any;
+
+  public covid:number;
 
 
   constructor() { }

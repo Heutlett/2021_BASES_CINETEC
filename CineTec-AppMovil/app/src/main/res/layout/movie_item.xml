@@ -6,24 +6,24 @@
 
     <TextView
         android:id="@+id/classification_textview"
-        android:layout_width="wrap_content"
+        android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_textview"
         android:layout_gravity="center"
-        android:layout_marginLeft="289dp"
-        android:layout_marginTop="-25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
         android:layout_toRightOf="@+id/movie_imageview"
         android:text="R"
         android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/movie_imageview"
-        android:layout_width="93dp"
-        android:layout_height="138dp" />
+        android:layout_width="115dp"
+        android:layout_height="185dp" />
 
     <TextView
         android:id="@+id/name_textview"
-        android:layout_width="wrap_content"
+        android:layout_width="268dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/director_textview"
-        android:layout_width="wrap_content"
+        android:layout_width="247dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_textview"
         android:layout_gravity="center"
@@ -47,24 +47,24 @@
 
     <TextView
         android:id="@+id/length_textview"
-        android:layout_width="wrap_content"
+        android:layout_width="247dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_textview"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="29dp"
         android:layout_toRightOf="@+id/movie_imageview"
         android:text="Duración"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/protagonist_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="263dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/name_textview"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="94dp"
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@+id/movie_imageview"
         android:text="Protagonistas"

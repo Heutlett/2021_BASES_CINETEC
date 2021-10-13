@@ -203,7 +203,7 @@ export class ApiService {
   */
   post_projections(projection:Projection){
     console.log("Posting",projection);
-    return this.http.post<Projection>(this.apiURL + "Projections", projection, httpOptions);
+    return this.http.post<Projection>(this.apiURL + "Projections/" + this.globalService.covid, projection, httpOptions);
   }
   
   //        ______________________
@@ -401,7 +401,7 @@ export class ApiService {
   * @returns respuesta del API
   */
    put_movie(movie:Movie):Observable<Movie> {
-    const url = `${this.apiURL + "Movies/byId" }/${this.globalService.getCurrentItem().name}`;
+    const url = `${this.apiURL + "Movies/byId" }/${this.globalService.getCurrentItem().id}`;
     return this.http.put<Movie>(url, movie, httpOptions); 
   }
 

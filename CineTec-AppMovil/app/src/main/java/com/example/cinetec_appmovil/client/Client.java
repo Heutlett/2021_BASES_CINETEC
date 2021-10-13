@@ -2,7 +2,7 @@ package com.example.cinetec_appmovil.client;
 
 public class Client {
 
-    public Client(int id, String first_name, String middle_name, String first_surname, String second_surname, String birth_date, String phone_number, String username, String password) {
+    public Client(int id, String first_name, String middle_name, String first_surname, String second_surname, String birth_date, String username, String password) {
         this.id = id;
         this.first_name = first_name;
         this.middle_name = middle_name;

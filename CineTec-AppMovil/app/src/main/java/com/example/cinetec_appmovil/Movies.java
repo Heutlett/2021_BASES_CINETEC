@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import com.example.cinetec_appmovil.branchItem.Branch;
 import com.example.cinetec_appmovil.branchItem.BranchAdapter;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 public class Movies extends Fragment {
 
     private FragmentMoviesBinding binding;
-    public static int current_movie_id;
+    public static String current_movie;
 
 
     public Movies() {
@@ -49,6 +50,16 @@ public class Movies extends Fragment {
 
 
         binding = FragmentMoviesBinding.inflate(inflater, container, false);
+
+        ArrayList<Movie> movies = CineTecDatabase.getInstance(getContext()).getMovies();
+
+
+        MovieAdapter arrayAdapter = new MovieAdapter(getContext(), movies);
+
+
+        binding.moviesView.setAdapter(arrayAdapter);
+
+
         return binding.getRoot();
     }
 
@@ -56,11 +67,6 @@ public class Movies extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ArrayList<Movie> movies = CineTecDatabase.getInstance(getContext()).getMovies();
-
-
-        MovieAdapter arrayAdapter = new MovieAdapter(getContext(), movies);
-        binding.moviesView.setAdapter(arrayAdapter);
 
         binding.moviesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -68,7 +74,7 @@ public class Movies extends Fragment {
 
 
 
-                current_movie_id =  ((Movie) binding.moviesView.getItemAtPosition(i)).getId();
+                current_movie=  ((Movie) binding.moviesView.getItemAtPosition(i)).getOriginal_name();
 
                 NavHostFragment.findNavController(Movies.this)
                         .navigate(R.id.action_movies_to_projection);

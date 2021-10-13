@@ -27,6 +27,8 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         super(context, 0, arrayList);
 
         this.movies = arrayList;
+
+
     }
 
 
@@ -40,21 +42,22 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
 
             Movie currentMovie = movies.get(position);
+            System.out.println("POSICION " + position + "    " + currentMovie.getName());
 
             TextView textView1 = currentItemView.findViewById(R.id.name_textview);
             textView1.setText(currentMovie.getName());
 
             TextView textView2 = currentItemView.findViewById(R.id.director_textview);
-            textView2.setText(currentMovie.getDirector());
+            textView2.setText("Director: " +currentMovie.getDirector());
 
             TextView textView3 = currentItemView.findViewById(R.id.length_textview);
-            textView3.setText(currentMovie.getLength());
+            textView3.setText("Duracion: " + currentMovie.getLength());
 
             TextView textView4 = currentItemView.findViewById(R.id.protagonist_textview);
-            textView4.setText(currentMovie.getProtagonists());
+            textView4.setText("Protagonistas: " + currentMovie.getActors());
 
             TextView textView5 = currentItemView.findViewById(R.id.classification_textview);
-            textView5.setText(currentMovie.getClassification());
+            textView5.setText("Clasificacion: " +currentMovie.getCode());
 
             ImageView imageView = currentItemView.findViewById(R.id.movie_imageview);
             imageView.setImageResource(R.drawable.avenger);
