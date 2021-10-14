@@ -35,6 +35,7 @@ export class AddItemComponent implements OnInit {
   first_surname : string;
   second_surname: string;
   birth_date : string;
+  start_date : string;
   phone_number : number;
   username : string;
   password : string;
@@ -384,6 +385,12 @@ export class AddItemComponent implements OnInit {
 
     }
 
+    if(!this.start_date){
+      alert("Por favor indique una fecha de inicio en CineTEC");
+      return false;
+
+    }
+
     if(!this.phone_number){
       alert("Por favor indique un numero de telefono");
       return false;
@@ -422,6 +429,7 @@ export class AddItemComponent implements OnInit {
       "first_surname":this.first_surname,
       "second_surname":this.second_surname,
       "birth_date":this.birth_date,
+      "start_date":this.start_date,
       "phone_number":this.phone_number,
       "username":this.username,
       "password":this.password,
@@ -434,6 +442,7 @@ export class AddItemComponent implements OnInit {
       this.first_surname = "";
       this.second_surname = "";
       this.birth_date = "";
+      this.start_date = "";
       this.phone_number = 0;
       this.username = "";
       this.password = "";

@@ -37,6 +37,10 @@
     <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Fecha de nacimiento : {{item.birth_date}}</label>
     <br *ngIf="in_clients || in_employees">
+    <label *ngIf="in_employees">Fecha de ingreso : {{item.start_date}}</label>
+    <br *ngIf="in_employees">
+    <label *ngIf="in_clients">Número de telefono : {{item.phone_number}}</label>
+    <br *ngIf="in_clients">
     <label *ngIf="in_clients || in_employees">Username : {{item.username}}</label>
     <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Contraseña : {{item.password}}</label>

@@ -42,6 +42,7 @@ export class SignupComponent implements OnInit {
       this.router.navigateByUrl("/home");
       this.globalService.client_id = user.cedula.toString();
       this.globalService.client_name = user.first_name + " " + user.first_surname + " " + user.second_surname;
+      this.globalService.client_phone_number = user.phone_number;
     
     }, (error)=> {
       alert(error.error);

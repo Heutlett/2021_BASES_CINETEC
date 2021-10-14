@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from 'app/services/global.service';
-import { DateTime } from 'luxon';
+//import { DateTime } from 'luxon';
 import * as jsPDF from 'jspdf';
 
 
@@ -22,7 +22,7 @@ export class BillingComponent implements OnInit {
   download:boolean = false;
   consecutive: number;
   id: number;
-  now = DateTime.now().toString()
+  now = new Date().toLocaleString();
 
   @ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
   client_name: string;
@@ -73,7 +73,7 @@ export class BillingComponent implements OnInit {
       .att('xmlns', 'https://tribunet.hacienda.go.cr/docs/esquemas/2016/v4.2/FacturaElectronica_V.4.2.xsd')
         .ele('Clave', '506'+ this.id + this.globalService.client_id+'0010000101' + this.consecutive.toString()+this.security_code.toString()).up()
         .ele('Consecutivo', this.consecutive.toString()).up()
-        .ele( 'Fecha_emision', DateTime.now().toString()).up()
+        .ele( 'Fecha_emision', this.now).up()
         .ele('Emisor')
           .ele('Nombre','CineTEC CR, S.A.').up()
           .ele('Identificacion')
@@ -110,7 +110,7 @@ export class BillingComponent implements OnInit {
           .up()
           .ele('Telefono')
             .ele('Codigo_pais','506').up()
-            .ele('Num_telefono').up()
+            .ele('Num_telefono',this.globalService.client_phone_number).up()
             .ele('Codigo_pais_fax','506').up()
             .ele('Fax').up()
           .up()

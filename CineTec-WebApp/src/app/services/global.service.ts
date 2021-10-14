@@ -12,7 +12,6 @@ import { Observable, Subject } from 'rxjs';
  */
 export class GlobalService {
   
-
   current_branch: string;
   current_date: string;
   current_movie: string;
@@ -28,6 +27,7 @@ export class GlobalService {
   current_address: string;
   client_id: string;
   client_name: string;
+  client_phone_number : string;
   xml: any;
 
   selected_seats = [];
