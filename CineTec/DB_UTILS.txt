@@ -1,7 +1,0 @@
-Database:
-
-host: localhost
-name: cinetecdb
-port: 5432
-username:admin
-password:admin

@@ -2,7 +2,6 @@ form {
     margin-top: 50px;
 }
 
-
 input {
     width: 100%;
     height: 40px;
@@ -11,8 +10,6 @@ input {
     font-size: 17px;
     margin-top: 10px;
 }
-
-
 
 h1 {
     margin-left: 50px;
@@ -31,6 +28,10 @@ app-button {
 .delete-button {
     position: absolute;
     margin-right: px;
+}
+
+.btn{
+    background-color: #a79c08;
 }
 
 option {
