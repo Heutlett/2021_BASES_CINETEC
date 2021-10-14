@@ -25,6 +25,8 @@ export class ProjectionHolderComponent implements OnInit {
   trimmed_list: Projections[];
   projections: Projections[];
   ready = false;
+  projection_ids : number[];
+  room_ids : number[];
 
   constructor(private apiService: ApiService, private globalService : GlobalService) { }
 
@@ -80,6 +82,7 @@ export class ProjectionHolderComponent implements OnInit {
 
     this.apiService.get_day_branch_projections().subscribe((projections_raw)=>{
       this.projections = this.parse_raw_projections(projections_raw)
+      //this.projections = projections_raw;
       this.ready = true;
     })
 
@@ -89,9 +92,12 @@ export class ProjectionHolderComponent implements OnInit {
 
     var added = false;
     this.trimmed_list = [];
+    
 
     projections.forEach(projection => {
       projection.time = [projection.schedule];
+      projection.projection_ids = [projection.id]
+      projection.room_ids = [projection.room]
       added = false;
 
       if(this.trimmed_list != []){
@@ -103,10 +109,10 @@ export class ProjectionHolderComponent implements OnInit {
 
               added = true;
               added_projection.time.push(projection.schedule)
+              added_projection.projection_ids.push(projection.id)
+              added_projection.room_ids.push(projection.room)
             }
-            
           });
-
     }
 
      if (!added){
@@ -116,6 +122,7 @@ export class ProjectionHolderComponent implements OnInit {
       
     });
 
+    console.log(this.trimmed_list);
     return this.trimmed_list;
 
   }

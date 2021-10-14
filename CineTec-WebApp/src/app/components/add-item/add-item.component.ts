@@ -45,7 +45,7 @@ export class AddItemComponent implements OnInit {
   name:string;
   original_name:string;
   length:string;
-  classification_id:string;
+  code:string;
   director:string;
   actorEntered:string;
   actorSelected:string;
@@ -354,7 +354,7 @@ export class AddItemComponent implements OnInit {
   }
 
 
-    //         __________________________________
+    //       __________________________________
   //________/  EMPLOYEES
 
 
@@ -493,7 +493,7 @@ export class AddItemComponent implements OnInit {
       this.new_item = {
         "name":this.name,
         "original_name":this.original_name,
-        "classification_id":this.classification_id,
+        "code":this.code,
         "length":this.length,
         "image":"",
         "director":this.director,
@@ -503,7 +503,7 @@ export class AddItemComponent implements OnInit {
       this.name = "";
       this.original_name = "";
       this.length = "";
-      this.classification_id="";
+      this.code="";
       this.director = "";
       this.actors = [];
     

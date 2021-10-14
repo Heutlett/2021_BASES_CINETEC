@@ -21,6 +21,7 @@ import { SeatRowHolderComponent } from './seat-row-holder/seat-row-holder.compon
 import { NgbdModalComponent } from './modal/modal.component';
 import { AddActorsComponent } from './add-actors/add-actors.component';
 import { MovieRowHolderComponent } from './movie-row-holder/movie-row-holder.component';
+import { MovieTimeButtonComponent } from './movie-time-button/movie-time-button.component';
 
 @NgModule({
     imports: [
@@ -44,7 +45,8 @@ import { MovieRowHolderComponent } from './movie-row-holder/movie-row-holder.com
         SeatRowHolderComponent,
         NgbdModalComponent,
         AddActorsComponent,
-        MovieRowHolderComponent
+        MovieRowHolderComponent,
+        MovieTimeButtonComponent
     ],
     entryComponents: [],
     exports:[ ComponentsComponent,ProjectionComponent,ProjectionHolderComponent, ItemComponent, AddItemComponent, ItemHolderComponent, ButtonComponent,SeatHolderComponent,SeatComponent,MovieRowHolderComponent]

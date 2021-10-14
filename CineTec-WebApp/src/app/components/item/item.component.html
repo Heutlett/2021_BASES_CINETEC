@@ -39,8 +39,8 @@
     <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_employees">Fecha de ingreso : {{item.start_date}}</label>
     <br *ngIf="in_employees">
-    <label *ngIf="in_clients">Número de telefono : {{item.phone_number}}</label>
-    <br *ngIf="in_clients">
+    <label *ngIf="in_clients || in_employees">Número de telefono : {{item.phone_number}}</label>
+    <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Username : {{item.username}}</label>
     <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Contraseña : {{item.password}}</label>
@@ -52,7 +52,7 @@
     <br *ngIf="in_movies">
     <label *ngIf="in_movies">Nombre original: {{item.original_name}}</label>
     <br *ngIf="in_movies">
-    <label *ngIf="in_movies">Clasificacion: {{item.classification_id}}</label>
+    <label *ngIf="in_movies">Clasificacion: {{item.code}}</label>
     <br *ngIf="in_movies">
     <label *ngIf="in_movies">Duracion: {{item.length}}</label>
     <br *ngIf="in_movies">

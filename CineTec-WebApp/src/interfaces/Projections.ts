@@ -9,4 +9,7 @@ export interface Projections{
     price:number;
     room:number;
 
+    projection_ids:number[];
+    room_ids:number[];
+
 }

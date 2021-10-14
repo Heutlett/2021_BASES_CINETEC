@@ -4,7 +4,7 @@
         <p class="text-center text-white">{{Name}}</p>
     </div>
     <div>
-        <button routerLink="/tickets" (click) = "timeSelected(time)" *ngFor = "let time of Time"  type="button" class="btn btn-outline-primary btn-round">{{time}}</button>
+        <app-movie-time-button *ngFor = "let time of Time ; index as i" [Time]="time" [projection_id]="projection_ids[i]" [Room_id]="room_ids[i]" [Name]="Name" [Price]="Price" ></app-movie-time-button>
 
         <div class="container">
             <h4 class="text-white info">Director: {{Director}} </h4>

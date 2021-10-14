@@ -10,6 +10,8 @@ import { Projections } from 'interfaces/Projections';
 export class ProjectionComponent implements OnInit {
 
   @Input() projection: Projections;
+  projection_ids:number[];
+  room_ids:number[];
   Id:number;
   Name:string;
   Time:string[];
@@ -20,34 +22,24 @@ export class ProjectionComponent implements OnInit {
   Director: string;
   Classification: string;
 
-  constructor( private globalService: GlobalService) {}
+  constructor() {}
 
   
   ngOnInit(): void {
 
 
-    this.Id = this.projection.id;
+    //this.Id = this.projection.id;
+    this.projection_ids = this.projection.projection_ids;
+    this.room_ids = this.projection.room_ids;
     this.Name = this.projection.name;
     this.Time = this.projection.time;
     this.Director = this.projection.director;
     this.Classification = this.projection.classification;
     this.Price = this.projection.price;
-    this.Room_id = this.projection.room;
+    //this.Room_id = this.projection.room;
     this.Img  = "assets/img/"  + this.Name + ".jpg";
     this.Actors = this.parse_actors();
    
-  }
-
-  timeSelected(time : string){
-
-    this.globalService.current_movie = this.Name;
-    this.globalService.current_time = time;
-    this.globalService.current_projection = this.Id;
-    console.log("Projeccion selecionada:",this.globalService.current_projection)
-    this.globalService.current_price = this.Price;
-    this.globalService.current_room = this.Room_id;
-    console.log("Sala selecionada:",this.globalService.current_room)
-
   }
 
   parse_actors(){

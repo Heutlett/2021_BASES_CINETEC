@@ -7,6 +7,7 @@ export interface Employee{
     second_surname:string;
     birth_date:string;
     start_date:string;
+    phone_number:string;
     username:string;
     password:string;
 }

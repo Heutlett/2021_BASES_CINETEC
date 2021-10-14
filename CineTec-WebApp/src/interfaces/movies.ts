@@ -1,6 +1,6 @@
 export interface Movie{
     id:number;
-    classification_id:string;
+    code:string;
     director_id:number;
     image:string;
     original_name:string;
