@@ -25,7 +25,6 @@ export class ProjectionComponent implements OnInit {
   
   ngOnInit(): void {
 
-    console.log(this.projection);
 
     this.Id = this.projection.id;
     this.Name = this.projection.name;
@@ -44,8 +43,10 @@ export class ProjectionComponent implements OnInit {
     this.globalService.current_movie = this.Name;
     this.globalService.current_time = time;
     this.globalService.current_projection = this.Id;
+    console.log("Projeccion selecionada:",this.globalService.current_projection)
     this.globalService.current_price = this.Price;
     this.globalService.current_room = this.Room_id;
+    console.log("Sala selecionada:",this.globalService.current_room)
 
   }
 

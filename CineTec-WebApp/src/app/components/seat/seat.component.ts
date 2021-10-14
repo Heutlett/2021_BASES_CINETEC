@@ -17,9 +17,6 @@ export class SeatComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("mi text", this.text)
-    console.log("mi status", this.status)
-
     if (this.status == "COVID"){
       this.color = "grey";
       this.disabled = true;

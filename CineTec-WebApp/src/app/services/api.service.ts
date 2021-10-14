@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpHeaders} from '@angular/common/http';
+import {HttpClient,HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Projection } from 'interfaces/Projection';
 import { Branch } from '../../interfaces/Branch';
@@ -358,12 +358,16 @@ export class ApiService {
   //_______/ PUT
 
 
-  put_seat_bought(seat:Seat): Observable<Seat>{
-    const url = `${this.apiURL + "byId?projection_id=" + seat.projection_id+"&number="+seat.number}`;
-    const req = {
-      status:"TAKEN"
+  put_seat_bought(seat:Seat): Observable<any>{
+
+    const url = `${this.apiURL +"/Seats/" + "byId?projection_id="}${seat.projection_id.toString()}&number=${seat.number.toString()}`;
+    console.log(url);
+    const body = {
+
+      status : "TAKEN"
+
     }
-    return this.http.put<Seat>(url,req,httpOptions)
+    return this.http.put<any>(url,body,httpOptions)
   }
 
   /**

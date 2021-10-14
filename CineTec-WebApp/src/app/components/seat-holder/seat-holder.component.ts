@@ -33,13 +33,12 @@ export class SeatHolderComponent implements OnInit {
       this.update()
     });
 
-    console.log("AQUI",this.room);
     this.selectable_amount = this.globalService.current_tickets;
     this.columns = this.room.column_quantity;
     this.rows = this.room.row_quantity;
     this.globalService.current_columns = this.columns;
     this.globalService.current_rows = this.rows;
-    this.width = 100 * this.columns;  
+    this.width = 70 * this.columns;  
 
     }
 

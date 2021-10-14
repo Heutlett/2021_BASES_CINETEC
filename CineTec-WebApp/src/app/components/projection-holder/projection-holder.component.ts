@@ -21,7 +21,6 @@ export class ProjectionHolderComponent implements OnInit {
   name: string;
   dates:Dates;
   date = "10/24/21";
-  //projections$: Observable<Projections[]>;
   subscription_name: Subscription;
   trimmed_list: Projections[];
   projections: Projections[];
@@ -34,7 +33,6 @@ export class ProjectionHolderComponent implements OnInit {
     this.globalService.current_date = this.date;
 
     this.apiService.get_dates().subscribe((res)=>{
-      console.log("fechas son : ",res)
       this.dates = res
       this.date_init()
     },(error)=> {
@@ -48,7 +46,6 @@ export class ProjectionHolderComponent implements OnInit {
   update():void{
 
     this.apiService.get_dates().subscribe((res)=>{
-      console.log("fechas son : ",res)
       this.dates = res
       this.update_proj();
     },(error)=> {
@@ -82,9 +79,7 @@ export class ProjectionHolderComponent implements OnInit {
   update_proj(){
 
     this.apiService.get_day_branch_projections().subscribe((projections_raw)=>{
-      console.log(projections_raw)
       this.projections = this.parse_raw_projections(projections_raw)
-      console.log(this.projections)
       this.ready = true;
     })
 
@@ -104,11 +99,9 @@ export class ProjectionHolderComponent implements OnInit {
 
           this.trimmed_list.forEach(added_projection => {
 
-            console.log(projection.name , added_projection.name);
             if(projection.name == added_projection.name){
 
               added = true;
-              //console.log("trying to push new time",projection.schedule)
               added_projection.time.push(projection.schedule)
             }
             
@@ -117,7 +110,6 @@ export class ProjectionHolderComponent implements OnInit {
     }
 
      if (!added){
-      //console.log("pushing" , projection);
       this.trimmed_list.push(projection);
 
      }

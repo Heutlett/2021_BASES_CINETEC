@@ -40,9 +40,9 @@ export class NgbdModalContent implements OnInit {
             const seat_interface = {
                 projection_id : seat.projection_id,
                 number : seat.text,
-                status : seat.status,
+                status : "TAKEN"
             }
-            this.apiService.put_seat_bought(seat_interface);
+            this.apiService.put_seat_bought(seat_interface).subscribe();
         });
     }
 }

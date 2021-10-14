@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
 
     this.apiService.get_movies().subscribe((movies)=>{
       this.movies = movies
-      console.log(movies);
       this.update();
     });
 
@@ -29,8 +28,6 @@ export class HomeComponent implements OnInit {
   update(){
 
     this.rows = Math.floor(this.movies.length/3) +1 ;
-    console.log(this.movies);
-    console.log(this.rows);
     this.ready = true;
 
   }
