@@ -2,18 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from 'app/services/global.service';
 
+
 @Component({
   selector: 'app-tickets',
   templateUrl: './tickets.component.html',
   styleUrls: ['./tickets.component.css']
 })
+
+/**
+ * Pantalla de seleccion de ticketes 
+ */
 export class TicketsComponent implements OnInit {
 
   Img :string;
   Name: string;
   Precio : number;
-  Cantidad = 1;
   Subtotal : number;
+  Cantidad = 1;
 
   constructor(private globalService : GlobalService, private router: Router) { }
 
@@ -26,6 +31,9 @@ export class TicketsComponent implements OnInit {
 
   }
   
+  /**
+   * Aumenta la cantidad de ticketes seleccionados
+   */
   add(){
 
     this.Cantidad ++;
@@ -33,13 +41,19 @@ export class TicketsComponent implements OnInit {
 
   }
 
+   /**
+   * Disminuye la cantidad de ticketes seleccionados
+   */
   delete(){
 
     this.Cantidad --;
     this.Subtotal = this.Precio * this.Cantidad;
 
   }
-
+  
+  /**
+   * Confirma la cantidad de entradas que se van a comprar
+   */
   seats(){
 
     this.globalService.current_tickets = this.Cantidad;

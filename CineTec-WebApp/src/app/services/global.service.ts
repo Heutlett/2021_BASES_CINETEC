@@ -29,18 +29,16 @@ export class GlobalService {
   client_name: string;
   client_phone_number : string;
   xml: any;
+  covid:number;
 
   selected_seats = [];
 
-  
   private name = new Subject<any>();
   private showAddItem : boolean = false;
   private showEditItem : boolean = false;
   private add = new Subject<any>();
   private edit = new Subject<any>();
   private current_item : any;
-
-  public covid:number;
 
 
   constructor() { }
@@ -52,11 +50,9 @@ export class GlobalService {
   current_branch_check():Observable<any> {
     this.name.next(this.current_branch);
     return this.name.asObservable();
-
   }
 
-
-    /**
+  /**
    * Funcion que define si se muestra el componente add-item
    */
      toggleAddItem(): void {
@@ -82,7 +78,7 @@ export class GlobalService {
   
     /**
      * Funcion que se ejcuta cuando el boton de edicion es presionado. 
-     * Define el valor del booleano que dicat si se muestran o no las opciones de edicion de add-tiem
+     * Define el valor del booleano que dicta si se muestran o no las opciones de edicion de add-tiem
      */
     toggleEditItem(): void {
       this.showAddItem = true;
@@ -99,72 +95,68 @@ export class GlobalService {
       this.add.next(this.showAddItem);
       this.showEditItem = false;
       this.edit.next(this.showEditItem);
-  
     }
 
-
+    /**
+     * Funcion para actualizar current_item
+     * @param item nuevo valor para current_item
+     */
     setCurrentItem(item:any) : void{
-
       this.current_item = item;
     }
 
+    /**
+     * GET de current_item
+     * @returns current_item
+     */
     getCurrentItem() : any{
       return this.current_item;
 
     }
 
+    /**
+     * Funcion que seleciona un nuevo asiento. Si ya se llega al maximo 
+     * cambia el estado del primer asiento selecionado a libre
+     * @param seat El asiento seleccionado
+     */
     seatSelected(seat){
 
-      console.log(this.current_tickets);
-
-      console.log(this.selected_seats.length)
-
       if (this.selected_seats.length > this.current_tickets - 1 ){
-
         this.selected_seats.push(seat);
-
         this.selected_seats[0].color = "white";
-
         this.selected_seats.shift();
-
       }
 
       else{
-
         this.selected_seats.push(seat);
-
       }
-
     }
 
+    /**
+     * Funcion que limpia la seleccion de asientos
+     */
     clear_seats(){
 
       this.selected_seats = [];
     }
 
+    /**
+     * Funcion que transforma los asiento selecionados en un string
+     * @returns String con los asientos seleccionados
+     */
     seats_str(){
 
       var numbers = [];
-
       for (var seat of this.selected_seats) {
-
         numbers.push(seat.text);
-
       }
 
       var res = "";
-
       for (var seat_num of numbers){
-
         res = res + seat_num + ",";
-
       }
 
       res = res.slice(0,-1);
-      
       return res;
-
-
       }
-
 }

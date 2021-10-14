@@ -25,9 +25,7 @@ export class SignupComponent implements OnInit {
 
    /**
    * Esta funcion valida si las entradas del usuario coinciden con alguno de los usuarios en base de datos
-   * y redirecciona de manera acorde. Si el usuario ingresa un nombre de usuario y contraseña que 
-   * se encuentren en la base de datos le ingresa como cliente. 
-   * Si el usuario es admin le redirecciona al la pagina de administrador
+   * y redirecciona de manera acorde
    * @returns void
    */
   onSubmit(): void {
@@ -38,19 +36,16 @@ export class SignupComponent implements OnInit {
     }
 
     this.apiService.get_client(user).subscribe((user)=> {
-      
       this.router.navigateByUrl("/home");
       this.globalService.client_id = user.cedula.toString();
       this.globalService.client_name = user.first_name + " " + user.first_surname + " " + user.second_surname;
-      this.globalService.client_phone_number = user.phone_number;
-    
+      this.globalService.client_phone_number = user.phone_number;  
     }, (error)=> {
       alert(error.error);
     });
 
     this.username = '';
     this.password = ''; 
-
-
   }
+
 }

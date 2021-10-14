@@ -11,26 +11,28 @@ import { Seat } from 'interfaces/Seat';
   templateUrl: './seat-holder.component.html',
   styleUrls: ['./seat-holder.component.css']
 })
+
+/**
+ * Componente especializado para la creacion y mantenimiento de asientos 
+ */
 export class SeatHolderComponent implements OnInit {
 
   seats : Seat[];
   selectable_amount : number;
   @Input() room: Room;
-  ready = false;
   rows: number;
   columns: number;
   width : number;
   width_str : string;
+  ready = false;
   
-
-
   constructor(private apiService : ApiService , private globalService : GlobalService, private router : Router) { }
 
   ngOnInit(): void {
 
     this.apiService.get_projection_seats().subscribe((seats)=>{
-      this.seats = seats
-      this.update()
+      this.seats = seats;
+      this.ready = true;
     });
 
     this.selectable_amount = this.globalService.current_tickets;
@@ -42,17 +44,12 @@ export class SeatHolderComponent implements OnInit {
 
     }
 
-    update(){
-
-      this.ready = true;
-
-    }
-
+    /**
+     * Funcion que se ejecuta al presionar atras en la pagina de asientos
+     */
     back(){
-
       this.globalService.clear_seats();
       this.router.navigateByUrl('/tickets');
-
     }
 
 }

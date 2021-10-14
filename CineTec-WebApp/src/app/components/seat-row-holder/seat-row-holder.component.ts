@@ -8,16 +8,18 @@ import { Seat } from 'interfaces/Seat';
   templateUrl: './seat-row-holder.component.html',
   styleUrls: ['./seat-row-holder.component.css']
 })
+
+/**
+ * Componente de utilidad para mostrar filas de asientos
+ */
 export class SeatRowHolderComponent implements OnInit {
 
   @Input() row : number;
   @Input() all_seats : Seat[];
   seats : Seat[];
-  ready = false;
-
   start :number;
   end : number;
-  
+  ready = false;
 
   constructor(private globalService: GlobalService) { }
 

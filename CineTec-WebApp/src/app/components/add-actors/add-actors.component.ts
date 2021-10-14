@@ -5,6 +5,10 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './add-actors.component.html',
   styleUrls: ['./add-actors.component.css']
 })
+
+/**
+ * Componente input para agregar actores
+ */
 export class AddActorsComponent implements OnInit {
 
   @Input() actor:string;
@@ -12,7 +16,6 @@ export class AddActorsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("Entraaa");
   }
 
 }

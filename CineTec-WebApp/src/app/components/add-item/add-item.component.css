@@ -1,5 +1,4 @@
 form {
-
     margin-top: 50px;
 }
 
@@ -16,48 +15,34 @@ input {
 
 
 h1 {
-
     margin-left: 50px;
-
 }
 
 app-button {
-
     margin-left: 10px;
 }
 
-
 .add-button {
-
     position: absolute;
     margin-left: 40%;
     margin: 50px;
-
-
 }
 
 .delete-button {
-    
     position: absolute;
     margin-right: px;
-
 }
 
-
 option {
-
     width: 100%;
     height: 40px;
     margin: -13px;
     padding: 3px 7px;
     font-size: 20px;
     font-weight: bold;
-
-
 }
 
 .label-selected {
-
     margin-right: 20px;
     font-weight: bold;
     color: white;

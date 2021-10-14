@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './listing.component.html',
   styleUrls: ['./listing.component.css']
 })
+
+/**
+ * Pagina que muestra las proyecciones para una sucursal y dia especificos
+ */
 export class ListingComponent implements OnInit {
 
   constructor() { }

@@ -5,6 +5,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css']
 })
+
+/**
+ * Componente boton para utilidades
+ */
 export class ButtonComponent implements OnInit {
 
   @Input() text: string;

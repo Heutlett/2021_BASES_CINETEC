@@ -1,5 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-components',

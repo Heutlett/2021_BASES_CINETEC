@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
 import { GlobalService } from 'app/services/global.service';
 import { Projections } from 'interfaces/Projections';
@@ -13,8 +13,6 @@ import { Dates } from 'interfaces/Dates';
 
 /**
  * Este componente esta diseñado especificamente para mostrar una serie de pelicuas abstraidos
- * cuenta con las funciones necesarias para editar, agregar o eliminar segun los items emitan
- * o sus propios componentes registren la interaccion del usuario (boton)
  */
 export class ProjectionHolderComponent implements OnInit {
 
@@ -33,7 +31,6 @@ export class ProjectionHolderComponent implements OnInit {
   ngOnInit(): void {
 
     this.globalService.current_date = this.date;
-
     this.apiService.get_dates().subscribe((res)=>{
       this.dates = res
       this.date_init()
@@ -45,6 +42,9 @@ export class ProjectionHolderComponent implements OnInit {
 
   }
 
+  /**
+   * Actualiza la interfaz con las fechas adquiridas asincronicamente de la base
+   */
   update():void{
 
     this.apiService.get_dates().subscribe((res)=>{
@@ -56,11 +56,13 @@ export class ProjectionHolderComponent implements OnInit {
 
   }
 
+  /**
+   * Inicializacion de la fecha
+   */
   date_init() : void {
 
     this.date = this.dates[0];
     this.globalService.current_date = this.date;
-
     this.subscription_name = this.globalService.current_branch_check().subscribe((name)=>{
       this.name = name
       this.update()
@@ -69,6 +71,10 @@ export class ProjectionHolderComponent implements OnInit {
 
   }
 
+  /**
+   * Funcion que se ejecuta cuando una fecha es escogida
+   * @param date fecha escogida
+   */
   dateSelected(date):void{
 
     this.ready = false;
@@ -78,22 +84,28 @@ export class ProjectionHolderComponent implements OnInit {
 
   }
 
+  /**
+   * Actualiza la interfaz con las proyecciones adquiridas asincronicamente de la base
+   */
   update_proj(){
 
     this.apiService.get_day_branch_projections().subscribe((projections_raw)=>{
       this.projections = this.parse_raw_projections(projections_raw)
-      //this.projections = projections_raw;
       this.ready = true;
     })
 
   }
 
+  /**
+   * Funcion que acomoda los datos de la base para poder ser desplegados en interfaz
+   * @param projections projecciones directas de base
+   * @returns projecciones con los datos necesarios para projeccion-component
+   */
   parse_raw_projections(projections){
 
     var added = false;
     this.trimmed_list = [];
     
-
     projections.forEach(projection => {
       projection.time = [projection.schedule];
       projection.projection_ids = [projection.id]
@@ -101,7 +113,6 @@ export class ProjectionHolderComponent implements OnInit {
       added = false;
 
       if(this.trimmed_list != []){
-
 
           this.trimmed_list.forEach(added_projection => {
 
@@ -112,7 +123,9 @@ export class ProjectionHolderComponent implements OnInit {
               added_projection.projection_ids.push(projection.id)
               added_projection.room_ids.push(projection.room)
             }
+
           });
+
     }
 
      if (!added){
@@ -122,7 +135,6 @@ export class ProjectionHolderComponent implements OnInit {
       
     });
 
-    console.log(this.trimmed_list);
     return this.trimmed_list;
 
   }

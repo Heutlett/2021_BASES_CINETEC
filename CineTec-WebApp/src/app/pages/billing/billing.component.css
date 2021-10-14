@@ -1,29 +1,20 @@
 .container {
-    
     width: 28%;
     background-color: aliceblue;
-
 }
 
-
-
 .tittle {
-
     padding-top: 200px;
     padding-bottom: 100px;
     padding-left: 100px;
-
 }
 
 .button_cont{
-
     background-color: transparent;
     width: 28%;
     padding-top: 20px;
     padding-bottom: 100px;
-
 }
-
 
 .bill{
     display: none;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { GlobalService } from 'app/services/global.service';
 
 @Component({
@@ -6,7 +6,12 @@ import { GlobalService } from 'app/services/global.service';
   templateUrl: './seat.component.html',
   styleUrls: ['./seat.component.css']
 })
+
+/**
+ * Componente que abstrae los asientos para su despligue en UI
+ */
 export class SeatComponent implements OnInit {
+
   @Input() text: number;
   @Input() status: string;
   @Input() projection_id: number;
@@ -33,11 +38,12 @@ export class SeatComponent implements OnInit {
 
   }
 
+  /**
+   * Funcion que se ejecuta cuando un asiento es seleccionado
+   */
   onClick(){
-    
       this.color  = "#16D6DD"
       this.globalService.seatSelected(this);
-
   }
 
 }

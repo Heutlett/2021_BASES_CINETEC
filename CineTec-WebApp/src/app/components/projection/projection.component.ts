@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GlobalService } from 'app/services/global.service';
 import { Projections } from 'interfaces/Projections';
 
 @Component({
@@ -7,6 +6,10 @@ import { Projections } from 'interfaces/Projections';
   templateUrl: './projection.component.html',
   styleUrls: ['./projection.component.css']
 })
+
+/**
+ * Componete que abstrae los datos de una proyeccion para ser generada iterativamente
+ */
 export class ProjectionComponent implements OnInit {
 
   @Input() projection: Projections;
@@ -27,8 +30,6 @@ export class ProjectionComponent implements OnInit {
   
   ngOnInit(): void {
 
-
-    //this.Id = this.projection.id;
     this.projection_ids = this.projection.projection_ids;
     this.room_ids = this.projection.room_ids;
     this.Name = this.projection.name;
@@ -36,12 +37,15 @@ export class ProjectionComponent implements OnInit {
     this.Director = this.projection.director;
     this.Classification = this.projection.classification;
     this.Price = this.projection.price;
-    //this.Room_id = this.projection.room;
     this.Img  = "assets/img/"  + this.Name + ".jpg";
     this.Actors = this.parse_actors();
    
   }
 
+  /**
+   * Funcion que toma todos los actores del Json y los parsea a string
+   * @returns string con los actores
+   */
   parse_actors(){
 
     var str = "";

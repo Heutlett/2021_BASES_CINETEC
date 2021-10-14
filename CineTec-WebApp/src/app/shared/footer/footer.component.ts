@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
 })
 
 /**
- * Componente footer estandar
+ * Componente footer estandar para la pagina web
  */
 export class FooterComponent implements OnInit {
     test : Date = new Date();

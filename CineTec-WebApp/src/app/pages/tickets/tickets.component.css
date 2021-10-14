@@ -11,13 +11,11 @@
 }
 
 .container{
-
     border: 2px solid rgb(122, 122, 122);
     width: 50%;
     height: 100%;
     position: relative;
     left: 0%;
-
 }
 
 .text-center{
@@ -40,15 +38,12 @@
     position: relative;
     left: 23%;
     transform: translate(-23%);
-
 }
-
 
 .btn-2{
     position: relative;
     left: 37%;
     transform: translate(-37%);
-
 }
 
 .text-amount{
@@ -57,5 +52,4 @@
     left: 40%;
     transform: translate(-40%,-80%);
     padding-top: 20px;
-
 }

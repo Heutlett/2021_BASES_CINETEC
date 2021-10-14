@@ -1,5 +1,4 @@
 import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
-//import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import { GlobalService } from '../../services/global.service';
 
@@ -18,7 +17,6 @@ import { GlobalService } from '../../services/global.service';
 export class ItemComponent implements OnInit {
   @Input() item: any;
   @Output() onEditItem: EventEmitter<any> = new EventEmitter()
-  //faEdit = faEdit;
 
   in_clients = false;
   in_employees = false;
@@ -61,10 +59,7 @@ export class ItemComponent implements OnInit {
 
    }
 
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
 
   /**
    * Esta funcion se ejecuta cuando a un item especifico se le selecciona la opcion de edicion

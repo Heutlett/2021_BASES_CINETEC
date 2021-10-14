@@ -7,6 +7,10 @@ import { GlobalService } from 'app/services/global.service';
   templateUrl: './movie-time-button.component.html',
   styleUrls: ['./movie-time-button.component.css']
 })
+
+/**
+ * Componente boton de utilidad para la seleccion de proyecciones 
+ */
 export class MovieTimeButtonComponent implements OnInit {
 
   @Input() Time: string;
@@ -20,18 +24,17 @@ export class MovieTimeButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  /**
+   * Funcion que se ejecuta al seleccionar una proyeccion
+   */
   onClick(){
 
     this.globalService.current_movie = this.Name;
     this.globalService.current_time = this.Time;
     this.globalService.current_projection = this.projection_id;
-    console.log("Projeccion selecionada:",this.globalService.current_projection)
     this.globalService.current_price = this.Price;
     this.globalService.current_room = this.Room_id;
-    console.log("Sala selecionada:",this.globalService.current_room)
     this.router.navigateByUrl("/tickets")
-
 
   }
 

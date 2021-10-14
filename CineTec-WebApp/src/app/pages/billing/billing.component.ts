@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from 'app/services/global.service';
-//import { DateTime } from 'luxon';
 import * as jsPDF from 'jspdf';
 
 
@@ -10,6 +9,10 @@ import * as jsPDF from 'jspdf';
   templateUrl: './billing.component.html',
   styleUrls: ['./billing.component.css']
 })
+
+/**
+ * Pagina que muestra la factura al usuario despues de comprados los asientos
+ */
 export class BillingComponent implements OnInit {
 
   location:string;
@@ -23,7 +26,6 @@ export class BillingComponent implements OnInit {
   consecutive: number;
   id: number;
   now = new Date().toLocaleString();
-
   @ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
   client_name: string;
   client_id: string;
@@ -48,11 +50,15 @@ export class BillingComponent implements OnInit {
     this.tickets_amount = this.globalService.current_tickets;
     this.tax = this.globalService.current_subtotal*0.13;
     this.full_address = this.globalService.current_branch + this.globalService.current_address;
-
     this.security_code = Math.floor(Math.random() * 10000000000);
     this.consecutive = Math.floor(Math.random() * 10000000000);
     this.id = Math.floor(Math.random() * 1000000000);
 
+    /**
+     * Funcion que crea un string aleatorio
+     * @param length largo del string
+     * @returns un string aleatorio
+     */
     function makeid(length) {
       var result           = '';
       var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -67,6 +73,10 @@ export class BillingComponent implements OnInit {
   var signature  = makeid(500);
   var certificate  = makeid(1500);
   
+
+  //       _______________________________________
+  //______/Bloque de creacion del XML de hacienda
+
     var builder = require('xmlbuilder');
  
     var xml = builder.create('FacturaElectronica', {version: '1.0', encoding: 'UTF-8', standalone: false})
@@ -183,32 +193,20 @@ export class BillingComponent implements OnInit {
         spacebeforeslash: ''
       });
     
-    console.log(xml);
-
     this.globalService.xml = xml;
 
   }
 
-
-
+  /**
+   * Funcion que se ejecuta para llevar a la pagina de visualizacion del XML
+   */
   show_xml(){
-
     this.router.navigateByUrl("/xml")
-
   }
 
-
-
-  view_pdf(){
-
-    this.router.navigateByUrl("/pdf")
-
-  }
-
-  
-
-
-
+  /**
+   * Funcion que crea y descarga el PDF de la factura
+   */
   public downloadAsPDF() {
 
     const doc = new jsPDF('p', 'pt', 'letter');
@@ -226,10 +224,8 @@ export class BillingComponent implements OnInit {
       'elementHandlers': specialElementHandlers
     });
 
-
     doc.save('Factura_Electronica_CineTec_' + this.movie + '.pdf');
 
   }
-
 
 }

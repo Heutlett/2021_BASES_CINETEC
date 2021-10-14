@@ -1,5 +1,4 @@
-
-import { Component, OnInit,Output, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import {Router} from '@angular/router';
 import { GlobalService } from '../../services/global.service';
@@ -19,17 +18,14 @@ import { Subscription } from 'rxjs';
  */
 export class ItemHolderComponent implements OnInit {
 
-
   @Input() items:any[];
-
   titulo:String;
   url:String;
-
   suscription: Subscription;
   showAddItem:boolean;
   showEditItem: boolean;
 
-  constructor(private apiService: ApiService , private router:Router, private global : GlobalService) { }
+  constructor(private router:Router, private global : GlobalService) { }
 
   ngOnInit(): void {
     this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
@@ -65,18 +61,12 @@ export class ItemHolderComponent implements OnInit {
     }
   }
 
-
   /**
-   * funcion que se ejecuta al seleccionar la edicion de un item
+   * Funcion que se ejecuta al seleccionar la edicion de un item
    * @param item el item seleccionado
    */
   editItemClicked(item:any){
     this.global.toggleEditItem(); 
   }
-
-
-
-
-
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Projection } from 'interfaces/Projection';
 import { Branch } from '../../interfaces/Branch';
@@ -32,7 +32,7 @@ const httpOptions = {
  */
 export class ApiService {
 
-  private apiURL = '/api/'; 
+  private apiURL = '/api/'; //URL del proxy
    
   constructor(private http:HttpClient, private globalService : GlobalService, private router : Router) { }
 
@@ -42,7 +42,7 @@ export class ApiService {
 
   /**
    * Funcion GET para un solo cliente
-   * @returns JSON con todos los clientes del empleado
+   * @returns JSON con todos los datos del cliente
    */
   get_client(user):Observable<Client>{
     const url = `${this.apiURL + "Clients/LogIn?username="+user.username+"&password="+user.password}`;
@@ -59,7 +59,7 @@ export class ApiService {
   }
 
   /**
-   * Funcion GET para todas las fechas donde hay una proyeccion para una sucursal en especifo
+   * Funcion GET para todas las fechas donde hay una proyeccion para una sucursal en especifico
    * @returns JSON con todas las fechas
    */
   get_dates():Observable<Dates>{
@@ -68,7 +68,7 @@ export class ApiService {
   }
 
   /**
-   * Funcion GET para todas la informacion de proyecciones y su peliculas para una sucursal y dia especificos
+   * Funcion GET para toda la informacion de proyecciones y su peliculas para una sucursal y dia especificos
    * @returns JSON en formato de Projections[]
    */
    get_day_branch_projections():Observable<Projections[]>{
@@ -93,8 +93,8 @@ export class ApiService {
   }
 
  /**
-   * Funcion GET para todas las sucursales
-   * @returns JSON con todas las sucursales
+   * Funcion GET para todos los asientos
+   * @returns JSON con todas los asientos
    */
   get_seats(): Observable<Seat[]> {
     return this.http.get<Seat[]>(this.apiURL + "Seat");
@@ -108,6 +108,10 @@ export class ApiService {
     return this.http.get<Room>(this.apiURL + "Rooms/" + this.globalService.current_room);
   }
 
+  /**
+   * Funcion GET para todos los asientos de una proyeccion
+   * @returns JSON con todos los asientos de una proyeccion
+   */
   get_projection_seats(): Observable<Seat[]>{
     return this.http.get<Seat[]>(this.apiURL + "Projections/seats/" + this.globalService.current_projection);
   }
@@ -164,7 +168,6 @@ export class ApiService {
   //        ___________________
   //_______/ POST
 
-
   /**
    * Funcion POST general. Dependiendo del url hace el post especifico
    * @param item Un item de cualquier tipo que contine datos para enviar al API
@@ -201,7 +204,7 @@ export class ApiService {
   }
 
   /**
-   * Funcion POST para un branches 
+   * Funcion POST para un branch 
    * @param branch sucursal a crear
    * @returns repuesta del API
    */
@@ -353,11 +356,14 @@ export class ApiService {
     }
         
       
-
-   //        ______________________
+  //        ______________________
   //_______/ PUT
 
-
+  /**
+   * Funcion PUT para actualizar los asientos comprados en la base de datos
+   * @param seat Los datos del asiento comprado
+   * @returns repuesta del api
+   */
   put_seat_bought(seat:Seat): Observable<any>{
 
     const url = `${this.apiURL +"/Seats/" + "byId?projection_id="}${seat.projection_id.toString()}&number=${seat.number.toString()}`;
@@ -459,6 +465,5 @@ export class ApiService {
     const url = `${this.apiURL + "Movies/byId" }/${this.globalService.getCurrentItem().id}`;
     return this.http.put<Movie>(url, movie, httpOptions); 
   }
-
 
 }

@@ -8,7 +8,12 @@ import { ApiService } from 'app/services/api.service';
     selector: 'app-modal-content',
     templateUrl: './modal.data.html'
 })
+
+/**
+ * Componente que posee la informacion del modal de la factura
+ */
 export class NgbdModalContent implements OnInit {
+
     @Input() name;
     location:string;
     movie:string;
@@ -31,6 +36,9 @@ export class NgbdModalContent implements OnInit {
 
     }
 
+    /**
+     * Funcion que se ejecuta cuando se confirma la seleccion de compra
+     */
     confirmed(){
 
         this.globalService.current_bill = this;
@@ -51,6 +59,10 @@ export class NgbdModalContent implements OnInit {
     selector: 'app-modal-component',
     templateUrl: './modal.component.html'
 })
+
+/**
+ * Componente de control del modal
+ */
 export class NgbdModalComponent {
     constructor(private modalService: NgbModal, private globalService : GlobalService) {}
     open() {
@@ -58,7 +70,6 @@ export class NgbdModalComponent {
         if(this.globalService.selected_seats.length == this.globalService.current_tickets){
             const modalRef = this.modalService.open(NgbdModalContent);
             modalRef.componentInstance.name = 'World';
-    
         }
         else{
             alert("Aun no ha selecionado todos sus asientos!")

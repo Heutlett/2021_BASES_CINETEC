@@ -6,6 +6,10 @@ import { GlobalService } from 'app/services/global.service';
   templateUrl: './xml.component.html',
   styleUrls: ['./xml.component.css']
 })
+
+/**
+ * Pagina para la visualizacion de XML de hacienda
+ */
 export class XmlComponent implements OnInit {
 
   xml:string;
