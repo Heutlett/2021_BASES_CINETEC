@@ -81,13 +81,68 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         textView5.setText("Clasificacion: " +currentMovie.getCode());
 
         ImageView imageView = currentItemView.findViewById(R.id.movie_imageview);
-        imageView.setImageResource(R.drawable.avenger);
-
-
+        imageView.setImageResource(getImage(currentMovie.getName()));
 
 
 
         // then return the recyclable view
         return currentItemView;
+    }
+
+
+    public int getImage(String movie_name)
+    {
+
+        if(movie_name.equals("Venom Carnage Liberado"))
+        {
+            return R.drawable.venomlettherebecarnage;
+        }
+        if(movie_name.equals("Regreso al futuro"))
+        {
+            return R.drawable.backtothefuture;
+        }
+
+        if(movie_name.equals("Encontrando a Nemo"))
+        {
+            return R.drawable.findingnemo;
+        }
+
+        if(movie_name.equals("El Rey Leon")){
+            return R.drawable.thelionking;
+        }
+
+        if(movie_name.equals("Moonlight")){
+            return R.drawable.moonlight;
+        }
+        if(movie_name.equals("La Matrix"))
+        {
+            return R.drawable.thematrix;
+        }
+        if(movie_name.equals("Mad max Furia en la carretera"))
+        {
+            return R.drawable.madmaxfuryroad;
+        }
+        if(movie_name.equals("El viaje de Chihiro"))
+        {
+            return R.drawable.spiritedaway;
+        }
+        if(movie_name.equals("Parasitos"))
+        {
+            return R.drawable.parasite;
+        }
+        if(movie_name.equals("Rogue One"))
+        {
+            return R.drawable.rogueone;
+        }
+        return R.drawable.placeholder;
+
+
+
+
+
+
+
+
+
     }
 }
