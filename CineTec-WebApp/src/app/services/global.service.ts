@@ -28,6 +28,10 @@ export class GlobalService {
   client_id: string;
   client_name: string;
   client_phone_number : string;
+  b_date: string;
+  client_age: string;
+  client_username: string;
+  client_password: string;
   xml: any;
   covid:number;
 
@@ -39,6 +43,7 @@ export class GlobalService {
   private add = new Subject<any>();
   private edit = new Subject<any>();
   private current_item : any;
+    
 
 
   constructor() { }

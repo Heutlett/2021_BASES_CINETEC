@@ -5,6 +5,7 @@ export interface Client{
     first_surname:string;
     second_surname:string;
     birth_date:string;
+    age:number;
     phone_number:string;
     username:string;
     password:string;

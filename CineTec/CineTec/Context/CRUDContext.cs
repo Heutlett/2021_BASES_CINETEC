@@ -93,7 +93,7 @@ namespace CineTec.Context
         {
             Client user = Clients.Where(x => x.username == username && x.password == password).FirstOrDefault();
             if (user == null) return null;
-            return GetEmployee_select(user.cedula);
+            return GetClient_select(user.cedula);
         }
 
 

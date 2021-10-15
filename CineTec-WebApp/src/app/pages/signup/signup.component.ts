@@ -36,10 +36,16 @@ export class SignupComponent implements OnInit {
     }
 
     this.apiService.get_client(user).subscribe((user)=> {
+      user = user[0]
       this.router.navigateByUrl("/home");
+      console.log(user)
       this.globalService.client_id = user.cedula.toString();
       this.globalService.client_name = user.first_name + " " + user.first_surname + " " + user.second_surname;
       this.globalService.client_phone_number = user.phone_number;  
+      this.globalService.client_age = user.age.toString();
+      this.globalService.b_date = user.birth_date;
+      this.globalService.client_username = user.username;
+      this.globalService.client_password = user.password;
     }, (error)=> {
       alert(error.error);
     });
