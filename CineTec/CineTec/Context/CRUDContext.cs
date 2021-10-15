@@ -1162,7 +1162,7 @@ namespace CineTec.Context
             return ""; // Se logra agregar.
         }
 
-
+        // Convierte una matriz en un array con los elementos en orden.
         private int[] convert_matriz_to_array(int[,] mat, int row, int column)
         {
 
@@ -1183,6 +1183,7 @@ namespace CineTec.Context
             return array;
         }
 
+        // Algoritmo para generar los asientos con restricción por covid de un aforo del 25%
         private int[,] covid25(int[,] matriz, int row, int column) {
 
             int i = 0;
@@ -1218,6 +1219,7 @@ namespace CineTec.Context
             return matriz;
         }
 
+        // Algoritmo para generar los asientos con restricción por covid de un aforo del 50%
         private int[,] covid50(int[,] matriz, int row, int column)
         {
 
@@ -1251,6 +1253,8 @@ namespace CineTec.Context
             return matriz;
         }
 
+        // Convierte todos los elementos de una matriz en unos
+        
         private int[,] mat_ones(int[,] matriz, int row, int column)
         {
 
@@ -1265,6 +1269,8 @@ namespace CineTec.Context
             return matriz;
 
         }
+
+        // Algoritmo para generar los asientos con restricción por covid de un aforo del 75%
 
         private int[,] covid75(int[,] matriz, int row, int column)
         {
@@ -1284,6 +1290,7 @@ namespace CineTec.Context
             return matriz;
         }
 
+        // Funcion que ejecuta los algoritmos de covid
         private int[] getArrayCovid(int row, int column, int covid)
         {
 
@@ -1349,6 +1356,7 @@ namespace CineTec.Context
             SaveChanges();
         }
 
+        // Verifica si existe una silla vendida en una proyección.
         public bool is_any_seat_sold(Projection p)
         {
             List<Seat> seats = Get_all_seats_assgined_to_projection(p.id);
