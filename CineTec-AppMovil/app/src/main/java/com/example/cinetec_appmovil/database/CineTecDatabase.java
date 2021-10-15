@@ -39,6 +39,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+
+/**
+ * Clase que se encarga de manejar la base de datos para la
+ * aplicacion movil. Se utiliza SQLite como el sistema de gestion de
+ * base de datos
+ */
 public class CineTecDatabase extends SQLiteOpenHelper {
 
 
@@ -57,8 +63,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     private Context context;
 
 
-
-
+    /**
+     * Constructor
+     * @param context
+     */
     private CineTecDatabase(@Nullable Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -71,6 +79,13 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
     }
 
+
+    /**
+     * Devuelve la instancia de la base de datos como parte del patron de diseno
+     * singleton
+     * @param context
+     * @return
+     */
     public static CineTecDatabase getInstance(@Nullable Context context){
 
         if(DB_instance == null){
@@ -81,10 +96,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
     }
 
-    public CineTecDatabase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
-    }
 
+    /**
+     * Metodo que se llama al momento de inicializar la base de datos
+     * @param sqLiteDatabase
+     */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
@@ -107,6 +123,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Metodo que contiene los queries para generar las tabla en la base datos
+     * @param sqLiteDatabase base de datos
+     */
     private void createTable(SQLiteDatabase sqLiteDatabase)
     {
 
@@ -174,8 +194,12 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
 
     }
-    
-    
+
+
+    /**
+     *  Metodo que eliminar las tablas de las bases de datos
+     * @param sqLiteDatabase
+     */
     private void dropTables(SQLiteDatabase sqLiteDatabase)
     {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MOVIES);
@@ -188,7 +212,12 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
-
+    /**
+     * Metodo que verifica si un cliente existe en la base de datos
+     * @param user usuario
+     * @param password contraseña
+     * @return
+     */
     public Client clientExist(String user, String password)
     {
 
@@ -218,6 +247,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Meotodo que obtiene las sucursales que se encuentran en la base de datos
+     * @return
+     */
     public ArrayList<Branch> getBranches()
     {
         ArrayList<Branch> branches = new ArrayList<>();
@@ -255,6 +288,14 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         return branches;
     }
 
+
+    /**
+     * Metodo que obtiene las proyecciones de dado el nombre de la sucursal y
+     * la pelicula
+     * @param cinema_name nombre del cinema
+     * @param movie nombre de la pelicula
+     * @return
+     */
     public ArrayList<Projection> getProjections(String cinema_name, String movie)
     {
         ArrayList<Projection> projections = new ArrayList<>();
@@ -293,6 +334,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         return projections;
     }
 
+
+    /**
+     * Metodo que devuelve las peliculas que se encuetran en la base de datos
+     * @return
+     */
     public ArrayList<Movie> getMovies()
     {
         ArrayList<Movie> movies = new ArrayList<>();
@@ -341,6 +387,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Metodo que devuelve una sala dado un ID
+     * @param room_id
+     * @return
+     */
     public Room getRoom(int room_id) {
 
 
@@ -360,6 +411,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Metodo que devuelve los asientos de una proyeccion
+     * @param projection_id id de la proyeccion
+     * @return
+     */
     public ArrayList<Seat> getSeats(int projection_id)
     {
 
@@ -400,10 +456,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
+    /**
+     * Metodo que sincroniza la base de datos en SQLite con la base de datos
+     * en PostgreSQL
+     * @param table
+     */
     public void synchronizeDataBase(Table table){
 
 
@@ -442,7 +499,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
-
+    /**
+     * Metodo que obtiene los asientos dado el id de la proyeccion
+     * @param projection_id
+     * @return
+     */
     public ArrayList<Seat> getSeatsByProjections(int projection_id)
     {
 
@@ -485,10 +546,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
+    /**
+     * Metodo que sincroniza las sucursales, a traves del API, que se encuentran
+     * en la base de datos
+     */
     private void updateBranches()
     {
 
@@ -531,8 +592,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         }
 
 
-
-        public void updateClients()
+    /**
+     * Metodo que sincroniza los clientes, a traves del API, que se encuentran
+     * en la base de datos
+     */
+    public void updateClients()
         {
 
             Request request = new Request.Builder().url(URL + "Clients").build();
@@ -588,8 +652,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         }
 
 
-
-        public void updateRooms()
+    /**
+     * Metodo que sincroniza las salas, a traves del API, que se encuentran
+     * en la base de datos
+     */
+    public void updateRooms()
         {
 
             Request request = new Request.Builder().url(URL + "Rooms").build();
@@ -639,6 +706,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         }
 
 
+    /**
+     * Metodo que sincroniza las peliculas, a traves del API, que se
+     * encuentran en la base de datos
+     */
     public void updateMovies() {
 
         Request request = new Request.Builder().url(URL + "Movies/special_all").build();
@@ -690,6 +761,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Metodo que sincroniza las proyecciones, a traves del API, que se
+     * encuentran en la base de datos
+     */
     public void updateProjections() {
 
         Request request = new Request.Builder().url(URL + "Projections").build();
@@ -738,6 +813,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Metodo que sincroniza los asientos, a traves del API, que
+     * se encuentran en la base de datos
+     */
     public void updateSeats() {
 
         Request request = new Request.Builder().url(URL + "Seats").build();
@@ -787,6 +866,11 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Metodo que efectua la compra de un asiento
+     * @param projection_id id de la proyeccion
+     * @param selected_seats asientos seleccionados
+     */
     public void purchase(int projection_id, ArrayList<Integer> selected_seats)
     {
         OkHttpClient client = new OkHttpClient();
@@ -830,7 +914,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     }
 
 
-
+    /**
+     * Metodo que duerme el thread dado un tiempo
+     * @param millis
+     */
     public void sleep(int millis)
     {
 

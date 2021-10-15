@@ -1,5 +1,9 @@
 package com.example.cinetec_appmovil.room;
 
+
+/**
+ * Clase de modela las caracteristicas de una sala de cine
+ */
 public class Room {
 
 

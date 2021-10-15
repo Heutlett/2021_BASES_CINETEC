@@ -24,8 +24,7 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Movies} factory method to
- * create an instance of this fragment.
+ * Fragmento que representa la vista donde se visualuiza la lista de peliculas
  */
 public class Movies extends Fragment {
 
@@ -44,6 +43,14 @@ public class Movies extends Fragment {
 
     }
 
+
+    /**
+     * Se establece la funcionalidad de la vista al momento de ser creada
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,6 +64,12 @@ public class Movies extends Fragment {
         return binding.getRoot();
     }
 
+
+    /**
+     * Funcion que se llama despues de que el fragmento es creado
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -65,12 +78,13 @@ public class Movies extends Fragment {
         MovieAdapter arrayAdapter = new MovieAdapter(getContext(), movies);
         binding.moviesView.setAdapter(arrayAdapter);
 
+
+        /**
+         * Se establece el evento para continuar con la vista de proyecciones
+         */
         binding.moviesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-
                 current_movie=  ((Movie) binding.moviesView.getItemAtPosition(i)).getOriginal_name();
 
                 NavHostFragment.findNavController(Movies.this)

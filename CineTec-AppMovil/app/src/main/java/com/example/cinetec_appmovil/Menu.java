@@ -13,11 +13,9 @@ import android.view.ViewGroup;
 import com.example.cinetec_appmovil.database.CineTecDatabase;
 import com.example.cinetec_appmovil.database.Table;
 import com.example.cinetec_appmovil.databinding.FragmentMenuBinding;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Menu#} factory method to
- * create an instance of this fragment.
+ * Fragmento que representa la vista donde se visualuiza el perfil del usuario ingresado.
  */
 public class Menu extends Fragment {
 
@@ -34,6 +32,15 @@ public class Menu extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+
+
+    /**
+     * Se establece la funcionalidad de la vista al momento de ser creada
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,11 +64,21 @@ public class Menu extends Fragment {
         return binding.getRoot();
     }
 
+
+
+    /**
+     * Funcion que se llama despues de que el fragmento es creado
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
+        /**
+         * Se establece el evento para continuar con la vista de sucursales
+         */
         binding.purchaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +91,9 @@ public class Menu extends Fragment {
         });
 
 
+        /**
+         * Se establece el evento para sincronizar la base de datos cuando se desee
+         */
         binding.syncDatabse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

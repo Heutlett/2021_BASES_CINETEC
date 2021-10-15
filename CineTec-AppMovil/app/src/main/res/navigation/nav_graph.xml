@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/branchs"
-        android:name="com.example.cinetec_appmovil.Branchs"
+        android:name="com.example.cinetec_appmovil.Branches"
         android:label="fragment_branchs"
         tools:layout="@layout/fragment_branchs" >
         <action

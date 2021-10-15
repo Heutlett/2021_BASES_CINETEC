@@ -14,10 +14,20 @@ import com.example.cinetec_appmovil.R;
 
 import java.util.ArrayList;
 
+
+/**
+ * Clase adaptador que permite colocar un array de sucursales en el listView
+ */
 public class BranchAdapter extends ArrayAdapter<Branch> {
 
     private ArrayList<Branch> branches = new ArrayList<>();
 
+
+    /**
+     * Constructor
+     * @param context
+     * @param arrayList lista que contiene las sucursales
+     */
     public BranchAdapter(@NonNull Context context, ArrayList<Branch> arrayList) {
         // pass the context and arrayList for the super
         // constructor of the ArrayAdapter class
@@ -27,6 +37,13 @@ public class BranchAdapter extends ArrayAdapter<Branch> {
     }
 
 
+    /**
+     * Devuelve el item
+     * @param position posicion del item en el listView
+     * @param convertView item
+     * @param parent padre
+     * @return
+     */
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         View currentItemView = convertView;

@@ -43,6 +43,14 @@ public class Login extends Fragment {
         }
     }
 
+
+    /**
+     * Se establece la funcionalidad de la vista al momento de ser creada
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,11 +64,20 @@ public class Login extends Fragment {
 
     }
 
+
+    /**
+     * Funcion que se llama despues de que el fragmento es creado
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
+        /**
+         * Se establece el evento para realizar el login a la cuenta de CineTec
+         */
         binding.enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,10 +86,7 @@ public class Login extends Fragment {
                 String password = binding.editTextTextPassword.getText().toString();
                 Client client_exist = CineTecDatabase.getInstance(getContext()).clientExist(user, password);
 
-
-
                 if (client_exist != null){
-
 
                     currentClient = client_exist;
                     NavHostFragment.findNavController(Login.this)

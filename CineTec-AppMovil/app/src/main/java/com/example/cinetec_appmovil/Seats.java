@@ -23,8 +23,7 @@ import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Seats} factory method to
- * create an instance of this fragment.
+ * Fragmento que representa la vista donde pueden elegir los asientos
  */
 public class Seats extends Fragment {
 
@@ -44,6 +43,15 @@ public class Seats extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+
+
+    /**
+     * Se establece la funcionalidad de la vista al momento de ser creada
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +59,9 @@ public class Seats extends Fragment {
         binding = FragmentSeatsBinding.inflate(inflater, container, false);
 
 
+        /**
+         * Se establece el evento para efectuar la compra de los boletos
+         */
         binding.finalizePurchaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +86,12 @@ public class Seats extends Fragment {
     }
 
 
+
+    /**
+     * Funcion que se llama despues de que el fragmento es creado
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -114,6 +131,15 @@ public class Seats extends Fragment {
 
     }
 
+
+    /**
+     * Crea un boton que representa un asiento
+     * @param seat numero de asiento
+     * @param column columnas de la sala
+     * @param j numero de columna actual
+     * @param status estado del asiento
+     * @return
+     */
     private ButtonSeat createButton(int seat, int column, int j, String status){
 
         ButtonSeat button = new ButtonSeat(getContext(), seat, status);

@@ -17,10 +17,21 @@ import com.example.cinetec_appmovil.branchItem.Branch;
 
 import java.util.ArrayList;
 
+
+
+/**
+ * Clase adaptador que permite colocar un array de peliculas en el listView
+ */
 public class MovieAdapter extends ArrayAdapter<Movie> {
 
     private ArrayList<Movie> movies = new ArrayList<>();
 
+
+    /**
+     * Constructor
+     * @param context
+     * @param arrayList lista con las peliculas
+     */
     public MovieAdapter(@NonNull Context context, ArrayList<Movie> arrayList) {
         // pass the context and arrayList for the super
         // constructor of the ArrayAdapter class
@@ -32,6 +43,13 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
     }
 
 
+    /**
+     * Devuelve el item para visualizarlo
+     * @param position posicion del item en el listView
+     * @param convertView item
+     * @param parent padre
+     * @return
+     */
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         View currentItemView = convertView;

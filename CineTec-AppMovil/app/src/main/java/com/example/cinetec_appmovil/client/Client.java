@@ -1,7 +1,25 @@
 package com.example.cinetec_appmovil.client;
 
+
+/**
+ * Clase que modela las caracteristicas de un cliente
+ */
 public class Client {
 
+
+    /**
+     * Constructor
+     * @param id
+     * @param first_name
+     * @param middle_name
+     * @param first_surname
+     * @param second_surname
+     * @param birth_date
+     * @param username
+     * @param password
+     * @param phone_number
+     * @param age
+     */
     public Client(int id, String first_name, String middle_name, String first_surname, String second_surname, String birth_date, String username, String password, String phone_number, int age) {
         this.id = id;
         this.first_name = first_name;

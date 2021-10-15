@@ -16,22 +16,20 @@ import com.example.cinetec_appmovil.branchItem.BranchAdapter;
 import com.example.cinetec_appmovil.database.CineTecDatabase;
 import com.example.cinetec_appmovil.database.Table;
 import com.example.cinetec_appmovil.databinding.FragmentBranchsBinding;
-import com.example.cinetec_appmovil.databinding.FragmentLoginBinding;
 
 import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Branchs#} factory method to
- * create an instance of this fragment.
+ * Fragmento que representa la vista donde se visualuiza la lista de sucursales.
  */
-public class Branchs extends Fragment {
+public class Branches extends Fragment {
 
     private FragmentBranchsBinding binding;
     public static String current_branch;
 
 
-    public Branchs() {
+    public Branches() {
         // Required empty public constructor
     }
 
@@ -45,6 +43,14 @@ public class Branchs extends Fragment {
 
     }
 
+
+    /**
+     * Se establece la funcionalidad de la vista al momento de ser creada
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,6 +65,12 @@ public class Branchs extends Fragment {
         return binding.getRoot();
     }
 
+
+    /**
+     * Funcion que se llama despues de que el fragmento es creado
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -69,13 +81,17 @@ public class Branchs extends Fragment {
 
         binding.branchView.setAdapter(arrayAdapter);
 
+
+        /**
+         * Se establece el evento para continuar a la vista de peliculas
+         */
         binding.branchView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
                 current_branch  =  ((Branch) binding.branchView.getItemAtPosition(i)).getName();
-                NavHostFragment.findNavController(Branchs.this)
+                NavHostFragment.findNavController(Branches.this)
                         .navigate(R.id.action_branchs_to_movies);
 
 

@@ -1,5 +1,9 @@
 package com.example.cinetec_appmovil.movieItem;
 
+
+/**
+ * Clase que modela las caracteristicas de una pelicula
+ */
 public class Movie {
 
     private String name;
@@ -19,6 +23,18 @@ public class Movie {
     private int id;
 
 
+    /**
+     * Constructir
+     * @param id
+     * @param director
+     * @param original_name
+     * @param name
+     * @param code
+     * @param age_rating
+     * @param details
+     * @param length
+     * @param actors
+     */
     public Movie(int id, String director, String original_name, String name, String code, String age_rating, String details, String length, String actors ) {
         this.name = name;
         this.length = length;
@@ -31,43 +47,77 @@ public class Movie {
         this.actors = actors;
     }
 
+    /**
+     * Devuelve el nombre de la pelicula
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Devuelve el id de la pelicula
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Devuelve la duracion de la pelicula
+     * @return length
+     */
     public String getLength() {
         return length;
     }
 
-    public String getProtagonists() {
-        return protagonists;
-    }
 
+    /**
+     * Devuelve el director de la pelicula
+     * @return director
+     */
     public String getDirector() {
         return director;
     }
 
 
+    /**
+     * Devuelve el codigo de la clasificacion
+     * @return code
+     */
     public String getCode() {
         return code;
     }
 
+
+    /**
+     * Devuelve la edad permitida de la pelicula
+     * @return age_rating
+     */
     public String getAge_rating() {
         return age_rating;
     }
 
+    /**
+     * Devuelve los detalles de la clasificacion
+     * @return details
+     */
     public String getDetails() {
         return details;
     }
 
+    /**
+     * Devuelve los actores de la pelicula
+     * @return actors
+     */
     public String getActors() {
         return actors;
     }
 
+    /**
+     * Devuelve el nombre original de la pelicula
+     * @return original_name
+     */
     public String getOriginal_name() {
         return original_name;
     }

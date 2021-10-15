@@ -9,6 +9,11 @@ import android.widget.TextView;
 import com.example.cinetec_appmovil.Seats;
 import com.example.cinetec_appmovil.Tickets;
 
+
+/**
+ * Clase que permite crea un boton customizado para representar
+ * un asiento de cine
+ */
 public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
 
     public boolean isSelected;
@@ -18,6 +23,12 @@ public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
     private static int left_seats;
     private String status;
 
+    /**
+     * Constructor
+     * @param context
+     * @param seatNumber numero de asiento
+     * @param status estado del asiento
+     */
     public ButtonSeat(Context context, int seatNumber, String status) {
         super(context);
 
@@ -30,7 +41,6 @@ public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
         left_seats = Tickets.getTotalSeats();
 
 
-        System.out.println(status);
         if (status.equals("COVID"))
         {
             this.isRestricted = true;
@@ -48,6 +58,10 @@ public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
     }
 
 
+    /**
+     * Establece el evento para definir como se debe comportar el asiento
+     * en caso de que se presionado.
+     */
     private void setListener(){
 
         this.setOnClickListener(new OnClickListener() {
@@ -64,6 +78,9 @@ public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
     }
 
 
+    /**
+     * Establece el color del asiento dependiendo del estado
+     */
     private void setColor(){
 
 
@@ -87,6 +104,10 @@ public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
 
     }
 
+
+    /**
+     * Actualiza el color del estado dependiendo del estado
+     */
     private void updateColor(){
 
         if (!isTaken && !isRestricted)

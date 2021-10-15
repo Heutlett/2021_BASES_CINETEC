@@ -14,11 +14,21 @@ import com.example.cinetec_appmovil.R;
 
 import java.util.ArrayList;
 
+
+/**
+ * Clase adaptador que permite colocar un array de proyecciones en el listView
+ */
 public class ProjectionAdapter extends ArrayAdapter<Projection> {
 
 
     private ArrayList<Projection> projections = new ArrayList<>();
 
+
+    /**
+     * Constructor
+     * @param context
+     * @param arrayList lista que contiene las proyecciones
+     */
     public ProjectionAdapter(@NonNull Context context, ArrayList<Projection> arrayList) {
         // pass the context and arrayList for the super
         // constructor of the ArrayAdapter class
@@ -28,6 +38,13 @@ public class ProjectionAdapter extends ArrayAdapter<Projection> {
     }
 
 
+    /**
+     * Devuelve la vista del item
+     * @param position posicion del item en el listView
+     * @param convertView item
+     * @param parent padre
+     * @return
+     */
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View currentItemView = convertView;

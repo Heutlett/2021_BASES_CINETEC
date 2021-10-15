@@ -14,8 +14,7 @@ import com.example.cinetec_appmovil.databinding.FragmentTicketsBinding;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Tickets#} factory method to
- * create an instance of this fragment.
+ * Fragmento que representa la vista donde se eligen la cantidad de boletos
  */
 public class Tickets extends Fragment {
 
@@ -39,6 +38,14 @@ public class Tickets extends Fragment {
 
     }
 
+
+    /**
+     * Se establece la funcionalidad de la vista al momento de ser creada
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +58,12 @@ public class Tickets extends Fragment {
         return binding.getRoot();
     }
 
+
+    /**
+     * Funcion que se llama despues de que el fragmento es creado
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -58,6 +71,10 @@ public class Tickets extends Fragment {
         updateAllValues();
 
 
+        /**
+         * Se establece el evento para el boton que aumenta la cantidad de boletos
+         * que se desean comprar
+         */
         binding.ticketsPlusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,12 +82,17 @@ public class Tickets extends Fragment {
 
                 total += PRICE;
                 total_seats++;
-                updteTicketsText();
+                updateTicketsText();
                 updateTotalText();
 
             }
         });
 
+
+        /**
+         * Se establece el evento para el boton que disminuye la cantidad de boletos
+         * que se desean disminuir
+         */
         binding.ticketsMinusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +101,7 @@ public class Tickets extends Fragment {
 
                     total -= PRICE;
                     total_seats--;
-                    updteTicketsText();
+                    updateTicketsText();
                     updateTotalText();
                 }
 
@@ -87,7 +109,9 @@ public class Tickets extends Fragment {
         });
 
 
-
+        /**
+         * Se establece el evento para pasar a la vist de asientos
+         */
         binding.chooseSeatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,24 +125,40 @@ public class Tickets extends Fragment {
     }
 
 
+    /**
+     * Actualiza el texto que muestra el total en dinero que representan
+     * los boletos que se desean comprar
+     */
     private void updateTotalText(){
 
         binding.totalText.setText("$ " + total);
 
     }
 
-    private void updteTicketsText(){
+
+    /**
+     *Actualiza el texto que muestra la cantidad de boletos que se desean comprar
+     */
+    private void updateTicketsText(){
         binding.ticketsText.setText(Integer.toString(total_seats));
 
     }
 
 
+    /**
+     * Llama a las funciones que actualiza los textos en pantalla
+     */
     private void updateAllValues(){
-        updteTicketsText();
+        updateTicketsText();
         updateTotalText();
 
     }
 
+
+    /**
+     * Devuelve la cantidad de asientos
+     * @return
+     */
     public static int getTotalSeats(){
         return total_seats;
     }
