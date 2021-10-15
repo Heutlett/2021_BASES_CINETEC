@@ -80,20 +80,20 @@ namespace CineTec.Context
 
         // Metodo toma un usuario y contraseña y retorna la información del empleado
         // de la cuenta a la que corresponde, null si no coincide con ninguna cuenta.
-        public Employee Login_admin(string username, string password)
+        public Object Login_admin(string username, string password)
         {
             Employee admin = Employees.Where(x => x.username == username && x.password == password).FirstOrDefault();
             if (admin == null) return null;
-            return admin;
+            return GetEmployee_select(admin.cedula);
         }
 
         // Metodo toma un usuario y contraseña y retorna la información del cliente
         // de la cuenta a la que corresponde, null si no coincide con ninguna cuenta.
-        public Client Login_client(string username, string password)
+        public Object Login_client(string username, string password)
         {
             Client user = Clients.Where(x => x.username == username && x.password == password).FirstOrDefault();
             if (user == null) return null;
-            return user;
+            return GetEmployee_select(user.cedula);
         }
 
 
