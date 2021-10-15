@@ -5,6 +5,7 @@ import static java.security.AccessController.getContext;
 import android.os.Bundle;
 
 import com.example.cinetec_appmovil.database.CineTecDatabase;
+import com.example.cinetec_appmovil.database.Table;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        System.out.println("entraaaa");
+
+
 
         setSupportActionBar(binding.toolbar);
 

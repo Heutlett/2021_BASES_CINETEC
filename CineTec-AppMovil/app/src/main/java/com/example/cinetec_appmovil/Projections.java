@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.example.cinetec_appmovil.database.CineTecDatabase;
+import com.example.cinetec_appmovil.database.Table;
 import com.example.cinetec_appmovil.databinding.FragmentProjectionBinding;
 import com.example.cinetec_appmovil.movieItem.Movie;
 import com.example.cinetec_appmovil.movieItem.MovieAdapter;
@@ -51,10 +52,8 @@ public class Projections extends Fragment {
 
         binding = FragmentProjectionBinding.inflate(inflater, container, false);
 
-        ArrayList<Projection> projections = CineTecDatabase.getInstance(getContext()).getProjections(Branchs.current_branch, Movies.current_movie);
+        CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.PROJECTIONS);
 
-        ProjectionAdapter arrayAdapter = new ProjectionAdapter(getContext(), projections);
-        binding.projectionView.setAdapter(arrayAdapter);
 
 
         return binding.getRoot();
@@ -66,6 +65,10 @@ public class Projections extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+        ArrayList<Projection> projections = CineTecDatabase.getInstance(getContext()).getProjections(Branchs.current_branch, Movies.current_movie);
+
+        ProjectionAdapter arrayAdapter = new ProjectionAdapter(getContext(), projections);
+        binding.projectionView.setAdapter(arrayAdapter);
 
 
         binding.projectionView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

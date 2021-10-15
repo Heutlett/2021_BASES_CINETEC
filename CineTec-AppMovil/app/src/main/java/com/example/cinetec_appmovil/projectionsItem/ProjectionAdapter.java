@@ -37,22 +37,24 @@ public class ProjectionAdapter extends ArrayAdapter<Projection> {
             currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.projection_item, parent, false);
 
 
-            Projection currentProjection = projections.get(position);
-
-
-            TextView textView1 = currentItemView.findViewById(R.id.date_text);
-            System.out.println(textView1);
-            textView1.setText("Día: " + currentProjection.getDate());
-
-
-
-            TextView textView3 = currentItemView.findViewById(R.id.time_text);
-            textView3.setText("Hora: " + currentProjection.getTime());
-
-
-
-
         }
+
+
+
+        Projection currentProjection = projections.get(position);
+
+
+        TextView textView1 = currentItemView.findViewById(R.id.date_text);
+        System.out.println(textView1);
+        textView1.setText("Día: " + currentProjection.getDate());
+
+        TextView textView3 = currentItemView.findViewById(R.id.time_text);
+        textView3.setText("Hora: " + currentProjection.getTime());
+
+        TextView textView4 = currentItemView.findViewById(R.id.room_text);
+        textView4.setText("Hora: " + currentProjection.getRoom());
+
+
 
 
         // then return the recyclable view

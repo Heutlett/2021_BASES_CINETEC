@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.cinetec_appmovil.databinding.BranchItemBinding;
 import com.example.cinetec_appmovil.databinding.FragmentTicketsBinding;
 
 /**
@@ -22,15 +21,10 @@ public class Tickets extends Fragment {
 
     private FragmentTicketsBinding binding;
 
-    private int kid_tickets = 0;
-    private int adult_tickets = 0;
-    private int old_tickets = 0;
     private int total = 0;
     private static int total_seats = 0;
 
-    private final int KID_PRICE = 2500;
-    private final int ADULT_PRICE = 3000;
-    private final int OLD_PRICE = 2000;
+    private final int PRICE = 3600;
 
 
     public Tickets() {
@@ -64,94 +58,34 @@ public class Tickets extends Fragment {
         updateAllValues();
 
 
-        binding.kidPlusButton.setOnClickListener(new View.OnClickListener() {
+        binding.ticketsPlusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                kid_tickets++;
-                total += KID_PRICE;
+
+                total += PRICE;
                 total_seats++;
-                updteKidText();
+                updteTicketsText();
                 updateTotalText();
 
             }
         });
 
-        binding.kidMinusButton.setOnClickListener(new View.OnClickListener() {
+        binding.ticketsMinusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(kid_tickets != 0) {
+                if(total_seats != 0) {
 
-                    kid_tickets--;
-                    total -= KID_PRICE;
+                    total -= PRICE;
                     total_seats--;
-                    updteKidText();
+                    updteTicketsText();
                     updateTotalText();
                 }
 
             }
         });
 
-
-        binding.adultPlusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                adult_tickets++;
-                total += ADULT_PRICE;
-                total_seats++;
-                updteAdultText();
-                updateTotalText();
-
-            }
-        });
-
-
-        binding.adultMinusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (adult_tickets != 0) {
-
-                    adult_tickets--;
-                    total -= ADULT_PRICE;
-                    total_seats--;
-                    updteAdultText();
-                    updateTotalText();
-                }
-
-            }
-        });
-
-
-        binding.oldPlusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                old_tickets++;
-                total += OLD_PRICE;
-                total_seats++;
-                updteOldText();
-                updateTotalText();
-
-            }
-        });
-
-        binding.oldMinusButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(old_tickets != 0) {
-                    old_tickets--;
-                    total -= OLD_PRICE;
-                    total_seats--;
-                    updteOldText();
-                    updateTotalText();
-
-                }
-            }
-        });
 
 
         binding.chooseSeatButton.setOnClickListener(new View.OnClickListener() {
@@ -173,25 +107,14 @@ public class Tickets extends Fragment {
 
     }
 
-    private void updteKidText(){
-        binding.kidsText.setText(Integer.toString(kid_tickets));
+    private void updteTicketsText(){
+        binding.ticketsText.setText(Integer.toString(total_seats));
 
     }
 
-    private void updteAdultText(){
-        binding.adultText.setText(Integer.toString(adult_tickets));
-
-    }
-
-    private void updteOldText(){
-        binding.oldText.setText(Integer.toString(old_tickets));
-
-    }
 
     private void updateAllValues(){
-        updteKidText();
-        updteAdultText();
-        updteOldText();
+        updteTicketsText();
         updateTotalText();
 
     }

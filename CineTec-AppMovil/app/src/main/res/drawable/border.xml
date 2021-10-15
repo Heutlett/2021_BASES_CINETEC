@@ -15,7 +15,7 @@
             android:bottomRightRadius="10sp"></corners>
 
         <solid
-            android:color="@color/yellow">
+            android:color="@color/white">
 
         </solid>
 

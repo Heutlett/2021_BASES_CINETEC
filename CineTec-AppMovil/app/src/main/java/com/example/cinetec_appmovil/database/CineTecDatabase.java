@@ -33,8 +33,10 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class CineTecDatabase extends SQLiteOpenHelper {
@@ -48,15 +50,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     private static final String TABLE_BRANCHES = "Branchs";
     private static final String TABLE_PROJECTIONS = "Projections";
     private static final String TABLE_SEATS = "Seats";
-    private static final String TABLE_DIRECTOR = "Director";
-    private static final String TABLE_CLASSIFICATION = "Classification";
     private static final String TABLE_ROOM = "Room";
-    private static final String TABLE_BILL = "Bill";
-    private static final String TABLE_ACTOR = "Actor";
-    private static final String TABLE_ACTS = "Acts";
+
 
     private static CineTecDatabase DB_instance = null;
-    private int i = 1000;
     private Context context;
 
 
@@ -134,7 +131,9 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                 "second_surname VARCHAR NOT NULL," +
                 "birth_date VARCHAR NOT NULL," +
                 "username VARCHAR NOT NULL," +
-                "password VARCHAR NOT NULL"
+                "password VARCHAR NOT NULL," +
+                "phone_number VARCHAR NOT NULL," +
+                "age INTEGER NOT NULL"
                 +")");
 
 
@@ -184,24 +183,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BRANCHES);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PROJECTIONS);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ROOM);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DIRECTOR);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ACTOR);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_BILL);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_CLASSIFICATION);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_SEATS);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_ACTS);
+
+
     }
 
-    public boolean fillDateBase(){
-
-
-        synchronizeDataBase();
-
-
-
-        return true;
-
-    }
 
 
     public Client clientExist(String user, String password)
@@ -225,7 +210,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             System.out.println(current_password);
 
             if (current_password.equals(password)){
-                return new Client(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),  cursor.getString(5), cursor.getString(6), cursor.getString(7));
+                return new Client(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),  cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
             }
         } while(cursor.moveToNext());
 
@@ -276,8 +261,6 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
         SQLiteDatabase DB = DB_instance.getWritableDatabase();
 
-
-
         Cursor current = DB.rawQuery("SELECT date, schedule, projection_id, room, movie, free_spaces FROM Projections AS b JOIN Room AS r ON b.room = r.id WHERE branch_name = ? AND movie = ?", new String[]{cinema_name, movie});
 
 
@@ -287,8 +270,6 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             current.moveToFirst();
 
             if (current.getCount() != 0) {
-                System.out.println("--------------------------------");
-                System.out.println(current.getCount());
 
                 do {
 
@@ -302,9 +283,8 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
                     projections.add(new Projection(date, schedule, projection_id, room, movieName, free_spaces));
 
-
                 } while (current.moveToNext());
-                System.out.println("---------------------------------");
+
             }
         }
 
@@ -424,33 +404,86 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
 
 
-    public void synchronizeDataBase(){
+    public void synchronizeDataBase(Table table){
 
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        switch (table){
 
+            case ALL:
+                updateBranches();
+                updateProjections();
+                updateRooms();
+                updateMovies();
+                updateClients();
+                break;
 
-                    System.out.println("Sincroniza la base de datos");
-                    updateBranches();
-                    updateClients();
-                    updateRooms();
-                    updateMovies();
-                    updateProjections();
-                    updateSeats();
+            case PROJECTIONS:
+                updateProjections();
+                updateRooms();
+                break;
 
+            case MOVIES:
+                updateMovies();
+                break;
 
+            case CLIENTS:
+                updateClients();
+                break;
 
-            }
-        }).start();
+            case BRANCHES:
+                updateBranches();
 
+        }
 
 
 
 
 
     }
+
+
+
+    public ArrayList<Seat> getSeatsByProjections(int projection_id)
+    {
+
+        ArrayList<Seat> seats = new ArrayList<>();
+
+        Request request = new Request.Builder().url(URL + "Projections/seats/" + projection_id).build();
+        OkHttpClient client = new OkHttpClient();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                System.out.println(e.getLocalizedMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String data = response.body().source().readUtf8();
+                try {
+                    JSONArray jsonArray = new JSONArray(data);
+
+                    for (int i=0; i< jsonArray.length(); i++)
+                    {
+                        JSONObject seat = jsonArray.getJSONObject(i);
+
+                        seats.add(new Seat(seat.getInt("number"), seat.getString("status")));
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+        this.sleep(500);
+
+        return seats;
+
+    }
+
 
 
 
@@ -493,6 +526,8 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
             });
 
+            this.sleep(500);
+
         }
 
 
@@ -514,6 +549,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
                     if(response.isSuccessful()) {
                         String data = response.body().source().readUtf8();
+                        System.out.println(data);
                         DB_instance.getWritableDatabase().delete(TABLE_CLIENTS, "1", null);
                         try {
                             JSONArray jsonArray = new JSONArray(data);
@@ -530,6 +566,8 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                                 contentValues.put("birth_date", currentClient.getString("birth_date"));
                                 contentValues.put("username", currentClient.getString("username"));
                                 contentValues.put("password", currentClient.getString("password"));
+                                contentValues.put("age", currentClient.getString("age"));
+                                contentValues.put("phone_number", currentClient.getString("phone_number"));
                                 DB_instance.getWritableDatabase().insert(TABLE_CLIENTS, null, contentValues);
 
                             }
@@ -544,6 +582,8 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
                 }
             });
+
+            this.sleep(500);
 
         }
 
@@ -594,6 +634,8 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                 }
             });
 
+            this.sleep(500);
+
         }
 
 
@@ -642,6 +684,9 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             }
         });
 
+
+        this.sleep(500);
+
     }
 
 
@@ -688,6 +733,8 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             }
         });
 
+        this.sleep(1000);
+
     }
 
 
@@ -732,7 +779,66 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         });
 
 
+        this.sleep(500);
 
+
+
+
+    }
+
+
+    public void purchase(int projection_id, ArrayList<Integer> selected_seats)
+    {
+        OkHttpClient client = new OkHttpClient();
+
+
+        try {
+            JSONObject obj = new JSONObject();
+            obj.put("status", "TAKEN");
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+            RequestBody body = RequestBody.create(JSON, obj.toString());
+
+
+            selected_seats.stream().forEach(seat -> {
+
+                System.out.println("Entraaaa");
+
+                Request request = new Request.Builder()
+                        .url(URL + "Seats/byId?projection_id=" + projection_id + "&number=" + seat)
+                        .put(body)
+                        .build();
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        System.out.println(e.getLocalizedMessage());
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                        System.out.println(response);
+
+                    }
+                });
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void sleep(int millis)
+    {
+
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 

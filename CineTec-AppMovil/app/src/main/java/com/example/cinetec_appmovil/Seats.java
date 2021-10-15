@@ -32,6 +32,7 @@ public class Seats extends Fragment {
 
 
     private ArrayList<ButtonSeat> buttonSeats = new ArrayList<>();
+    public static ArrayList<Integer> selectedSeats = new ArrayList<>();
 
     public Seats() {
         // Required empty public constructor
@@ -54,6 +55,8 @@ public class Seats extends Fragment {
             @Override
             public void onClick(View view) {
 
+
+                CineTecDatabase.getInstance(getContext()).purchase(Projections.current_projection.getId(), selectedSeats);
                 NavHostFragment.findNavController(Seats.this)
                         .navigate(R.id.action_seats_to_menu);
 
@@ -62,6 +65,9 @@ public class Seats extends Fragment {
         });
 
         binding.totalSeatsText.setText(Integer.toString(Tickets.getTotalSeats()));
+        binding.movieNameText.setText(Movies.current_movie);
+        binding.scheduleText.setText(Projections.current_projection.getDate() + "," + Projections.current_projection.getTime());
+
 
 
         return binding.getRoot();
@@ -74,7 +80,7 @@ public class Seats extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        ArrayList<Seat> seats = CineTecDatabase.getInstance(getContext()).getSeats(Projections.current_projection.getId());
+        ArrayList<Seat> seats = CineTecDatabase.getInstance(getContext()).getSeatsByProjections(Projections.current_projection.getId());
         Room currentRoom = CineTecDatabase.getInstance(getContext()).getRoom(Projections.current_projection.getRoom());
 
 
@@ -85,20 +91,24 @@ public class Seats extends Fragment {
         seats_layout.setColumnCount(column);
         int index = 0;
 
-        for(int i=0; i<row; i++){
 
-            for(int j=0; j<column; j++){
+        if (seats.size() != 0) {
+            for (int i = 0; i < row; i++) {
+
+                for (int j = 0; j < column; j++) {
 
 
-                Seat currentSeat = seats.get(index);
-                ButtonSeat currentButton = createButton(currentSeat.getNumber(), column, j, currentSeat.getStatus());
-                seats_layout.addView(currentButton);
-                this.buttonSeats.add(currentButton);
-                index++;
+                    Seat currentSeat = seats.get(index);
+                    ButtonSeat currentButton = createButton(currentSeat.getNumber(), column, j, currentSeat.getStatus());
+                    seats_layout.addView(currentButton);
+                    this.buttonSeats.add(currentButton);
+                    index++;
+
+
+                }
 
 
             }
-
 
         }
 

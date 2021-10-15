@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import com.example.cinetec_appmovil.branchItem.Branch;
 import com.example.cinetec_appmovil.branchItem.BranchAdapter;
 import com.example.cinetec_appmovil.database.CineTecDatabase;
+import com.example.cinetec_appmovil.database.Table;
 import com.example.cinetec_appmovil.databinding.FragmentBranchsBinding;
 import com.example.cinetec_appmovil.databinding.FragmentLoginBinding;
 
@@ -48,6 +49,8 @@ public class Branchs extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.BRANCHES);
 
 
         binding = FragmentBranchsBinding.inflate(inflater, container, false);

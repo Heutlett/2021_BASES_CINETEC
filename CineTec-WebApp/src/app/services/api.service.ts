@@ -442,7 +442,7 @@ export class ApiService {
   */
   put_room(room:Room):Observable<Room> {
     console.log(room);
-    const url = `${this.apiURL + "Rooms" }/${this.globalService.getCurrentItem().id}`;
+    const url = `${this.apiURL + "Rooms?room_id=" }${this.globalService.getCurrentItem().id}`;
     return this.http.put<Room>(url, room, httpOptions);     
   }
 

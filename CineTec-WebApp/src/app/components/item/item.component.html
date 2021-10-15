@@ -37,6 +37,8 @@
     <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_clients || in_employees">Fecha de nacimiento : {{item.birth_date}}</label>
     <br *ngIf="in_clients || in_employees">
+    <label *ngIf="in_clients || in_employees">Edad : {{item.age}}</label>
+    <br *ngIf="in_clients || in_employees">
     <label *ngIf="in_employees">Fecha de ingreso : {{item.start_date}}</label>
     <br *ngIf="in_employees">
     <label *ngIf="in_clients || in_employees">Número de telefono : {{item.phone_number}}</label>
@@ -85,6 +87,8 @@
     <label *ngIf="in_projections">Hora: {{item.schedule}}</label>
     <br *ngIf="in_projections"> 
     <label *ngIf="in_projections">Sala: {{item.room}}</label>
+    <br *ngIf="in_projections"> 
+    <label *ngIf="in_projections">COVID: {{item.covid}}</label>
     <br *ngIf="in_projections"> 
 
 

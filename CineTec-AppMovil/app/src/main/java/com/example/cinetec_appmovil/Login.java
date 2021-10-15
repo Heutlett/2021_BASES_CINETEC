@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.cinetec_appmovil.client.Client;
 import com.example.cinetec_appmovil.database.CineTecDatabase;
+import com.example.cinetec_appmovil.database.Table;
 import com.example.cinetec_appmovil.databinding.FragmentLoginBinding;
 
 /**
@@ -48,7 +49,8 @@ public class Login extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false);
 
-        CineTecDatabase.getInstance(getContext()).fillDateBase();
+        CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.ALL);
+
 
         return binding.getRoot();
 

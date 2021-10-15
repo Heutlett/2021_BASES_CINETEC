@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.cinetec_appmovil.database.CineTecDatabase;
+import com.example.cinetec_appmovil.database.Table;
 import com.example.cinetec_appmovil.databinding.FragmentMenuBinding;
 
 /**
@@ -47,7 +49,8 @@ public class Menu extends Fragment {
         binding.birthNameText3.setText(String.format("Fecha de nacimiento: %s", Login.currentClient.birth_date));
         binding.usernameText2.setText(String.format("Username: %s", Login.currentClient.username));
         binding.passwordText.setText(String.format("Password: %s", Login.currentClient.password));
-
+        binding.phoneNumberText.setText(String.format("Numero de telefono %s", Login.currentClient.phone_number));
+        binding.ageText.setText(String.format("Edad %s", Login.currentClient.age));
 
 
 
@@ -66,6 +69,16 @@ public class Menu extends Fragment {
                 NavHostFragment.findNavController(Menu.this)
                         .navigate(R.id.action_menu_to_branchs);
 
+
+            }
+        });
+
+
+        binding.syncDatabse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.ALL);
 
             }
         });

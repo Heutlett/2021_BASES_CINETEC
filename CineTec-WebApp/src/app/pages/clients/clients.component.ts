@@ -52,7 +52,7 @@ export class ClientsComponent implements OnInit {
   add_item(item:any){
     
     this.apiService.post(item).subscribe(() => {
-      this.items.push(item)
+      this.apiService.get_clients().subscribe((clients) => this.items = clients);
     },(error) => {
       alert(error.error);
     });
@@ -67,8 +67,7 @@ export class ClientsComponent implements OnInit {
   edit_item(item:any){
 
     this.apiService.put(item).subscribe(() => {
-      this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula)
-      this.items.push(item);
+      this.apiService.get_clients().subscribe((clients) => this.items = clients);
     }, (error)=> {
       alert(error.error);
     });

@@ -37,7 +37,7 @@ export class AddItemComponent implements OnInit {
   name:string;
   original_name:string;
   length:string;
-  code:string;
+  classification_id:string;
   director:string;
   actorEntered:string;
   actorSelected:string;
@@ -356,6 +356,7 @@ export class AddItemComponent implements OnInit {
       "password":this.password,
     }
 
+    this.cedula = null;
     this.branch_id = "";
     this.first_name = "";
     this.middle_name = "";
@@ -363,7 +364,7 @@ export class AddItemComponent implements OnInit {
     this.second_surname = "";
     this.birth_date = "";
     this.start_date = "";
-    this.phone_number = 0;
+    this.phone_number = null;
     this.username = "";
     this.password = "";
 
@@ -406,10 +407,15 @@ export class AddItemComponent implements OnInit {
 
     }
 
+    if(!this.classification_id){
+      alert("Por favor seleccione una clasificacion");
+      return false;
+    }
+
     this.new_item = {
       "name":this.name,
       "original_name":this.original_name,
-      "code":this.code,
+      "classification_id":this.classification_id,
       "length":this.length,
       "image":"",
       "director":this.director,
@@ -419,7 +425,7 @@ export class AddItemComponent implements OnInit {
     this.name = "";
     this.original_name = "";
     this.length = "";
-    this.code="";
+    this.classification_id="";
     this.director = "";
     this.actors = [];
       
@@ -468,7 +474,6 @@ export class AddItemComponent implements OnInit {
 
     if(this.showEditItem){
       this.new_item = {
-        "branch_name":this.global.getCurrentItem().branch_name,
         "row_quantity": this.row_quantity,
         "column_quantity":this.column_quantity,
       }
@@ -481,9 +486,9 @@ export class AddItemComponent implements OnInit {
       }
     }
 
-    this.row_quantity = 0;
-    this.column_quantity = 0;
-    this.capacity = 0
+    this.row_quantity = null;
+    this.column_quantity = null;
+    this.branch_name = "";
 
     return true;
 
@@ -513,7 +518,7 @@ export class AddItemComponent implements OnInit {
       return false;
     }
 
-    if(!this.room_id){
+    if(!this.room_id && !this.showEditItem){
       alert("Seleccione una sala");
       return false;
     }
@@ -534,12 +539,18 @@ export class AddItemComponent implements OnInit {
         "movie_id": this.movie_id,
         "date":this.date,
         "schedule":this.schedule,
-        "room_id":this.room_id
       }
 
       this.global.covid = this.covid;
-
     }
+
+
+    this.movie_id = null;
+    this.date = "";
+    this.schedule = "";
+    this.room_id = null;
+    this.covid = null;
+
 
     return true;
 

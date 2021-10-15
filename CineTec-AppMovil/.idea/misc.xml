@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sebas/Downloads/2021_BASES_CINETEC-master/CineTec-AppMovil/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
+        <entry key="..\:/Users/sebas/Downloads/2021_BASES_CINETEC-master/CineTec-AppMovil/app/src/main/res/layout/fragment_tickets.xml" value="0.264" />
+        <entry key="..\:/Users/sebas/Downloads/2021_BASES_CINETEC-master/CineTec-AppMovil/app/src/main/res/layout/projection_item.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/branch_item.xml" value="0.31875" />
         <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/content_main.xml" value="0.31875" />
+        <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/fragment_branchs.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/fragment_menu.xml" value="0.28804347826086957" />
         <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/fragment_movies.xml" value="0.28804347826086957" />
         <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/fragment_projection.xml" value="0.31875" />
+        <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/fragment_seats.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/fragment_tickets.xml" value="0.264" />
         <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/movie_item.xml" value="0.28804347826086957" />
         <entry key="..\:/Users/sebas/OneDrive/TEC/2021_BASES_CINETEC/CineTec-AppMovil/app/src/main/res/layout/projection_item.xml" value="0.31875" />
         <entry key="app/src/main/res/drawable/borde_menu.xml" value="0.3765625" />

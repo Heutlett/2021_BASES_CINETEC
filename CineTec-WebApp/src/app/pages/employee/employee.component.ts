@@ -3,6 +3,7 @@ import { GlobalService } from '../../services/global.service';
 import { Subscription } from 'rxjs';
 import {Router} from '@angular/router';
 import {ApiService} from '../../services/api.service';
+import { emit } from 'process';
 
 @Component({
   selector: 'app-employee',
@@ -51,7 +52,11 @@ export class EmployeeComponent implements OnInit {
   add_item(item:any){
 
       this.apiService.post(item).subscribe(()=> {
-        this.items.push(item);
+
+      
+        this.apiService.get_employees().subscribe((employees) => this.items = employees);
+
+
       }, (error)=> {
         alert(error.error);
       });
@@ -66,8 +71,7 @@ export class EmployeeComponent implements OnInit {
   edit_item(item:any){
 
     this.apiService.put(item).subscribe(() => {
-      this.items = this.items.filter(i => i.cedula !== this.global.getCurrentItem().cedula)
-      this.items.push(item);
+      this.apiService.get_employees().subscribe((employees) => this.items = employees);
     }, (error)=> {
       alert(error.error)
     });

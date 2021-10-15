@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import com.example.cinetec_appmovil.branchItem.Branch;
 import com.example.cinetec_appmovil.branchItem.BranchAdapter;
 import com.example.cinetec_appmovil.database.CineTecDatabase;
+import com.example.cinetec_appmovil.database.Table;
 import com.example.cinetec_appmovil.databinding.FragmentMoviesBinding;
 import com.example.cinetec_appmovil.movieItem.Movie;
 import com.example.cinetec_appmovil.movieItem.MovieAdapter;
@@ -48,17 +49,10 @@ public class Movies extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.MOVIES);
+
 
         binding = FragmentMoviesBinding.inflate(inflater, container, false);
-
-        ArrayList<Movie> movies = CineTecDatabase.getInstance(getContext()).getMovies();
-
-
-        MovieAdapter arrayAdapter = new MovieAdapter(getContext(), movies);
-
-
-        binding.moviesView.setAdapter(arrayAdapter);
-
 
         return binding.getRoot();
     }
@@ -67,6 +61,9 @@ public class Movies extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ArrayList<Movie> movies = CineTecDatabase.getInstance(getContext()).getMovies();
+        MovieAdapter arrayAdapter = new MovieAdapter(getContext(), movies);
+        binding.moviesView.setAdapter(arrayAdapter);
 
         binding.moviesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

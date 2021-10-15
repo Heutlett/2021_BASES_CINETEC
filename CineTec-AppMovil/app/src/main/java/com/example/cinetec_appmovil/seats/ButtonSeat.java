@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.cinetec_appmovil.Seats;
 import com.example.cinetec_appmovil.Tickets;
 
 public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
@@ -94,12 +95,14 @@ public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
             if(isSelected)
             {
                 left_seats++;
+                Seats.selectedSeats.remove(new Integer(seatNumber));
                 this.isSelected = false;
                 this.setBackgroundColor(Color.GRAY);
 
             } else if (left_seats != 0){
 
                 left_seats--;
+                Seats.selectedSeats.add(seatNumber);
                 this.isSelected = true;
                 this.setBackgroundColor(Color.GREEN);
             }

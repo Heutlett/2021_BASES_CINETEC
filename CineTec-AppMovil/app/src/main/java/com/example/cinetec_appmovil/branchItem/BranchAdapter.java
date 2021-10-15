@@ -36,25 +36,23 @@ public class BranchAdapter extends ArrayAdapter<Branch> {
             currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.branch_item, parent, false);
 
 
-            Branch currentBranch = branches.get(position);
-
-            TextView textView1 = currentItemView.findViewById(R.id.name_branch_text);
-            textView1.setText(currentBranch.getName());
-
-            TextView textView2 = currentItemView.findViewById(R.id.address_text);
-            textView2.setText("Localizacion: " +currentBranch.getProvince() + ", " + currentBranch.getDistrict());
-
-            TextView textView3 = currentItemView.findViewById(R.id.room_quantity_text);
-            textView3.setText("Cantidad de salas: " + currentBranch.getRoomQuantity());
-
-
-
-
-
-
-
-
         }
+
+
+
+        Branch currentBranch = branches.get(position);
+
+        TextView textView1 = currentItemView.findViewById(R.id.name_branch_text);
+        textView1.setText("Sucursal: " + currentBranch.getName());
+
+        TextView textView2 = currentItemView.findViewById(R.id.address_text);
+        textView2.setText("Localizacion: " +currentBranch.getProvince() + ", " + currentBranch.getDistrict());
+
+        TextView textView3 = currentItemView.findViewById(R.id.room_quantity_text);
+        textView3.setText("Cantidad de salas: " + currentBranch.getRoomQuantity());
+
+
+
 
 
         // then return the recyclable view
