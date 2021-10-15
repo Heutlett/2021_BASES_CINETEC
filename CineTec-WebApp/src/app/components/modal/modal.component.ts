@@ -21,6 +21,7 @@ export class NgbdModalContent implements OnInit {
     seats:string;
     subtotal:string;
     total:string;
+    hora:string;
 
     constructor(public activeModal: NgbActiveModal , private globalService : GlobalService, private router : Router, private apiService : ApiService) {}
 
@@ -30,6 +31,7 @@ export class NgbdModalContent implements OnInit {
       this.movie = this.globalService.current_movie;
       this.room = this.globalService.current_room.toString();
       this.seats = this.globalService.seats_str();
+      this.hora = this.globalService.current_time;
       this.subtotal =this.globalService.current_subtotal.toString();
       this.total = (this.globalService.current_subtotal + (this.globalService.current_subtotal * 0.13)).toString();
 
