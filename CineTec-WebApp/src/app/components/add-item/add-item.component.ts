@@ -418,11 +418,12 @@ export class AddItemComponent implements OnInit {
       "original_name":this.original_name,
       "classification_id":this.classification_id,
       "length":this.length,
-      "image":"",
+      "image":this.image,
       "director":this.director,
-      "actors":this.actors
+      "actors":this.actors,
     }
 
+    this.image = "";
     this.name = "";
     this.original_name = "";
     this.length = "";
@@ -461,7 +462,7 @@ export class AddItemComponent implements OnInit {
 
       reader.onload = () => {
         
-        console.log(reader.result);
+        this.image = reader.result;
       }
 
 
