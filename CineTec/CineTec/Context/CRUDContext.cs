@@ -793,6 +793,7 @@ namespace CineTec.Context
                              age_rating = c.age_rating,
                              details = c.details,
                              director = d.name,
+                             image = m.image,
                              actors = (from a in Acts.Where(x => x.movie_id == m.id)
                                        join p in Actors on a.actor_id equals p.id
                                        select p.name).ToList()
@@ -828,7 +829,8 @@ namespace CineTec.Context
                 name = movie_stats.name,
                 classification_id = movie_stats.classification_id,
                 length = movie_stats.length,
-                director_id = director_id
+                director_id = director_id,
+                image = movie_stats.image
             };
             Movies.Add(movie);
             SaveChanges();
@@ -900,6 +902,7 @@ namespace CineTec.Context
                              age_rating = c.age_rating,
                              details = c.details,
                              director = d.name,
+                             image = m.image,
                              actors = (from a in Acts.Where(x => x.movie_id == m.id)
                                        join p in Actors on a.actor_id equals p.id
                                        select p.name).ToList()
@@ -960,6 +963,7 @@ namespace CineTec.Context
             movie.director_id = director_id;
             movie.name = movie_stats.name;
             movie.length = movie_stats.length;
+            movie.image = movie_stats.image;
             Movies.Update(movie);
             SaveChanges();
 
