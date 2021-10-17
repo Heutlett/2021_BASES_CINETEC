@@ -37,7 +37,7 @@ public class Movie {
      * @param actors
      */
     public Movie(int id, String director, String original_name, String name, String code, String age_rating, String details, String length, String actors, String image) {
-        
+
         this.name = name;
         this.length = length;
         this.original_name = original_name;

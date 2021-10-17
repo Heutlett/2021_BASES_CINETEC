@@ -69,7 +69,7 @@ public class ProjectionAdapter extends ArrayAdapter<Projection> {
         textView3.setText("Hora: " + currentProjection.getTime());
 
         TextView textView4 = currentItemView.findViewById(R.id.room_text);
-        textView4.setText("Hora: " + currentProjection.getRoom());
+        textView4.setText("Sala: " + currentProjection.getRoom());
 
 
 
