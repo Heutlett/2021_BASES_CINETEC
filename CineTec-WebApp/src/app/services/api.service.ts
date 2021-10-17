@@ -452,6 +452,7 @@ export class ApiService {
   * @returns respuesta del API
   */
   put_projections(projection:Projection):Observable<Projection> {
+    console.log(projection);
     const url = `${this.apiURL + "Projections" }/${this.globalService.getCurrentItem().id}`;
     return this.http.put<Projection>(url, projection, httpOptions); 
   }

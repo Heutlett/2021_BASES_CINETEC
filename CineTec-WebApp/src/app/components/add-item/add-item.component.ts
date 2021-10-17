@@ -547,12 +547,13 @@ export class AddItemComponent implements OnInit {
     this.movie_id = (this.movies_list.filter((i) => i.name == this.movie_name))[0].id;
 
     if(this.showEditItem){
+      console.log(this.global.getCurrentItem());
       this.new_item = {
         "id":this.global.getCurrentItem().id,
         "movie_id": this.movie_id,
         "date":this.date,
         "schedule":this.schedule,
-        "room_id":this.room_id,
+        "room_id":this.global.getCurrentItem().room,
         "covid":this.global.getCurrentItem().covid
       }
     }
