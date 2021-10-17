@@ -34,6 +34,7 @@ export class BillingComponent implements OnInit {
   tax: number;
   full_address: string;
   hora:string;
+  dia:string;
 
   constructor(private globalService : GlobalService, private router : Router) { }
 
@@ -51,10 +52,11 @@ export class BillingComponent implements OnInit {
     this.tickets_amount = this.globalService.current_tickets;
     this.hora = this.globalService.current_time;
     this.tax = this.globalService.current_subtotal*0.13;
-    this.full_address = this.globalService.current_branch + this.globalService.current_address;
+    this.full_address = this.globalService.current_branch;
     this.security_code = Math.floor(Math.random() * 10000000000);
     this.consecutive = Math.floor(Math.random() * 10000000000);
     this.id = Math.floor(Math.random() * 1000000000);
+    this.dia = this.globalService.current_date;
 
     /**
      * Funcion que crea un string aleatorio
