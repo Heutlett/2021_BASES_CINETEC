@@ -55,6 +55,8 @@ public class Projections extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        ((MainActivity) getActivity()).setTitle("Proyecciones");
+
         try {
         binding = FragmentProjectionBinding.inflate(inflater, container, false);
         //CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.PROJECTIONS);

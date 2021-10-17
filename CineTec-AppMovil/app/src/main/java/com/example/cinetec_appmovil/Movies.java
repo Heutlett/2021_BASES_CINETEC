@@ -59,6 +59,8 @@ public class Movies extends Fragment {
         //CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.MOVIES);
 
 
+        ((MainActivity) getActivity()).setTitle("Películas");
+
         binding = FragmentMoviesBinding.inflate(inflater, container, false);
 
         return binding.getRoot();

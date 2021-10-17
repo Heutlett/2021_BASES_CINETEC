@@ -939,9 +939,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                         .url(URL + "Seats/byId?projection_id=" + projection_id + "&number=" + seat)
                         .put(body)
                         .build();
-
-                this.updateReservedSeats(projection_id, seat);
-
+                
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -981,13 +979,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
 
 
-    public void updateReservedSeats(int projection_id, int number)
-    {
 
-        SQLiteDatabase DB = DB_instance.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("UPDATE " + TABLE_CLIENTS + " SET status = 'TAKEN' WHERE projection_id = ? AND number = ?", new String[]{Integer.toString(projection_id), Integer.toString(number)});
-
-    }
 
 
 

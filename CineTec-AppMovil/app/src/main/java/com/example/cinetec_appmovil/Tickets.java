@@ -54,6 +54,8 @@ public class Tickets extends Fragment {
 
         binding = FragmentTicketsBinding.inflate(inflater, container, false);
 
+        ((MainActivity) getActivity()).setTitle("Boletos");
+
 
 
         return binding.getRoot();

@@ -59,6 +59,8 @@ public class Seats extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentSeatsBinding.inflate(inflater, container, false);
 
+        ((MainActivity) getActivity()).setTitle("Asientos");
+
 
         /**
          * Se establece el evento para efectuar la compra de los boletos
