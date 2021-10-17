@@ -8,5 +8,4 @@ export interface Movie{
     length:string;
     director:string;
     actors:string[];
-    
 }

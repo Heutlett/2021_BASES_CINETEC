@@ -8,7 +8,7 @@ export interface Projections{
     classification:string;
     price:number;
     room:number;
-
+    image:string;
     projection_ids:number[];
     room_ids:number[];
 
