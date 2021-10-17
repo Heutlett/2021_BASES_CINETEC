@@ -9,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cinetec_appmovil.databinding.FragmentTicketsBinding;
 
@@ -68,6 +69,8 @@ public class Tickets extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        this.total = 0;
+        total_seats = 0;
         updateAllValues();
 
 
@@ -116,8 +119,16 @@ public class Tickets extends Fragment {
             @Override
             public void onClick(View view) {
 
-                NavHostFragment.findNavController(Tickets.this)
-                        .navigate(R.id.action_tickets_to_seats);
+                if(total_seats != 0){
+                    NavHostFragment.findNavController(Tickets.this)
+                            .navigate(R.id.action_tickets_to_seats);
+
+                }
+                else {
+
+                    Toast.makeText(getContext(), "Debe seleccionar al menos un asiento", Toast.LENGTH_SHORT).show(); 
+                }
+
 
             }
         });

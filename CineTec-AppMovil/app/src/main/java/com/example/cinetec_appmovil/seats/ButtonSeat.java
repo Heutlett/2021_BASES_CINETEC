@@ -20,7 +20,7 @@ public class ButtonSeat extends androidx.appcompat.widget.AppCompatButton {
     public boolean isRestricted;
     public boolean isTaken;
     public int seatNumber;
-    private static int left_seats;
+    public static int left_seats;
     private String status;
 
     /**

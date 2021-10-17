@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.cinetec_appmovil.database.CineTecDatabase;
 import com.example.cinetec_appmovil.databinding.FragmentSeatsBinding;
@@ -32,7 +33,7 @@ public class Seats extends Fragment {
 
     private ArrayList<ButtonSeat> buttonSeats = new ArrayList<>();
     public static ArrayList<Integer> selectedSeats = new ArrayList<>();
-
+    private int seats_selected = 0;
     public Seats() {
         // Required empty public constructor
     }
@@ -67,10 +68,17 @@ public class Seats extends Fragment {
             public void onClick(View view) {
 
 
-                CineTecDatabase.getInstance(getContext()).purchase(Projections.current_projection.getId(), selectedSeats);
-                NavHostFragment.findNavController(Seats.this)
-                        .navigate(R.id.action_seats_to_menu);
 
+                if(ButtonSeat.left_seats == 0) {
+
+                    CineTecDatabase.getInstance(getContext()).purchase(Projections.current_projection.getId(), selectedSeats);
+                    NavHostFragment.findNavController(Seats.this)
+                            .navigate(R.id.action_seats_to_menu);
+                }
+                else {
+
+                    Toast.makeText(getContext(), "Faltan asientos por seleccionar", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
