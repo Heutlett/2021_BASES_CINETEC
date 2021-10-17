@@ -300,6 +300,7 @@ namespace CineTec.Context
                              length = m.length,
                              date = p.date,
                              director = d.name,
+                             image = m.image,
                              actors = (from a in Acts.Where(x => x.movie_id == m.id)
                                        join p in Actors on a.actor_id equals p.id
                                        select p.name).ToList(),
@@ -340,6 +341,7 @@ namespace CineTec.Context
                                        join p in Actors on a.actor_id equals p.id
                                        select p.name).ToList(),
                              price = 3600,
+                             image = m.image,
                              schedule = p.schedule,
                              room = p.room_id,
                              free_spaces = (from seat in Seats.Where(s => s.projection_id == p.id)
