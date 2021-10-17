@@ -22,6 +22,8 @@ namespace CineTec.Models
         [Required]
         public string length { get; set; }
 
+        public string image { get; set; }
+
 
 
 
