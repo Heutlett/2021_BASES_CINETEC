@@ -271,13 +271,13 @@ export class AddItemComponent implements OnInit {
       "password":this.password,
     }
 
-    this.cedula = 0;
+    this.cedula = null;
     this.first_name = "";
     this.middle_name = "";
     this.first_surname = "";
     this.second_surname = "";
     this.birth_date = "";
-    this.phone_number = 0;
+    this.phone_number = null;
     this.username = "";
     this.password = "";
 
@@ -560,17 +560,21 @@ export class AddItemComponent implements OnInit {
         "movie_id": this.movie_id,
         "date":this.date,
         "schedule":this.schedule,
+        "room_id":this.room_id,
+        "covid":this.covid
       }
 
-      this.global.covid = this.covid;
     }
 
 
+    this.movie_name = "";
     this.movie_id = null;
     this.date = "";
     this.schedule = "";
     this.room_id = null;
     this.covid = null;
+    this.branch_selected_projection = "";
+  
 
 
     return true;

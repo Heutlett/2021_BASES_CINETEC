@@ -140,6 +140,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                 "details VARCHAR NOT NULL," +
                 "length VARCHAR NOT NULL," +
                 "actors VARCHAR NOT NULL," +
+                "image VARCHAR," +
                 "PRIMARY KEY(id)"
                 +")");
 
@@ -346,6 +347,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         SQLiteDatabase DB = DB_instance.getWritableDatabase();
         Cursor cursor = DB.rawQuery("SELECT * FROM " + TABLE_MOVIES , new String[]{});
 
+
         if (cursor != null){
 
             cursor.moveToFirst();
@@ -364,9 +366,9 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                     String details = cursor.getString(6);
                     String length = cursor.getString(7);
                     String actors = cursor.getString(8);
-                    System.out.println(name);
+                    String image = cursor.getString(9);
 
-                    Movie movie = new Movie(id, director, original_name, name, code, age_rating, details, length, actors);
+                    Movie movie = new Movie(id, director, original_name, name, code, age_rating, details, length, actors, image);
                     movies.add(movie);
 
 
@@ -743,6 +745,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                             contentValues6.put("length", currentMovie.getString("length"));
                             contentValues6.put("id", currentMovie.getInt("id"));
                             contentValues6.put("actors", currentMovie.getJSONArray("actors").join(","));
+                            contentValues6.put("image", currentMovie.getString("image"));
                             DB_instance.getWritableDatabase().insert(TABLE_MOVIES, null, contentValues6);
                         }
                     } catch (JSONException e) {
@@ -781,6 +784,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
                 if (response.isSuccessful()) {
                     String data = response.body().source().readUtf8();
+                    System.out.println();
                     DB_instance.getWritableDatabase().delete(TABLE_PROJECTIONS, "1", null);
                     try {
                         JSONArray jsonArray = new JSONArray(data);

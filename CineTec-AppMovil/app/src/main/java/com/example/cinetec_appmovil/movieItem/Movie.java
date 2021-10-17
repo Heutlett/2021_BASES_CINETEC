@@ -15,6 +15,7 @@ public class Movie {
     private String age_rating;
     private String details;
     private String actors;
+    private String image;
 
     private String original_name;
 
@@ -35,7 +36,8 @@ public class Movie {
      * @param length
      * @param actors
      */
-    public Movie(int id, String director, String original_name, String name, String code, String age_rating, String details, String length, String actors ) {
+    public Movie(int id, String director, String original_name, String name, String code, String age_rating, String details, String length, String actors, String image) {
+        
         this.name = name;
         this.length = length;
         this.original_name = original_name;
@@ -45,6 +47,7 @@ public class Movie {
         this.age_rating = age_rating;
         this.details = details;
         this.actors = actors;
+        this.image = image;
     }
 
     /**
@@ -121,4 +124,6 @@ public class Movie {
     public String getOriginal_name() {
         return original_name;
     }
+
+    public String getImage(){return image;}
 }

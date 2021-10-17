@@ -1,7 +1,10 @@
 package com.example.cinetec_appmovil.movieItem;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,8 +83,16 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         TextView textView5 = currentItemView.findViewById(R.id.classification_textview);
         textView5.setText("Clasificacion: " +currentMovie.getCode());
 
+
+        String image = currentMovie.getImage();
+        String base64Image = image.split(",")[1];
+
+        byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+
         ImageView imageView = currentItemView.findViewById(R.id.movie_imageview);
-        imageView.setImageResource(getImage(currentMovie.getName()));
+        imageView.setImageBitmap(decodedByte);
 
 
 

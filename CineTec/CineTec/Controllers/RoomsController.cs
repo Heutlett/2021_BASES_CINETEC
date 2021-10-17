@@ -38,11 +38,8 @@ namespace CineTec.Controllers
         public IActionResult Post([FromBody] Room room)
         {
 
-            if (!(6 <= room.row_quantity && room.row_quantity <= 10))
-                return BadRequest("El valor de filas debe ser entre 6 - 10.");
-
-            if (!(20 <= room.column_quantity && room.column_quantity <= 26 && room.column_quantity % 2 == 0))
-                return BadRequest("El valor de columnas debe ser entre 20 - 26 y debe ser par.");
+            if (!(room.column_quantity % 2 == 0))
+                return BadRequest("El valor de columnas debe ser par.");
 
             _CRUDContext.Post_room(room);
             return Ok();

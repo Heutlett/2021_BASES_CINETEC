@@ -402,7 +402,7 @@
 
             
         <label class="label-selected" class="label-selected">Sucursal: </label>
-        <select [(ngModel)]="branch_selected_projection" (change)="update_rooms()"  name="branch_projection" class="form-group" >
+        <select [(ngModel)]="branch_selected_projection" (change)="update_rooms()"  name="branch_projection" class="form-group" [disabled]="showEditItem" >
 
             <option *ngFor="let branch of branches" [value] = "branch.cinema_name"> {{branch.cinema_name}}</option>
 
@@ -411,7 +411,7 @@
 
 
         <label class="label-selected" class="label-selected" style="margin-left: 30px;">Sala: </label>
-        <select [(ngModel)] = "room_id"  name="room_projection" class="form-group" >
+        <select [(ngModel)] = "room_id"  name="room_projection" class="form-group" [disabled]="showEditItem" >
 
             <option *ngFor="let room of rooms_list" [ngValue] = "room.id"> {{room.id}}</option>
 
