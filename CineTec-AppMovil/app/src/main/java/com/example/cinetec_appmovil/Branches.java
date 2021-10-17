@@ -56,7 +56,7 @@ public class Branches extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.BRANCHES);
+        //CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.BRANCHES);
 
 
         binding = FragmentBranchsBinding.inflate(inflater, container, false);

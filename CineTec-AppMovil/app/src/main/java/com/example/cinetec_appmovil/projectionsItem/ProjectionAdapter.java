@@ -37,7 +37,6 @@ public class ProjectionAdapter extends ArrayAdapter<Projection> {
         this.projections = arrayList;
     }
 
-
     /**
      * Devuelve la vista del item
      * @param position posicion del item en el listView
@@ -55,8 +54,6 @@ public class ProjectionAdapter extends ArrayAdapter<Projection> {
 
 
         }
-
-
 
         Projection currentProjection = projections.get(position);
 

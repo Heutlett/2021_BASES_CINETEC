@@ -240,9 +240,16 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             System.out.println(current_password);
 
             if (current_password.equals(password)){
-                return new Client(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),  cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
+                Client client = new Client(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),  cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
+                cursor.close();
+                DB_instance.close();
+                return client;
+
             }
         } while(cursor.moveToNext());
+
+        cursor.close();
+        DB_instance.close();
 
         return null;
     }
@@ -285,6 +292,9 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
 
         }
+
+        cursor.close();
+        DB_instance.close();
 
         return branches;
     }
@@ -330,6 +340,10 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             }
         }
 
+
+
+        current.close();
+        DB_instance.close();
 
 
         return projections;
@@ -383,6 +397,9 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
         }
 
+
+        cursor.close();
+        DB_instance.close();
 
 
         return movies;
@@ -453,6 +470,9 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
         }
 
+        seat.close();
+        DB_instance.close();
+
 
         return seats;
     }
@@ -466,34 +486,70 @@ public class CineTecDatabase extends SQLiteOpenHelper {
     public void synchronizeDataBase(Table table){
 
 
-        switch (table){
 
-            case ALL:
-                updateBranches();
-                updateProjections();
-                updateRooms();
-                updateMovies();
-                updateClients();
-                break;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-            case PROJECTIONS:
-                updateProjections();
-                updateRooms();
-                break;
+                while(true){
 
-            case MOVIES:
-                updateMovies();
-                break;
+                    System.out.println("Sincronizandp base de datos");
+                    updateBranches();
+                    updateProjections();
+                    updateRooms();
+                    updateMovies();
+                    updateClients();
+                    updateSeats();
 
-            case CLIENTS:
-                updateClients();
-                break;
+                    try {
+                        Thread.sleep(45000);
 
-            case BRANCHES:
-                updateBranches();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-        }
 
+                }
+
+
+
+
+
+
+
+            }
+        }).start();
+
+//
+//        switch (table){
+//
+//            case ALL:
+//                updateBranches();
+//                updateProjections();
+//                updateRooms();
+//                updateMovies();
+//                updateClients();
+//                updateSeats();
+//                break;
+//
+//            case PROJECTIONS:
+//                updateProjections();
+//                updateRooms();
+//                break;
+//
+//            case MOVIES:
+//                updateMovies();
+//                break;
+//
+//            case CLIENTS:
+//                updateClients();
+//                break;
+//
+//            case BRANCHES:
+//                updateBranches();
+//
+//        }
+//
 
 
 
@@ -508,7 +564,6 @@ public class CineTecDatabase extends SQLiteOpenHelper {
      */
     public ArrayList<Seat> getSeatsByProjections(int projection_id)
     {
-
         ArrayList<Seat> seats = new ArrayList<>();
 
         Request request = new Request.Builder().url(URL + "Projections/seats/" + projection_id).build();
@@ -516,8 +571,34 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                System.out.println(e.getLocalizedMessage());
+
+                System.out.println("xd Entraaaa");
+                Cursor cursor = DB_instance.getWritableDatabase().rawQuery("SELECT number, status FROM Seats WHERE projection_id= ?", new String[]{Integer.toString(projection_id)});
+                System.out.println(cursor.getCount());
+
+                if (cursor != null)
+                {
+                    cursor.moveToFirst();
+
+                    if (cursor.getCount() != 0)
+                    {
+                        do {
+                            int number = cursor.getInt(0);
+                            String status = cursor.getString(1);;
+
+                            Seat current_seat = new Seat(number, status);
+                            seats.add(current_seat);
+
+                        }while(cursor.moveToNext());
+
+                    }
+
+                }
+
+                cursor.close();
+                DB_instance.close();
+
+
             }
 
             @Override
@@ -540,9 +621,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             }
 
         });
-
-        this.sleep(500);
-
+        this.sleep(1000);
         return seats;
 
     }
@@ -889,12 +968,12 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
             selected_seats.stream().forEach(seat -> {
 
-                System.out.println("Entraaaa");
-
                 Request request = new Request.Builder()
                         .url(URL + "Seats/byId?projection_id=" + projection_id + "&number=" + seat)
                         .put(body)
                         .build();
+
+                this.updateReservedSeats(projection_id, seat);
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override
@@ -930,6 +1009,16 @@ public class CineTecDatabase extends SQLiteOpenHelper {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+    }
+
+
+
+    public void updateReservedSeats(int projection_id, int number)
+    {
+
+        SQLiteDatabase DB = DB_instance.getWritableDatabase();
+        Cursor cursor = DB.rawQuery("UPDATE " + TABLE_CLIENTS + " SET status = 'TAKEN' WHERE projection_id = ? AND number = ?", new String[]{Integer.toString(projection_id), Integer.toString(number)});
 
     }
 

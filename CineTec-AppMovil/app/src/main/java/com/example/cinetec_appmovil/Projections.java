@@ -57,7 +57,7 @@ public class Projections extends Fragment {
 
         try {
         binding = FragmentProjectionBinding.inflate(inflater, container, false);
-        CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.PROJECTIONS);
+        //CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.PROJECTIONS);
 
 
 
@@ -86,8 +86,17 @@ public class Projections extends Fragment {
 
         ArrayList<Projection> projections = CineTecDatabase.getInstance(getContext()).getProjections(Branches.current_branch, Movies.current_movie);
 
-        ProjectionAdapter arrayAdapter = new ProjectionAdapter(getContext(), projections);
-        binding.projectionView.setAdapter(arrayAdapter);
+        if(projections.size() != 0){
+            ProjectionAdapter arrayAdapter = new ProjectionAdapter(getContext(), projections);
+            binding.projectionView.setAdapter(arrayAdapter);
+
+        }
+        else
+        {
+            binding.noProjectionText.setText("No existen proyecciones asociadas");
+        }
+
+
 
 
         /**

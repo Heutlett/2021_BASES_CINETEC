@@ -56,7 +56,7 @@ public class Movies extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.MOVIES);
+        //CineTecDatabase.getInstance(getContext()).synchronizeDataBase(Table.MOVIES);
 
 
         binding = FragmentMoviesBinding.inflate(inflater, container, false);
@@ -64,7 +64,7 @@ public class Movies extends Fragment {
         return binding.getRoot();
     }
 
-
+ 
     /**
      * Funcion que se llama despues de que el fragmento es creado
      * @param view
