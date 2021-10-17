@@ -493,7 +493,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
                 while(true){
 
-                    System.out.println("Sincronizandp base de datos");
+                    System.out.println("Sincronizando base de datos");
                     updateBranches();
                     updateProjections();
                     updateRooms();
@@ -540,7 +540,6 @@ public class CineTecDatabase extends SQLiteOpenHelper {
             @Override
             public void onFailure(Call call, IOException e) {
 
-                System.out.println("xd Entraaaa");
                 Cursor cursor = DB_instance.getWritableDatabase().rawQuery("SELECT number, status FROM Seats WHERE projection_id= ?", new String[]{Integer.toString(projection_id)});
                 System.out.println(cursor.getCount());
 
