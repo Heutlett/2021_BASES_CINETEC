@@ -4,7 +4,7 @@
 					
 ------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------
-
+SET DATESTYLE TO 'NonEuropean';
 -- SUCURSALES
 INSERT INTO public."Branches"( cinema_name, province, district) VALUES ('Del Este', 'San Jose', 'Curridabat');
 INSERT INTO public."Branches"( cinema_name, province, district) VALUES ('Escazu', 'San Jose', 'Escazu');
