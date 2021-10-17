@@ -499,8 +499,7 @@ public class CineTecDatabase extends SQLiteOpenHelper {
                     updateRooms();
                     updateMovies();
                     updateClients();
-                    updateSeats();
-
+                    
                     try {
                         Thread.sleep(45000);
 
@@ -519,37 +518,6 @@ public class CineTecDatabase extends SQLiteOpenHelper {
 
             }
         }).start();
-
-//
-//        switch (table){
-//
-//            case ALL:
-//                updateBranches();
-//                updateProjections();
-//                updateRooms();
-//                updateMovies();
-//                updateClients();
-//                updateSeats();
-//                break;
-//
-//            case PROJECTIONS:
-//                updateProjections();
-//                updateRooms();
-//                break;
-//
-//            case MOVIES:
-//                updateMovies();
-//                break;
-//
-//            case CLIENTS:
-//                updateClients();
-//                break;
-//
-//            case BRANCHES:
-//                updateBranches();
-//
-//        }
-//
 
 
 

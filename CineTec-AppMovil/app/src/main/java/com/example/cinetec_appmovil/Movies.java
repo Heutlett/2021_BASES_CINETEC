@@ -64,7 +64,7 @@ public class Movies extends Fragment {
         return binding.getRoot();
     }
 
- 
+
     /**
      * Funcion que se llama despues de que el fragmento es creado
      * @param view
