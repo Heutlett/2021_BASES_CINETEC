@@ -1,6 +1,6 @@
 <div class="row-centered">
     <div *ngFor = "let movie of movies" class="col-centered">
-        <img src= "movie.image" onerror="this.onerror=null; this.src='assets/img/placeholder.jpg'" class="img-thumbnail img-responsive" alt="Rounded Image">
+        <img src= {{movie.image}} onerror="this.onerror=null; this.src='assets/img/placeholder.jpg'" class="img-thumbnail img-responsive" alt="Rounded Image">
         <p class="text-center text-white">{{movie.name}}</p>
     </div>
 </div>

@@ -28,13 +28,4 @@ export class MovieRowHolderComponent implements OnInit {
 
   }
 
-  /**
-   * Funcion generadora de la ruta de la imagen
-   * @param name nombre de la pelicua
-   * @returns dirrecion de la imagem
-   */
-  img(name){
-        return 'assets/img/' +name + '.jpg';
-  }
-
 }

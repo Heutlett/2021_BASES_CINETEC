@@ -37,8 +37,8 @@ export class ProjectionComponent implements OnInit {
     this.Director = this.projection.director;
     this.Classification = this.projection.classification;
     this.Price = this.projection.price;
-    this.Img  = "assets/img/"  + this.Name + ".jpg";
     this.Actors = this.parse_actors();
+    this.Img = this.projection.image;
    
   }
 
