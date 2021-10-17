@@ -2,6 +2,7 @@ import { Component, OnInit, Output , EventEmitter,Input} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalService } from '../../services/global.service';
 import { ApiService } from '../../services/api.service';
+import { read } from 'fs';
 
 
 @Component({
@@ -446,6 +447,25 @@ export class AddItemComponent implements OnInit {
     deleteActor(){
       this.actors = this.actors.filter((i) => i !== this.actorSelected )
       this.actorSelected = "";
+    }
+
+
+    selectActor(images)
+    {
+
+      let image = images.item(0);
+
+
+      let reader = new FileReader();
+      reader.readAsDataURL(image);
+
+      reader.onload = () => {
+        
+        console.log(reader.result);
+      }
+
+
+
     }
 
   //         __________________________________
