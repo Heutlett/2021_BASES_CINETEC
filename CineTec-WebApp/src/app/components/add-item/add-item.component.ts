@@ -78,7 +78,7 @@ export class AddItemComponent implements OnInit {
   in_url:number;
   new_item:any;
   branches:any[];
-  classfications = [ 'G', 'PG', 'PG-13','R', 'NC-17','T'];
+  classfications = [ 'G', 'PG', 'PG-13','R', 'NC-17'];
   in_branches = false;
   in_clients = false;
   in_employees = false;
@@ -552,7 +552,8 @@ export class AddItemComponent implements OnInit {
         "movie_id": this.movie_id,
         "date":this.date,
         "schedule":this.schedule,
-        "room_id":this.room_id
+        "room_id":this.room_id,
+        "covid":this.global.getCurrentItem().covid
       }
     }
     else {
