@@ -96,6 +96,7 @@ CREATE TABLE "Movies"
     original_name 			VARCHAR(30) NOT NULL,
     name 					VARCHAR(30) NOT NULL,
 	length 					VARCHAR(30) NOT NULL,
+	image					VARCHAR,
     PRIMARY KEY(id)
 );
 
