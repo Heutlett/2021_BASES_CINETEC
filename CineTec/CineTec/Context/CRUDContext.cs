@@ -579,6 +579,7 @@ namespace CineTec.Context
             existing.second_surname = client.second_surname;
             existing.birth_date = client.birth_date;
             existing.phone_number = client.phone_number;
+            existing.username = client.username;
             existing.password = client.password;
 
             Clients.Update(existing);
@@ -743,6 +744,7 @@ namespace CineTec.Context
             existing.birth_date = employee.birth_date;
             existing.start_date = employee.start_date;
             existing.phone_number = employee.phone_number;
+            existing.username = employee.username;
             existing.password = employee.password;
 
             Employees.Update(existing);
