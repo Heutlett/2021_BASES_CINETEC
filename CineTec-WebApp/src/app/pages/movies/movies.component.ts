@@ -22,6 +22,7 @@ export class MoviesComponent implements OnInit {
   url:string;
 
   items = [];
+  update: boolean;
 
   constructor(private apiService : ApiService, private router:Router ,private global : GlobalService) {
 
@@ -57,7 +58,7 @@ export class MoviesComponent implements OnInit {
     (error) => {
       alert(error.error);
     });
-
+    this.update = !this.update;
     }
   
   /**
@@ -72,6 +73,7 @@ export class MoviesComponent implements OnInit {
     }, (error) =>{
       alert(error.error);
     })
+    this.update = !this.update;
 
   }
 
@@ -80,6 +82,7 @@ export class MoviesComponent implements OnInit {
    */
   cancelEditItem(){
     this.global.cancelEdit();
+    this.update = !this.update;
   }
 
   /**
@@ -93,7 +96,17 @@ export class MoviesComponent implements OnInit {
     }, (error)=>{
       alert(error.error)
      });
-
+     this.update = !this.update;
   }
+
+
+  /**
+   * Funcion que se llama al comenzar a editar un item
+   */
+   onEditItem(){
+
+    this.update = !this.update;
+ 
+   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import {Router} from '@angular/router';
 import { GlobalService } from '../../services/global.service';
@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
 export class ItemHolderComponent implements OnInit {
 
   @Input() items:any[];
+  @Output() onEditItem: EventEmitter<any> = new EventEmitter()
   titulo:String;
   url:String;
   suscription: Subscription;
@@ -67,6 +68,8 @@ export class ItemHolderComponent implements OnInit {
    */
   editItemClicked(item:any){
     this.global.toggleEditItem(); 
+    this.onEditItem.emit();
+
   }
 
 }

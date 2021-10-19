@@ -23,6 +23,7 @@ export class EmployeeComponent implements OnInit {
   items = [];
 
   url:string;
+  update: boolean;
 
   constructor(private apiService : ApiService, private router:Router ,private global : GlobalService) {
 
@@ -61,6 +62,7 @@ export class EmployeeComponent implements OnInit {
         alert(error.error);
       });
 
+      this.update = !this.update;
     }
   
   /**
@@ -75,7 +77,7 @@ export class EmployeeComponent implements OnInit {
     }, (error)=> {
       alert(error.error)
     });
-
+    this.update = !this.update;
   }
 
   /**
@@ -83,6 +85,7 @@ export class EmployeeComponent implements OnInit {
    */
   cancelEditItem(){
       this.global.cancelEdit();
+      this.update = !this.update;
   }
   
   /**
@@ -97,11 +100,18 @@ export class EmployeeComponent implements OnInit {
       (error)=> {
         alert(error.error);
       });
-      
+      this.update = !this.update;
   }
 
 
+  /**
+   * Funcion que se llama al comenzar a editar un item
+   */
+   onEditItem(){
 
+    this.update = !this.update;
+ 
+   }
 
 
 

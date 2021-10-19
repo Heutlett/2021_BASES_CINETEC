@@ -31,6 +31,7 @@
 
         <app-add-item
             url = {{url}}
+            [update] = "update"
             (onAddItem)="add_item($event)"
             (onEditItem)="edit_item($event)">
         </app-add-item>
@@ -40,7 +41,10 @@
 
     </div>
 
-    <app-item-holder [items]= "items"></app-item-holder>
+    <app-item-holder
+        [items]= "items"
+        (onEditItem)="onEditItem()">
+    </app-item-holder>
 
 
 </div>

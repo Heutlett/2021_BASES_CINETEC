@@ -24,6 +24,7 @@ export class BranchesAdminComponent implements OnInit {
   x:any;
 
   items = [];
+  update: boolean;
 
   constructor(private apiService : ApiService ,private router:Router ,private global : GlobalService) {
 
@@ -59,6 +60,7 @@ export class BranchesAdminComponent implements OnInit {
         })
       }, (error) =>{alert(error.error)}
     );
+    this.update = !this.update;
   }
 
   /**
@@ -70,7 +72,7 @@ export class BranchesAdminComponent implements OnInit {
     this.apiService.put(item).subscribe(() =>{                         
       this.apiService.get_branches().subscribe((branches) => this.items = branches);
       }, (error) => {alert(error.error);}); 
-                                    
+      this.update = !this.update;                            
   }
 
   /**
@@ -78,6 +80,7 @@ export class BranchesAdminComponent implements OnInit {
    */
   cancelEditItem(){
       this.global.cancelEdit();
+      this.update = !this.update;
   }
   
   /**
@@ -89,6 +92,16 @@ export class BranchesAdminComponent implements OnInit {
       this.items = this.items.filter(i => i.cinema_name !== this.global.getCurrentItem().cinema_name);
     },(error) =>
          (alert(error.error)));
+         this.update = !this.update;
   }
+
+  /**
+   * Funcion que se llama al comenzar a editar un item
+   */
+   onEditItem(){
+
+    this.update = !this.update;
+ 
+   }
 }
                                               

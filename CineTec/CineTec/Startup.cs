@@ -24,8 +24,10 @@ namespace CineTec
             services.AddMvc();
             services.AddControllers().AddControllersAsServices();
 
+            services.AddCors();
+
             // Instancia de clase PostgreSQLCOnfiguration.
-            var connString = Configuration.GetConnectionString("PostgreSQLConnectionAdrian");
+            var connString = Configuration.GetConnectionString("PostgreSQLConnectionJose");
             services.AddDbContext<CRUDContext>(options => options.UseNpgsql(connString));
 
             //Register Swagger
@@ -58,6 +60,12 @@ namespace CineTec
 
             app.UseRouting();
 
+            app.UseCors(x => x
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()
+                 .SetIsOriginAllowed(origin => true) // allow any origin
+                 .AllowCredentials()); // allow credentials
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -65,5 +73,6 @@ namespace CineTec
                 endpoints.MapControllers();
             });
         }
+
     }
 }

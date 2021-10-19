@@ -20,6 +20,7 @@ export class ClientsComponent implements OnInit {
   showAddItem:boolean;
   showEditItem: boolean;
   url:string;
+  update = true;
 
   items = [];
 
@@ -31,7 +32,10 @@ export class ClientsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.suscription = this.global.onToggleEdit().subscribe((value)=>(this.showEditItem = value));
+    this.suscription = this.global.onToggleEdit().subscribe((value)=>{
+      this.showEditItem = value
+      }
+    );
     this.suscription = this.global.onToggleAdd().subscribe((value)=>(this.showAddItem = value));
     this.apiService.get_clients().subscribe(clients => this.items = clients);
 
@@ -56,6 +60,7 @@ export class ClientsComponent implements OnInit {
     },(error) => {
       alert(error.error);
     });
+    this.update = !this.update;
     }
 
   /**
@@ -71,6 +76,8 @@ export class ClientsComponent implements OnInit {
     }, (error)=> {
       alert(error.error);
     });
+    this.update = !this.update;
+
 
   }
 
@@ -79,6 +86,7 @@ export class ClientsComponent implements OnInit {
    */
   cancelEditItem(){
       this.global.cancelEdit();
+      this.update = !this.update;
   }
 
   /**
@@ -93,6 +101,16 @@ export class ClientsComponent implements OnInit {
     }, (error)=>{
       alert(error.error);
     });
+    this.update = !this.update;
+
+  }
+ 
+  /**
+   * Funcion que se llama al comenzar a editar un item
+   */
+   onEditItem(){
+
+   this.update = !this.update;
 
   }
 

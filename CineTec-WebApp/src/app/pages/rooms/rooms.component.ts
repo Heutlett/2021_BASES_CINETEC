@@ -22,6 +22,7 @@ export class RoomsComponent implements OnInit {
   showEditItem: boolean;
 
   items = [ ];
+  update: boolean;
 
 
   constructor(private apiService : ApiService, private router:Router ,private global : GlobalService) {
@@ -57,6 +58,7 @@ export class RoomsComponent implements OnInit {
       }, (error)=> {
         alert(error.error);
       });
+      this.update = !this.update;
 
     }
 
@@ -72,7 +74,7 @@ export class RoomsComponent implements OnInit {
     }, (error) => {
       alert(error.errors);
     });
-    
+    this.update = !this.update;
   }
 
   /**
@@ -80,6 +82,7 @@ export class RoomsComponent implements OnInit {
    */
      cancelEditItem(){
       this.global.cancelEdit();
+      this.update = !this.update;
   }
   
   /**
@@ -94,6 +97,17 @@ export class RoomsComponent implements OnInit {
     }, (error)=>{
       alert(error.error)
      });
+     this.update = !this.update;
   }
+
+
+  /**
+   * Funcion que se llama al comenzar a editar un item
+   */
+   onEditItem(){
+
+    this.update = !this.update;
+ 
+   }
 
 }

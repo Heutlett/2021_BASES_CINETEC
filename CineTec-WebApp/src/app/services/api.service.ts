@@ -32,7 +32,8 @@ const httpOptions = {
  */
 export class ApiService {
 
-  private apiURL = '/api/'; //URL del proxy
+  //private apiURL = '/api/'; //URL del proxy
+  private apiURL = 'http://localhost:90/api/'; //URL de IIS
    
   constructor(private http:HttpClient, private globalService : GlobalService, private router : Router) { }
 
@@ -366,7 +367,7 @@ export class ApiService {
    */
   put_seat_bought(seat:Seat): Observable<any>{
 
-    const url = `${this.apiURL +"/Seats/" + "byId?projection_id="}${seat.projection_id.toString()}&number=${seat.number.toString()}`;
+    const url = `${this.apiURL +"Seats/" + "byId?projection_id="}${seat.projection_id.toString()}&number=${seat.number.toString()}`;
     console.log(url);
     const body = {
 

@@ -2,7 +2,6 @@ import { Component, OnInit, Output , EventEmitter,Input} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalService } from '../../services/global.service';
 import { ApiService } from '../../services/api.service';
-import { read } from 'fs';
 
 
 @Component({
@@ -20,10 +19,11 @@ export class AddItemComponent implements OnInit {
 
   @Output() onAddItem: EventEmitter<any> = new EventEmitter();
   @Output() onEditItem: EventEmitter<any> = new EventEmitter();
+  @Input() cedula : String ;
 
   //Client and employeee
   branch_id:string;
-  cedula:number;
+  //cedula:number;
   first_name: string;
   middle_name : string;
   first_surname : string;
@@ -75,6 +75,7 @@ export class AddItemComponent implements OnInit {
   subscrition2: Subscription;
   @Input() url: string;
   @Input() items:any;
+  @Input() update: boolean
   in_url:number;
   new_item:any;
   branches:any[];
@@ -104,8 +105,94 @@ export class AddItemComponent implements OnInit {
     if(this.url === "/employees" || this.url === "/rooms" || this.url === "/projections"){
       this.apiService.get_branches().subscribe((branches) => this.branches = branches);
     }
-    
+ 
   }
+
+
+  ngOnChanges() {
+
+    if (this.showEditItem){
+
+      this.cinema_name = this.global.getCurrentItem().cinema_name;
+      this.province = this.global.getCurrentItem().province;
+      this.district = this.global.getCurrentItem().district;
+
+      this.cedula = this.global.getCurrentItem().cedula;
+      this.branch_id = this.global.getCurrentItem().branch_id;
+      this.first_name = this.global.getCurrentItem().first_name;
+      this.middle_name = this.global.getCurrentItem().middle_name;
+      this.first_surname = this.global.getCurrentItem().first_surname;
+      this.second_surname = this.global.getCurrentItem().second_surname;
+      //this.birth_date = this.global.getCurrentItem().birth_date;
+      //this.start_date = this.global.getCurrentItem().start_date;
+      this.phone_number = this.global.getCurrentItem().phone_number;
+      this.username = this.global.getCurrentItem().username;
+      this.password = this.global.getCurrentItem().password;
+
+      //this.image = this.global.getCurrentItem().image;
+      this.name = this.global.getCurrentItem().name;
+      this.original_name = this.global.getCurrentItem().original_name;
+      this.length = this.global.getCurrentItem().length;
+      //this.classification_id= this.global.getCurrentItem().classification_id;
+      this.director = this.global.getCurrentItem().director;
+      //this.actors = this.global.getCurrentItem().actors;
+
+      this.row_quantity = this.global.getCurrentItem().row_quantity;
+      this.column_quantity = this.global.getCurrentItem().column_quantity;
+      this.branch_name = this.global.getCurrentItem().branch_name;
+
+      this.movie_name = this.global.getCurrentItem().movie_name;
+      this.movie_id = this.global.getCurrentItem().movie_id;
+      //this.date = this.global.getCurrentItem().date;
+      this.schedule = this.global.getCurrentItem().schedule;
+      //this.room_id = this.global.getCurrentItem().room_id;
+      //this.covid = this.global.getCurrentItem().covid;
+      //this.branch_selected_projection =this.global.getCurrentItem().branch_selected_projection;
+
+  
+
+    }
+    else{
+
+      this.cinema_name = "";
+      this.province = "";
+      this.district = "";
+
+      this.cedula = "";
+      this.branch_id = "";
+      this.first_name = "";
+      this.middle_name ="";
+      this.first_surname = "";
+      this.second_surname ="";
+      this.birth_date = "";
+      this.start_date = "";
+      this.phone_number = null;
+      this.username = "";
+      this.password ="";
+      
+      this.image = "";
+      this.name = "";
+      this.original_name = "";
+      this.length = "";
+      this.classification_id="";
+      this.director = "";
+      this.actors = [];
+
+      this.row_quantity = null;
+      this.column_quantity = null;
+      this.branch_name = "";
+
+      this.movie_name = "";
+      this.movie_id = null;
+      this.date = "";
+      this.schedule = "";
+      this.room_id = null;
+      this.covid = null;
+      this.branch_selected_projection = "";
+
+    }
+  }
+
 
   /**
    * Esta funcion se ejecuta cuando el boton de enviar a base de datos es oprimido
@@ -178,6 +265,7 @@ export class AddItemComponent implements OnInit {
    */
   add_or_edit_branches(){
 
+
     if(!this.cinema_name && !this.showEditItem){
       alert("Por favor indique un nombre");
       return false;
@@ -219,6 +307,11 @@ export class AddItemComponent implements OnInit {
    * @returns Booleano, true si actualiza con exito
    */
   add_or_update_clients(){
+
+
+    if(this.showEditItem){
+
+    }
     
     if(!this.first_name){
       alert("Por favor indique un primer nombre");
