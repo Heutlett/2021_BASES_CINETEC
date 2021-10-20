@@ -48,7 +48,7 @@ import okhttp3.Response;
 public class CineTecDatabase extends SQLiteOpenHelper {
 
 
-    private final String URL = "http://10.0.2.2:27078/api/";
+    private final String URL = "http://10.0.2.2:90/api/";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "cinetec.db";
     private static final String TABLE_MOVIES = "Movies";
