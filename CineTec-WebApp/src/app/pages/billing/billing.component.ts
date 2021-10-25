@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalService } from 'app/services/global.service';
+//import { saveAs } from 'file-saver/FileSaver';
+import * as fileSaver from 'file-saver';
 import * as jsPDF from 'jspdf';
 
 
@@ -197,6 +199,7 @@ export class BillingComponent implements OnInit {
         spacebeforeslash: ''
       });
     
+    console.log(xml);
     this.globalService.xml = xml;
 
   }
@@ -205,7 +208,8 @@ export class BillingComponent implements OnInit {
    * Funcion que se ejecuta para llevar a la pagina de visualizacion del XML
    */
   show_xml(){
-    this.router.navigateByUrl("/xml")
+    var blob = new Blob([this.globalService.xml], {type: "text/plain;charset=utf-8"});
+    fileSaver.saveAs(blob, "factura_electronica.xml")
   }
 
   /**
